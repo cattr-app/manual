@@ -1,0 +1,7 @@
+apps:
+  - name: 'cattr-user-manual'
+    script: 'npx'
+    args:
+      - 'docsify-cli'
+      - 'serve'
+      - './docs'
