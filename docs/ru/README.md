@@ -1,8 +1,8 @@
-# Начало работы
+# Начало работы  :id=intro
 
 *тут идет краткое описание катра*
 
-## Минимальные требования
+## Минимальные требования  :id=requirements
 * CPU: 2 core
 * RAM: 2 GB
 * HDD/SSD: 5 GB зарезервированного свободного места (it is highly recommended)
@@ -12,7 +12,7 @@
 * Composer необходим для работы с Backend-составляющей
 * Nginx (мы рекомендуем использовать именно данный веб-сервер)
 
-## Установка
+## Установка  :id=installation
 !> Если вы не опытный системный администратор, мы рекомендуем воспользоваться установкой через Docker-образ
 
 1. Скачайте репозитории Frontend и Backend частей приложения
@@ -24,8 +24,8 @@
     ```bash
     # тут идет ссылка на фронт
     ```
-4. Перейдите в каталог с Backend-составляющей и введите `composer install && php artisan app:install` и следуйте инструкциям менеджера по установке
-5. Перейдите в каталог с Frontend-составляющей
+2. Перейдите в каталог с Backend-составляющей и введите `composer install && php artisan app:install` и следуйте инструкциям менеджера по установке
+3. Перейдите в каталог с Frontend-составляющей
     1. В папке `app/etc` скопируйте файл `env.example.js` в файл `env.js`
     2. Установите следующие значения переменных в файлу `env.js`
         * `API_URL`: <ссылка на домен, на котором будет находиться Backend Cattr>
@@ -33,7 +33,7 @@
         * `DEVELOPER_MODE`: 'package'
         * `LOCAL_BUILD`: false
     3. В корневой папке Frontend-составляющей введите `NODE_ENV=production yarn install && yarn compile` или `NODE_ENV=production npm install && npm run compile`
-6. Настройте ваш вебсервер для работы с Cattr: создайте конфигурационные файлы как для Frontend, так и для Backend.
+4. Настройте ваш веб-сервер для работы с Cattr: создайте конфигурационные файлы как для Frontend, так и для Backend.
     * Каталог статических файлов Frontend-составляющей: `path/to/cattr/frontend/dist`
     * Каталог статических файлов Backend-составляющей: `path/to/cattr/backend/public`
 
@@ -41,10 +41,15 @@
 
 !> Если Backend составляющая находится на домене, отличном от Frontend домена Cattr, вам необходимо включить опцию `CORS_ENABLED=true` в конфигурации окружения Backend'а
 
-## Что дальше
+## Что дальше?  :id=next
+
 После успешной установки и настройки Frontend-составляющей и Backend-составляющей Вы можете зайти по адресу Frontend-составляющей, авторизоваться с использованием учетных данных созданного административного пользователя и [создать первых пользователей](ru/users/?id=create).
  
 ---
+
+## Примеры конфигурации  :id=configuration-examples
+
+Ниже вы найдете примеры конфигурации различных веб-серверов для работы с Cattr.
 
 ### NGINX Config Sample
 
@@ -55,7 +60,7 @@ server {
   listen [::]:80;
   server_name api.example.co,;
 
-  # Extend POST size to 256M
+  # Extend POST size
   client_max_body_size 256M;
 
   # Security headers
