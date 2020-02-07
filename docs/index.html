@@ -21,7 +21,12 @@
     <div id="app"></div>
     <script>
       window.$docsify = {
-        name: 'Cattr Frontend Documentation',
+        name: 'Cattr User Manual',
+
+        nameLink: {
+          '/ru/': '#/ru/',
+          '/': '/'
+        },
 
         loadSidebar: true,
         subMaxLevels: 3,
@@ -34,8 +39,14 @@
         ga: 'UA-100100910-3',
         search: {
           depth: 3,
-          noData: 'No results!',
-          placeholder: 'Search...'
+          noData: {
+            '/ru/': 'Нет результатов!',
+            '/': 'No results!'
+          },
+          placeholder: {
+            '/ru/': 'Искать...',
+            '/': 'Search...'
+          }
         },
 
         alias: {
@@ -50,9 +61,7 @@
     <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/ga.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
 
-    <script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
     <script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
   </body>
 
