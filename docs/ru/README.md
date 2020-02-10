@@ -16,14 +16,8 @@
 !> Если вы не опытный системный администратор, мы рекомендуем воспользоваться установкой через Docker-образ
 
 1. Скачайте репозитории Frontend и Backend частей приложения
-   * Backend:
-    ```bash
-    # тут идет ссылка на бэк 
-    ```
-   * Frontend
-    ```bash
-    # тут идет ссылка на фронт
-    ```
+   * Backend: `тут идет ссылка на бэк`
+   * Frontend: `тут идет ссылка на фронт`
 2. Перейдите в каталог с Backend-составляющей и введите `composer install && php artisan app:install` и следуйте инструкциям менеджера по установке
 3. Перейдите в каталог с Frontend-составляющей
     1. В папке `app/etc` скопируйте файл `env.example.js` в файл `env.js`
@@ -32,7 +26,7 @@
         * `API_VERSION`: 'v1'
         * `DEVELOPER_MODE`: 'package'
         * `LOCAL_BUILD`: false
-    3. В корневой папке Frontend-составляющей введите `NODE_ENV=production yarn install && yarn compile` или `NODE_ENV=production npm install && npm run compile`
+    3. В корневой папке Frontend-составляющей введите <br> `NODE_ENV=production yarn install && yarn compile` <br> или <br> `NODE_ENV=production npm install && npm run compile`
 4. Настройте ваш веб-сервер для работы с Cattr: создайте конфигурационные файлы как для Frontend, так и для Backend.
     * Каталог статических файлов Frontend-составляющей: `path/to/cattr/frontend/dist`
     * Каталог статических файлов Backend-составляющей: `path/to/cattr/backend/public`
@@ -43,7 +37,9 @@
 
 ## Что дальше?  :id=next
 
-После успешной установки и настройки Frontend-составляющей и Backend-составляющей Вы можете зайти по адресу Frontend-составляющей, авторизоваться с использованием учетных данных созданного административного пользователя и [создать первых пользователей](ru/users/?id=create).
+После успешной установки и настройки Frontend-составляющей и Backend-составляющей Вы можете зайти по адресу Frontend-составляющей, авторизоваться с использованием учетных данных созданного административного пользователя и создать первые проекты, задачи и назначить их новым пользователям.
+
+?>Как это сделать можно прочитать в разделах [Создание проекта](ru/workflow/?id=project), [Создание задач](ru/workflow/?id=task) и [Создание пользователя](ru/users/?id=create).
  
 ---
 
@@ -91,7 +87,6 @@ server {
     fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
     include misc.d/fastcgi_params;
   }
-
 }
 
 # Frontend Configuration
