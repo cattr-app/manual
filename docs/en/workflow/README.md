@@ -10,13 +10,13 @@ Projects contains and groups task inside them, which makes it easier to make the
 
 To create a new project, go to the `Projects` section and click `Create`.
 
-![Create project](../../assets/ru/workflow/project_create.png)
+![Create project](../../assets/en/workflow/project_create.png)
 
 Once you add the project's name and description, click `Save`.
 
 ?> `Important` option lets you save the project's screenshots when cleaning up the storage if the server runs out of space
 
-![Save project](../../assets/ru/workflow/project_save.png)
+![Save project](../../assets/en/workflow/project_save.png)
 
 Once the project is created, you can create tasks for it, and assign user for those.
 
@@ -30,17 +30,17 @@ Tasks are belong to projects and they're used to create time intervals that are 
 
 To create a new task go to the `Tasks` section and click `Create`.
 
-![Create task](../../assets/ru/workflow/task_create.png)
+![Create task](../../assets/en/workflow/task_create.png)
 
 Once you add the task's name, description and priority, you'll be able to choose a task's project from the dropdown menu. The project's name field will dynamically suggest you the found projects. After that, you can assign the user to the task and save it, clicking `Save`.
 
 ?> `Important` option lets you save the task's screenshots when cleaning up the storage if the server runs out of space
 
-![Save task](../../assets/ru/workflow/task_save.png)
+![Save task](../../assets/en/workflow/task_save.png)
 
 Once the task is added, the assigned user will be able to track the task's time.
 
-?> Projects and tasks can be created automatically, if you add one of the [integrations](ru/integrations/) to Cattr
+?> Projects and tasks can be created automatically, if you add one of the [integrations](en/integrations/) to Cattr
 
 ## Client application  :id=tracker
 
@@ -54,16 +54,16 @@ If you click the task's name, you'll see its description. To start tracking time
 
 Users can add time spent both with the client app and control panel.
 
-!> By default users can't manually add time via control panel. You can learn more about it on the [Access rules](ru/roles/?id=manual-time) page
+!> By default users can't manually add time via control panel. You can learn more about it on the [Access rules](en/roles/?id=manual-time) page
 
 To add the time spent you'll need to go to the page `Dashboard` and choose the `Add time` section.
 
-![Add time](../../assets/ru/workflow/time_create.png)
+![Add time](../../assets/en/workflow/time_create.png)
 
 Once you add the user, task, and time interval borders, click `Save`.
 
-![Remove time](../../assets/ru/workflow/time_save.png)
+![Remove time](../../assets/en/workflow/time_save.png)
 
 ?> Manually created time intervals will be shown in a different color on page `Dashboard` in sections `Personal` and `Team`.
  
-![Intervals](../../assets/ru/workflow/time_manual.png)
+![Intervals](../../assets/en/workflow/time_manual.png)
