@@ -32,7 +32,7 @@ To create a new task go to the `Tasks` section and click `Create`.
 
 ![Create task](../../assets/en/workflow/task_create.png)
 
-Once you add the task's name, description and priority, you'll be able to choose a task's project from the dropdown menu. The project's name field will dynamically suggest you the found projects. After that, you can assign the user to the task and save it, clicking `Save`.
+Once you add the task's name, description and priority, you'll be able to select a task's project from the dropdown menu. The project's name field will dynamically suggest you the found projects. After that, you can assign the user to the task and save it, clicking `Save`.
 
 ?> `Important` option lets you save the task's screenshots when cleaning up the storage if the server runs out of space
 
@@ -56,7 +56,7 @@ Users can add time spent both with the client app and control panel.
 
 !> By default users can't manually add time via control panel. You can learn more about it on the [Access rules](en/roles/?id=manual-time) page
 
-To add the time spent you'll need to go to the page `Dashboard` and choose the `Add time` section.
+To add the time spent you'll need to go to the page `Dashboard` and select the `Add time` section.
 
 ![Add time](../../assets/en/workflow/time_create.png)
 
