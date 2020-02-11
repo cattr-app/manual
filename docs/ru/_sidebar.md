@@ -5,6 +5,8 @@
   - [Примеры конфигурации](ru/?id=configuration-examples)
 - [Пользователи](ru/users/?id=intro)
   - [Создание пользователя](ru/users/?id=create)
+  - [Сброс пароля](ru/users/?id=reset)
+  - [Часовой пояс](ru/users/?id=timezone)
 - [Рабочий процесс](ru/workflow/?id=intro)
   - [Создание проекта](ru/workflow/?id=project)
   - [Создание задачи](ru/workflow/?id=task)
