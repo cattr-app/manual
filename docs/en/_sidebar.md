@@ -10,7 +10,7 @@
   - [Create task](en/workflow/?id=task)
   - [Client application](en/workflow/?id=tracker)
   - [Manual time addition](en/workflow/?id=manual-time)
-- [Access rules](en/roles/?id=intro)
+- [Access roles](en/roles/?id=intro)
   - [Existing roles](en/roles/?id=existing)
   - [Assigning roles](en/roles/?id=promote)
   - [Manual time addition](en/roles/?id=manual-time)
