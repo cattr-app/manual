@@ -18,7 +18,7 @@ Once you're done adding username, email and password, click `Save`, and the user
 
 ---
 
-- `Роль по умолчанию` sets the default user's role for the projects (excluding those projects where this particular user's role is overridden)
+- `Default role` sets the default user's role for the projects (excluding those projects where this particular user's role is overridden)
 - `Screenshots interval` defines how many seconds is going to go before the client application create a new screenshot
 - `Computer time popup` defines how many seconds will the user have before the work timer is stopped once the user's inactivity (no mouse moves or any key presses) is detected
 - `Timezone` defines the user's timezone
