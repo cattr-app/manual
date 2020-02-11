@@ -12,7 +12,7 @@ Redmine integration lets you synchronize the tasks and projects, created both in
 
 To turn on/off the Redmine sync, change the according setting on the `Company settings`'s `General` section.
 
-![Enable integration](../../assets/ru/integrations/redmine/enable.png)
+![Enable integration](../../assets/en/integrations/redmine/enable.png)
 
 Once you enable the integration, you'll see an additional tab on the `Company settings` page, called `Redmine`, which will let you add all the necessary settings.
 
@@ -22,11 +22,11 @@ _TODO ОПИСАНИЕ НАСТРОЕК_
 
 If the sync is turned on for the company, then every user will have to add the personal key which will be used by Cattr. You can get the necessary key on the `My account`'s Redmine page. 
 
-![Get the key](../../assets/ru/integrations/redmine/get_key.png)
+![Get the key](../../assets/en/integrations/redmine/get_key.png)
 
 You'll need to add this key to the according field on `Settings`'s `Redmine Integration` section.
 
-![Set the key](../../assets/ru/integrations/redmine/user_settings.png)
+![Set the key](../../assets/en/integrations/redmine/user_settings.png)
 
 ### I've created a task in Redmine, but can't find it in Cattr  :id=redmine-sync
 
