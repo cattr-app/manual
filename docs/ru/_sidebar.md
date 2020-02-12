@@ -25,3 +25,7 @@
     - [Глобальные настройки](ru/integrations/?id=redmine-global)
     - [Настройки пользователя](ru/integrations/?id=redmine-personal)
     - [Частые вопросы](ru/integrations/?id=redmine-sync)
+  - [Gitlab](ru/integrations/?id=gitlab)
+    - [Глобальные настройки](ru/integrations/?id=gitlab-global)
+    - [Настройки пользователя](ru/integrations/?id=gitlab-personal)
+    - [Частые вопросы](ru/integrations/?id=gitlab-create)
