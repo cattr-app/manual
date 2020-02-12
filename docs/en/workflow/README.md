@@ -24,7 +24,7 @@ Once the project is created, you can create tasks for it, and assign user for th
 
 ## Create task  :id=task
 
-Tasks are belong to projects and they're used to create time intervals that are tracked by Cattr.
+Projects contains the according tasks with the linked time intervals, displaying the work around the tasks.
 
 !> Tasks can only be created by users who have role `manager` or `auditor`
 
