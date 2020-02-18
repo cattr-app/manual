@@ -11,7 +11,7 @@
       "ref"  : "origin/release",
       "repo" : "git@git.amazingcat.net:AmazingTime/docs/user-manual",
       "path" : "/srv/docs/user-manual",
-      "post-deploy" : "npm install; pm2 startOrRestart ecosystem.json"
+      "post-deploy" : "git lfs pull; npm install; pm2 startOrRestart ecosystem.json"
      }
   }
 }
