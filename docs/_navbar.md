@@ -1,3 +1,10 @@
+- [Cattr.app](https://cattr.app)
+- Documentation
+  - [User Guide](https://docs.cattr.app/guide)
+  - [API](https://docs.cattr.app/api)
+  - [Frontend](https://docs.cattr.app/frontend)
+  - [Backend](https://docs.cattr.app/backend)
+- [Community](https://community.cattr.app)
 - Translations
-  - [:us: English](/)
+  - [:us: English](/en/)
   - [:ru: Russian](/ru/)
