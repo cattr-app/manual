@@ -17,6 +17,10 @@
       img:not(.emoji) {
         box-shadow: 0 0 3px 0 #000;
       }
+
+      summary{
+        cursor: pointer;
+      }
     </style>
   </head>
 
@@ -44,11 +48,13 @@
           depth: 3,
           noData: {
             '/ru/': 'Нет результатов!',
-            '/en/': 'No results!'
+            '/en/': 'No results!',
+            '/': 'No results!'
           },
           placeholder: {
             '/ru/': 'Искать...',
-            '/en/': 'Search...'
+            '/en/': 'Search...',
+            '/': 'Search...'
           }
         },
 

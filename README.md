@@ -2,6 +2,8 @@
 
 ---
 
+> Warning: screenshots are stored with Git LFS
+
 Serve for development with live-reload:
 ```bash
 yarn serve
