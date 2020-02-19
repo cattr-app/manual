@@ -6,5 +6,5 @@
   - [Backend](https://docs.cattr.app/backend)
 - [Community](https://community.cattr.app)
 - Translations
-  - [:us: English](/en/)
+  - [:us: English](/)
   - [:ru: Russian](/ru/)
