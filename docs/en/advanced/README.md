@@ -1,6 +1,4 @@
-# Getting started  :id=intro
-
-*Project's short description goes here*
+# Advanced install  :id=intro
 
 ## Minimal system requirements  :id=requirements
 In order for your server to be able to work with our Core application, you'll need:
@@ -39,18 +37,6 @@ In order for your server to be able to work with our Core application, you'll ne
 
 !> If the Backend module is located on a different Cattr domain rather than Frontend module, you'll need to enable the `CORS_ENABLED=true` option in the Backend's environment configuration.
 
-
-## What's next?  :id=next
-
-After you finish installing and configuring the Frontend and Backend modules, you will be able to login with the credentials you provided for Administrator user. Once you log in, you'll be able to create projects, tasks, and assign them to the new users.
-
-?>You can read about how to do it all in [Create project](ru/workflow/?id=project), [Create task](ru/workflow/?id=task) and [Create user](ru/users/?id=create) sections.
- 
----
-
-## Configuration samples  :id=configuration-examples
-
-Bellow you'll find the configuration examples for different web servers to work with Cattr.
 
 ### NGINX Config Sample
 
