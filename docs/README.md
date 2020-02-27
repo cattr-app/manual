@@ -1,5 +1,7 @@
 # Getting started  :id=intro
 
+Cattr is an open-source time tracking solution, designed to be flawlessly integrated with your infrastructure. Superpowered with features like built-in screenshot capture and activity detection, it's a great instrument to boost your team's performance straight to the top.
+
 ## Minimal requirements  :id=requirements
 * CPU: 2 core
 * RAM: 2 GB
@@ -52,7 +54,7 @@ docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is t
 Error starting userland proxy: listen tcp 0.0.0.0:80 bind: address already in use.
 </summary>
 
-**Make sure Cattr is not running and there is no other web service installed on the server you're trying to launch Cattr. We suggest applying your system administrator.**
+**Make sure Cattr is not running already, and there is no other web services installed on the server you're trying to launch Cattr on. We would suggest you consulting your system administrator for that matter.**
 </details>
 
 ?> If you bumped into error that wasn't described above, feel free to ask a question in our [community](https://community.cattr.app).
