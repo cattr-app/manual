@@ -1,7 +1,5 @@
 # Getting started  :id=intro
 
-*тут идет краткое описание катра*
-
 ## Minimal requirements  :id=requirements
 * CPU: 2 core
 * RAM: 2 GB
@@ -12,16 +10,22 @@
 
 ?> If you're experienced system administrator, you can use the [Advanced install](en/advanced/?id=intro) manual
 
-To install Cattr core execute the following commands:
+To install Cattr core execute the following command and wait until Catt will setup (it can take some time):
 
-```bash
-docker run -d -it --restart on-failure:10 -p 80:80 -p 443:443\
+```shell
+docker volume create cattr-db && \
+docker volume create cattr-screenshots && \
+docker volume create cattr-ssl && \
+docker run -d -it --restart on-failure:10 -p 80:80 -p 443:443 --name cattr \
+-v cattr-db:/var/lib/mysql \
+-v cattr-screenshots:/app/backend/storage/app/uploads/screenshots \
+-v cattr-ssl:/etc/letsencrypt \
 -e FRONTEND_DOMAIN="YOUR_FRONTEND_DOMAIN" \
 -e BACKEND_DOMAIN="YOUR_BACKEND_DOMAIN" \
 -e ADMIN_NAME="YOUR_NAME" \
--e ADMIN_MAIL="YOUR_MAIL" \
+-e ADMIN_MAIL="mail@example.com" \
 -e ADMIN_PASSWORD="SUPER_PASSWORD" \
--e HTTPS="HTTPS_STATE"\
+-e HTTPS="HTTPS_STATE" \
 amazingcat/cattr
 ```
 
@@ -29,9 +33,9 @@ Don't forget yo use the correct params for Cattr installation:
 - `YOUR_FRONTEND_DOMAIN` domain name the Frontend part will use
 - `YOUR_BACKEND_DOMAIN` domain name the Backend part will use
 - `YOUR_NAME` administrator account's name 
-- `YOUR_MAIL` administrator account's email
+- `mail@example.com` administrator account's email
 - `SUPER_PASSWORD` administrator account's password 
-- `HTTPS_STATE` should be `true` or `false` (if you set it as true, `true`, the Cattr's domanis will have the https certificate issued by [Let's Encrypt](https://letsencrypt.org))
+- `HTTPS_STATE` should be `true` or `false` (if you set it as `true`, the Cattr's domains will have the https certificate issued by [Let's Encrypt](https://letsencrypt.org))
 
 ## Common errors list  :id=errors
 
@@ -41,6 +45,14 @@ docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is t
 </summary>
 
 **Make sure Docker is installed on the server you're trying to launch Cattr, and execute the command one more time**
+</details>
+
+<details>
+<summary>
+Error starting userland proxy: listen tcp 0.0.0.0:80 bind: address already in use.
+</summary>
+
+**Make sure Cattr is not running and there is no other web service installed on the server you're trying to launch Cattr. We suggest applying your system administrator.**
 </details>
 
 ?> If you bumped into error that wasn't described above, feel free to ask a question in our [community](https://community.cattr.app).
