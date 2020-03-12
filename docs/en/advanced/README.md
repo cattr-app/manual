@@ -15,8 +15,8 @@ In order for your server to be able to work with our Core application, you'll ne
 !> If you're not a qualified system administrator, we'd recommend you to go through the installation process with using the Docker image
 
 1. Download the repositories for the Frontend and Backend application parts. You can find them here:
-   * Backend: `тут идет ссылка на бэк`
-   * Frontend: `тут идет ссылка на фронт`
+   * Backend: `<url to the backend>`
+   * Frontend: `<url to the fronttend>`
 2. Go to the directory with the Backend part, execute the following command `composer install && php artisan app:install` and follow the installation manager's instructions.
 
 ?> You'll be asked to provide the credentials you're gonna use for Administrator account. Use them to log in after you finish installation.
@@ -24,7 +24,7 @@ In order for your server to be able to work with our Core application, you'll ne
 3. Go to the directory with the Frontend part
     1. Go to the `app/etc` directory and copy the `env.example.js`'s containments to the `env.js` file.
     2. Edit the`env.js`'containments, so it had the following variables' values:
-        * `API_URL`: <ссылка на домен, на котором будет находиться Backend Cattr>
+        * `API_URL`: '<Backend Cattr's domain link>'
         * `API_VERSION`: 'v1'
         * `DEVELOPER_MODE`: 'package'
         * `LOCAL_BUILD`: false
