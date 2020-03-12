@@ -4,7 +4,7 @@
 * CPU: 2 core
 * RAM: 2 GB
 * HDD/SSD: 5 GB зарезервированного свободного места (it is highly recommended)
-* PHP: >=7.2
+* PHP: >=7.4
 * Node: >=10.14
 * Npm рекомендуется для работы с Frontend-составляющей
 * Composer необходим для работы с Backend-составляющей
