@@ -21,11 +21,152 @@
       summary{
         cursor: pointer;
       }
+
+      body {
+				padding-top: 52px;
+			}
+
+			#header {
+				top: 0;
+				max-width: 100%;
+				max-height: 100%;
+				position: fixed;
+				z-index: 1000;
+				background: #fff;
+				right: 0;
+				left: 0;
+			}
+
+			ul {
+				display: block;
+				list-style-type: disc;
+				margin-block-start: 0;
+				margin-block-end: 0;
+				margin-inline-start: 0;
+				margin-inline-end: 0;
+				padding-inline-start: 0px;
+			}
+
+			#header li {
+				display: inline-block;
+				text-align: center;
+				position: relative;
+			}
+
+			#header .header-items {
+				height: 52px;
+				padding: 10px 74px;
+				top: auto;
+				left: 0;
+				right: 0;
+				z-index: 80;
+				box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
+				text-align: left;
+			}
+
+			.sidebar {
+				top: calc(38px + (0.5em * var(--base-line-height)));
+			}
+
+			#header-logo {
+				max-height: 30px;
+				vertical-align: middle;
+        box-shadow: 0 0 0 0 #000;
+			}
+
+			.home-link {
+				cursor: pointer;
+				color: #524c78;
+				text-decoration: none;
+			}
+
+			.sidebar-toggle {
+				top: auto;
+				bottom: 0;
+			}
+
+			.item {
+				padding: 8px 13px;
+        color: #666a99;
+			}
+
+			#header .multiple-item:hover .submenu {
+				display: block;
+			}
+
+			.submenu {
+				display: none;
+				position: absolute;
+				top: 120%;
+				right: 50%;
+				padding: var(--navbar-menu-padding);
+				border-width: var(--navbar-menu-border-width, 0);
+				border-style: solid;
+				border-color: var(--navbar-menu-border-color);
+				border-radius: var(--navbar-menu-border-radius);
+				background: var(--navbar-menu-background);
+				box-shadow: var(--navbar-menu-box-shadow);
+				transform: translate(50%, -0.35em);
+        color: #666a99;
+			}
+
+			.submenu li {
+				width: 100%;
+        height: 100%;
+        display: inline-block;
+        white-space: nowrap;
+        padding: 4px 20px;
+			}
+
+      @media (min-width: 580px) {
+        /* any */
+      }
     </style>
   </head>
 
   <body>
+    <header id="header">
+			<ul class="header-items">
+				<li>
+					<a href="https://cattr.app/" id="home-link" class="item">
+						<img
+							src="https://community.cattr.app/public/assets/logo-vdfl6su4.png"
+							alt=""
+							id="header-logo"
+						/>
+					</a>
+				</li>
+
+				<li><a class="item" href="https://cattr.app">Cattr</a></li>
+
+				<li>
+					<a class="item" href="https://community.cattr.app/public/"
+						>Community</a
+					>
+				</li>
+
+				<li class="multiple-item">
+					<a class="item" href="">Documentation</a>
+					<ul class="submenu">
+						<li><a href="https://docs.cattr.app/guide">User Guide</a></li>
+						<li><a href="https://docs.cattr.app/api">API</a></li>
+						<li><a href="https://docs.cattr.app/frontend">Frontend</a></li>
+						<li><a href="https://docs.cattr.app/backend#/">Backend</a></li>
+					</ul>
+				</li>
+
+				<li class="multiple-item">
+					<a href="" class="item">Translation</a>
+					<ul class="submenu">
+						<li><a href="#/en/">English</a></li>
+						<li><a href="#/ru/">Russian</a></li>
+					</ul>
+				</li>
+			</ul>
+    </header>
+    
     <div id="app"></div>
+
     <script>
       window.$docsify = {
         name: 'Cattr User Manual',
@@ -38,8 +179,6 @@
         loadSidebar: true,
         subMaxLevels: 3,
         maxLevel: 3,
-
-        loadNavbar: true,
 
         auto2top: true,
         executeScript: true,
@@ -59,7 +198,6 @@
         },
 
         alias: {
-          '/.*/_navbar.md': '/_navbar.md',
           '/(.*)/.*/_sidebar.md': '/$1/_sidebar.md'
         }
       }
