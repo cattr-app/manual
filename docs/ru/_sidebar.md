@@ -2,6 +2,7 @@
   - [Минимальные требования](ru/?id=requirements)
   - [Установка](ru/?id=installation)
   - [Ошибки](ru/?id=errors)
+  - [Что дальше?](ru/?id=next)
 - [Для системных администраторов](ru/advanced/?id=intro)
   - [Минимальные требования](ru/advanced/?id=requirements)
   - [Установка](ru/advanced/?id=installation)

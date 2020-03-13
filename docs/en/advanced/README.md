@@ -1,13 +1,13 @@
-# Advanced install  :id=intro
+# Advanced installation  :id=intro
 
 ## Minimal system requirements  :id=requirements
 In order for your server to be able to work with our Core application, you'll need:
 * CPU: 2 core
 * RAM: 2 GB
 * HDD/SSD: 5 GB of reserved free space (it is highly recommended)
-* PHP: >=7.2
+* PHP: >=7.4
 * Node: >=10.14
-* Yarn is recommended to work with the Frontend part
+* Npm is recommended to work with the Frontend part
 * Composer is necessary to work with the Backend part
 * Nginx (we recommend to use this particular web server)
 
@@ -37,6 +37,9 @@ In order for your server to be able to work with our Core application, you'll ne
 
 !> If the Backend module is located on a different Cattr domain rather than Frontend module, you'll need to enable the `CORS_ENABLED=true` option in the Backend's environment configuration.
 
+## Configuration Examples  :id=configuration-examples
+
+You'll find web server configuration examples for Cattr bellow.
 
 ### NGINX Config Sample
 
