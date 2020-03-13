@@ -10,6 +10,7 @@ In order for your server to be able to work with our Core application, you'll ne
 * Yarn is recommended to work with the Frontend part
 * Composer is necessary to work with the Backend part
 * Nginx (we recommend to use this particular web server)
+* Mysql >=8.0.19
 
 ## Installation  :id=installation
 !> If you're not a qualified system administrator, we'd recommend you to go through the installation process with using the Docker image
