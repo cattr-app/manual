@@ -46,7 +46,6 @@
 			#header {
 				top: 0;
 				max-width: 100%;
-				max-height: auto;
 				padding: 0 3%;
 				position: fixed;
 				z-index: 1000;
@@ -80,10 +79,6 @@
 				bottom: 0;
 			}
 
-			.item {
-				color: #666a99;
-			}
-
 			#header .multiple-item:hover .submenu {
 				display: block;
 			}
@@ -105,7 +100,6 @@
 				background: var(--navbar-menu-background);
 				box-shadow: var(--navbar-menu-box-shadow);
 				transform: translate(50%, -0.35em);
-				color: #666a99;
 			}
 
 			.submenu li {
@@ -138,6 +132,10 @@
 			.common-items,
 			.main-items {
 				height: 52px;
+			}
+
+			.item-url {
+				color: #666a99;
 			}
 
 			@media (max-width: 767px) {
@@ -185,38 +183,39 @@
 				</li>
 
 				<li class="item col-md-auto col">
-					<a href="https://docs.cattr.app/guide">User Guide</a>
+					<a class="item-url" href="https://cattr.app">Cattr</a>
 				</li>
 
 				<li class="item col-md-auto col">
-					<a href="https://docs.cattr.app/api">API</a>
-				</li>
-
-				<li class="item col-md-auto col">
-					<a href="https://docs.cattr.app/frontend">Frontend</a>
+					<a class="item-url" href="https://demo.cattr.app">Demo</a>
 				</li>
 
 				<li class="item col-md col">
-					<a href="https://docs.cattr.app/backend#/">Backend</a>
+					<a class="item-url" href="https://community.cattr.app/public/">Community</a>
+				</li>
+
+
+				<li class="item col-md-auto col">
+					<a class="item-url" href="https://docs.cattr.app/">User Guide</a>
 				</li>
 
 				<li class="item col-md-auto col">
-					<a href="https://cattr.app">Home</a>
+					<a class="item-url" href="https://docs.cattr.app/api">API</a>
 				</li>
 
 				<li class="item col-md-auto col">
-					<a href="https://demo.cattr.app">Demo</a>
+					<a class="item-url" href="https://docs.cattr.app/frontend">Frontend</a>
 				</li>
 
 				<li class="item col-md-auto col">
-					<a href="https://community.cattr.app/public/">Community</a>
+					<a class="item-url" href="https://docs.cattr.app/backend#/">Backend</a>
 				</li>
 
 				<li class="multiple-item col-md-auto col">
-					<a href="">Translations</a>
+					<a class="item-url" href="">Translations</a>
 					<ul class="submenu">
-						<li><a href="#/en/">English</a></li>
-						<li><a href="#/ru/">Russian</a></li>
+						<li><a class="item-url" href="#/en/">English</a></li>
+						<li><a class="item-url" href="#/ru/">Russian</a></li>
 					</ul>
 				</li>
 			</ul>
