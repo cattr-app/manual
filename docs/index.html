@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Cattr User manual</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="description" content="Description" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"
+		/>
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Cattr User manual</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="description" content="Description">
-    <meta name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
-    <style>
-      :root {
-        --base-font-size: 15px;
-      }
-
-      img:not(.emoji) {
-        box-shadow: 0 0 3px 0 #000;
-      }
-
-      summary{
-        cursor: pointer;
-      }
-
-      body {
-				padding-top: 52px;
+		<style>
+			:root {
+				--base-font-size: 15px;
 			}
 
-			#header {
-				top: 0;
-				max-width: 100%;
-				max-height: 100%;
-				position: fixed;
-				z-index: 1000;
-				background: #fff;
-				right: 0;
-				left: 0;
+			img:not(.emoji) {
+				box-shadow: 0 0 3px 0 #000;
+			}
+
+			summary {
+				cursor: pointer;
+			}
+
+			body {
+				padding-top: 52px;
 			}
 
 			ul {
@@ -47,21 +43,20 @@
 				padding-inline-start: 0px;
 			}
 
-			#header li {
-				display: inline-block;
-				text-align: center;
-				position: relative;
+			#header {
+				top: 0;
+				max-width: 100%;
+				padding: 0 3%;
+				position: fixed;
+				z-index: 1000;
+				background: #fff;
+				right: 0;
+				left: 0;
+				border-bottom: 1px solid #e4e6f6;
 			}
 
-			#header .header-items {
-				height: 52px;
-				padding: 10px 74px;
-				top: auto;
-				left: 0;
-				right: 0;
-				z-index: 80;
-				box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
-				text-align: left;
+			#header li {
+				display: inline-block;
 			}
 
 			.sidebar {
@@ -74,14 +69,9 @@
 
 			#header-logo {
 				max-height: 30px;
+				max-width: 30px;
 				vertical-align: middle;
-        box-shadow: 0 0 0 0 #000;
-			}
-
-			.home-link {
-				cursor: pointer;
-				color: #524c78;
-				text-decoration: none;
+				box-shadow: 0 0 0 0 #000;
 			}
 
 			.sidebar-toggle {
@@ -89,13 +79,12 @@
 				bottom: 0;
 			}
 
-			.item {
-				padding: 8px 13px;
-        		color: #666a99;
-			}
-
 			#header .multiple-item:hover .submenu {
 				display: block;
+			}
+
+			#header a {
+				white-space: nowrap;
 			}
 
 			.submenu {
@@ -111,28 +100,80 @@
 				background: var(--navbar-menu-background);
 				box-shadow: var(--navbar-menu-box-shadow);
 				transform: translate(50%, -0.35em);
-        color: #666a99;
 			}
 
 			.submenu li {
 				width: 100%;
-        height: 100%;
-        display: inline-block;
-        white-space: nowrap;
-        padding: 4px 20px;
+				height: 100%;
+				display: inline-block;
+				white-space: nowrap;
+				padding: 4px 20px;
 			}
 
-      @media (min-width: 580px) {
-        /* any */
-      }
-    </style>
-  </head>
+			.header-container {
+				height: 52px;
+			}
 
-  <body>
-    <header id="header">
-			<ul class="header-items">
-				<li>
-					<a href="https://cattr.app/" id="home-link" class="item">
+			.close {
+				float: none;
+				font-size: inherit;
+				font-weight: inherit;
+				line-height: inherit;
+				color: #000;
+				text-shadow: 0 1px 0 #fff;
+				opacity: 1;
+			}
+
+			.close:not(:disabled):not(.disabled):focus,
+			.close:not(:disabled):not(.disabled):hover {
+				opacity: 1;
+			}
+
+			.common-items,
+			.main-items {
+				height: 52px;
+			}
+
+			.item-url {
+				color: #666a99;
+			}
+
+			@media (max-width: 767px) {
+				#header,
+				.header-container {
+					height: 120px;
+				}
+				.sidebar {
+					top: 120px;
+				}
+				.item,
+				.multiple-item {
+					text-align: center;
+				}
+				.sidebar-toggle {
+					top: auto;
+					bottom: 54px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<ul
+				class="header-container
+				row
+				flex-md-nowrap
+				row-cols-md-9
+				row-cols-sm-5
+				row-cols-3
+				justify-content-md-between
+				justify-content-center
+				align-items-center
+				"
+			>
+				<li class="item col-md-auto col">
+					<a href="https://cattr.app/" class="item">
 						<img
 							src="https://community.cattr.app/public/assets/logo-vdfl6su4.png"
 							alt=""
@@ -141,78 +182,99 @@
 					</a>
 				</li>
 
-				<li><a class="item" href="https://cattr.app">Cattr</a></li>
+				<li class="item col-md-auto col">
+					<a class="item-url" href="https://cattr.app">Cattr</a>
+				</li>
 
-				<li>
-					<a class="item" href="https://community.cattr.app/public/"
+				<li class="item col-md-auto col">
+					<a class="item-url" href="https://demo.cattr.app">Demo</a>
+				</li>
+
+				<li class="item col-md col">
+					<a
+						class="item-url"
+						href="https://community.cattr.app/public/"
 						>Community</a
 					>
 				</li>
 
-				<li class="multiple-item">
-					<a class="item" href="">Documentation</a>
-					<ul class="submenu">
-						<li><a href="https://docs.cattr.app/guide">User Guide</a></li>
-						<li><a href="https://docs.cattr.app/api">API</a></li>
-						<li><a href="https://docs.cattr.app/frontend">Frontend</a></li>
-						<li><a href="https://docs.cattr.app/backend#/">Backend</a></li>
-					</ul>
+				<li class="item col-md-auto col">
+					<a class="item-url" href="https://docs.cattr.app/"
+						>User Guide</a
+					>
 				</li>
 
-				<li class="multiple-item">
-					<a href="" class="item">Translation</a>
+				<li class="item col-md-auto col">
+					<a class="item-url" href="https://docs.cattr.app/api"
+						>API</a
+					>
+				</li>
+
+				<li class="item col-md-auto col">
+					<a class="item-url" href="https://docs.cattr.app/frontend"
+						>Frontend</a
+					>
+				</li>
+
+				<li class="item col-md-auto col">
+					<a class="item-url" href="https://docs.cattr.app/backend#/"
+						>Backend</a
+					>
+				</li>
+
+				<li class="multiple-item col-md-auto col">
+					<a class="item-url" href="">Translations</a>
 					<ul class="submenu">
-						<li><a href="#/en/">English</a></li>
-						<li><a href="#/ru/">Russian</a></li>
+						<li><a class="item-url" href="#/en/">English</a></li>
+						<li><a class="item-url" href="#/ru/">Russian</a></li>
 					</ul>
 				</li>
 			</ul>
-    </header>
-    
-    <div id="app"></div>
+		</header>
 
-    <script>
-      window.$docsify = {
-        name: 'Cattr User Manual',
+		<div id="app"></div>
 
-        nameLink: {
-          '/ru/': '#/ru/',
-          '/en/': '#/en/'
-        },
+		<script>
+			window.$docsify = {
+				name: "Cattr User Manual",
 
-        loadSidebar: true,
-        subMaxLevels: 3,
-        maxLevel: 3,
+				nameLink: {
+					"/ru/": "#/ru/",
+					"/en/": "#/en/"
+				},
 
-        auto2top: true,
-        executeScript: true,
-        ga: 'UA-160871084-1',
-        search: {
-          depth: 3,
-          noData: {
-            '/ru/': 'Нет результатов!',
-            '/en/': 'No results!',
-            '/': 'No results!'
-          },
-          placeholder: {
-            '/ru/': 'Искать...',
-            '/en/': 'Search...',
-            '/': 'Search...'
-          }
-        },
+				loadSidebar: true,
+				subMaxLevels: 3,
+				maxLevel: 3,
 
-        alias: {
-          '/(.*)/.*/_sidebar.md': '/$1/_sidebar.md'
-        }
-      }
-    </script>
+				auto2top: true,
+				executeScript: true,
+				ga: "UA-160871084-1",
+				search: {
+					depth: 3,
+					noData: {
+						"/ru/": "Нет результатов!",
+						"/en/": "No results!",
+						"/": "No results!"
+					},
+					placeholder: {
+						"/ru/": "Искать...",
+						"/en/": "Search...",
+						"/": "Search..."
+					}
+				},
 
-    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/ga.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+				alias: {
+					"/(.*)/.*/_sidebar.md": "/$1/_sidebar.md"
+				}
+			};
+		</script>
 
-    <script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
-  </body>
+		<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/ga.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
 
+		<script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
+	</body>
 </html>
