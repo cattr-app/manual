@@ -16,8 +16,8 @@ In order for your server to be able to work with our Core application, you'll ne
 !> If you're not a qualified system administrator, we'd recommend you to go through the installation process with using the Docker image
 
 1. Download the repositories for the Frontend and Backend application parts. You can find them here:
-   * Backend: `<url to the backend>`
-   * Frontend: `<url to the fronttend>`
+   * Backend: [github.com/cattr-app/backend-application](https://github.com/cattr-app/backend-application)
+   * Frontend: [github.com/cattr-app/frontend-application](https://github.com/cattr-app/frontend-application)
 2. Go to the directory with the Backend part, execute the following command `composer install && php artisan app:install` and follow the installation manager's instructions.
 
 ?> You'll be asked to provide the credentials you're gonna use for Administrator account. Use them to log in after you finish installation.

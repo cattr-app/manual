@@ -13,8 +13,8 @@
 
 ## Установка  :id=installation
 1. Скачайте репозитории Frontend и Backend частей приложения
-   * Backend: `https://github.com/cattr-app/backend-application.git`
-   * Frontend: `https://github.com/cattr-app/frontend-application.git`
+   * Backend: [github.com/cattr-app/backend-application](https://github.com/cattr-app/backend-application)
+   * Frontend: [github.com/cattr-app/frontend-application](https://github.com/cattr-app/frontend-application)
 2. Перейдите в каталог с Backend-составляющей и введите `composer install && php artisan app:install` и следуйте инструкциям менеджера по установке
 3. Перейдите в каталог с Frontend-составляющей
     1. В папке `app/etc` скопируйте файл `env.example.js` в файл `env.js`
