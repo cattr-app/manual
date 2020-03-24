@@ -13,8 +13,8 @@
 
 Для установки Cattr скачайте и запустите скрипт:
 
-- Windows: https://dl.cattr.app/cattr.cmd
-- Linux и MacOS: https://dl.cattr.app/cattr.sh
+- Windows: https://dl.cattr.app/installer/cattr.cmd
+- Linux и MacOS: https://dl.cattr.app/installer/cattr.sh
 
 !> В процессе установки будет запрошена дополнительная информация, чтобы настроить Cattr для Вас
 
