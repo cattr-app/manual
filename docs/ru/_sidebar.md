@@ -4,7 +4,7 @@
   - [Установка](ru/getting-started/?id=installation)
   - [Ошибки](ru/getting-started/?id=errors)
   - [Что дальше?](ru/getting-started/?id=next)
-- [Для системных администраторов](ru/advanced/?id=intro)
+- [Продвинутая установка](ru/advanced/?id=intro)
   - [Минимальные требования](ru/advanced/?id=requirements)
   - [Установка](ru/advanced/?id=installation)
   - [Примеры конфигурации](ru/advanced/?id=configuration-examples)

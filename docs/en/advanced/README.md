@@ -1,119 +1,134 @@
 # Advanced installation  :id=intro
 
-## Minimal system requirements  :id=requirements
+## System requirements  :id=requirements
 In order for your server to be able to work with our Core application, you'll need:
-* CPU: 2 core
-* RAM: 2 GB
-* HDD/SSD: 5 GB of reserved free space (it is highly recommended)
+* Memory: at least 2Gb of RAM
+* Storage: at least 5Gb of reserved disk space
+* MySQL: >=8.0.19
 * PHP: >=7.4
-* Node: >=10.14
-* Npm is recommended to work with the Frontend part
-* Composer is necessary to work with the Backend part
-* Nginx (we recommend to use this particular web server)
-* Mysql >=8.0.19
+* Node: >=12
+* Composer and cURL are necessary to work with the Backend part
+* A web-server, we recommend nginx
+
+### PHP modules
+These modules are required for Core application functioning:
+* php-dom 
+* php-bcmath
+* php-bz2
+* php-intl
+* php-gd
+* php-mbstring
+* php-mysql
+* php-zip
+* php-fpm
+* php-curl
+
+For Ubuntu, these modules can be installed with this command:
+```bash
+# Use ~ondrej PPA
+sudo add-apt-repository ppa:ondrej/php
+
+# Install PHP and required modules
+sudo apt install php7.4-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
+```
 
 ## Installation  :id=installation
-!> If you're not a qualified system administrator, we'd recommend you to go through the installation process with using the Docker image
+!> If you're not a qualified system administrator, we'd recommend you to go through the Docker installation guide in the «[Getting started](/en/getting-started/)» section
 
-1. Download the repositories for the Frontend and Backend application parts. You can find them here:
-   * Backend: [github.com/cattr-app/backend-application](https://github.com/cattr-app/backend-application)
-   * Frontend: [github.com/cattr-app/frontend-application](https://github.com/cattr-app/frontend-application)
-2. Go to the directory with the Backend part, execute the following command `composer install && php artisan app:install` and follow the installation manager's instructions.
+1. Install the neccessary depdendencies
+
+2. Download the Frontend and Backend application parts. You can find them here:
+  * Backend: [github.com/cattr-app/backend-application](https://github.com/cattr-app/backend-application)
+  * Frontend: [github.com/cattr-app/frontend-application](https://github.com/cattr-app/frontend-application)
+
+3. Go to the directory with the Backend part, execute the following command and follow the installation manager instructions:
+```bash
+composer install && php artisan at:install
+```
 
 ?> You'll be asked to provide the credentials you're gonna use for Administrator account. Use them to log in after you finish installation.
 
-3. Go to the directory with the Frontend part
-    1. Go to the `app/etc` directory and copy the `env.example.js`'s containments to the `env.js` file.
-    2. Edit the`env.js`'containments, so it had the following variables' values:
-        * `API_URL`: '<Backend Cattr's domain link>'
-        * `API_VERSION`: 'v1'
-        * `DEVELOPER_MODE`: 'package'
-        * `LOCAL_BUILD`: false
-    3. In the Frontend directory execute the following command: <br> `NODE_ENV=production yarn install && yarn compile` <br> or <br> `NODE_ENV=production npm install && npm run compile`
-4. Set up your web server so it could work with Cattr: create configuration files for both Frontend and Backend modules.
-    * Static files directory for Frontend module: `path/to/cattr/frontend/dist`
-    * Static files directory for Backend module: `path/to/cattr/backend/public`
+4. Go to the directory with the Frontend part:
+  1. Open `app/etc` directory and copy the `env.sample.js` file to `env.js`.
+  2. Edit the `env.js`, so it had the following variables' values:
+    * **API_URL:** Full URL to the backend (API), which you have already entered in the backend installer.
+    * **API_VERSION:** `v1`
+    * **DEVELOPER_MODE:** `package`
+    * **LOCAL_BUILD:** `false`
+  3. In the Frontend directory execute the following commands:
+     ```
+     # Install dependencies
+     npm install
 
-?>Make sure that these directories should be added as `root` for ___Nginx___ and as `DocumentRoot` for ___Apache___
+     # Compile modules
+     NODE_ENV=production npm run compile
 
-!> If the Backend module is located on a different Cattr domain rather than Frontend module, you'll need to enable the `CORS_ENABLED=true` option in the Backend's environment configuration.
+     # Build frontend application
+     NODE_ENV=production npm run build
+     ```
+
+5. Set up your web server so it could work with both Cattr backend and frontend modules
+  * HTTP root directory for Frontend part: `path/to/cattr-frontend-application/dist`
+  * HTTP root directory for Backend (API) part: `path/to/cattr-backend-application/public`
+
+?> If the backend module is located on a different domain rather than Frontend module, you'll need to enable the `CORS_ENABLED=true` option in the Backend's environment configuration (`.env` file).
 
 ## Configuration Examples  :id=configuration-examples
-
 You'll find web server configuration examples for Cattr bellow.
 
-### NGINX Config Sample
+!> To make things easier to understand, examples below are demonstrating HTTP-only configuration.
+In production environments, security is a key. Make sure that your production configuration will be 
+available only via HTTPS connection with modern ciphersuits, unless you have some extremely strong reasons not to do that.
 
-```nginx
-# API Endpoint Configuration
+### Configuration for nginx with single domain
+Let's assume that Cattr should be installed to **cattr.acme.corp** without HTTPS with both frontend and backend on the same domain,
+and paths to Cattr's Core apps are:
+  - **Frontend:** /opt/frontend-application
+  - **Backend:** /opt/backend-application
+
+Frontend configuration (/opt/frontend-application/app/etc/env.js) should looks like this:
+```js
+module.exports = {
+  API_URL: 'http://cattr.acme.corp/api',
+  API_VERSION: 'v1',
+  DEVELOPER_MODE: 'package',
+  LOCAL_BUILD: false
+};
+```
+
+Server block for nginx:
+```conf
 server {
   listen 80;
   listen [::]:80;
-  server_name api.example.co,;
+  server_name cattr.acme.corp;
 
-  # Extend POST size
-  client_max_body_size 256M;
-
-  # Security headers
-  add_header X-XSS-Protection 1;
-  add_header X-Content-Type-Options nosniff;
-  add_header Referrer-Policy "same-origin";
-  add_header Upgrade-Insecure-Requests 1;
-  add_header Content-Security-Policy upgrade-insecure-requests;
-  add_header Strict-Transport-Security "max-age=31536000; preload;";
-
-  # Serve static content
-  root /srv/dev/backend/public;
-  index index.php;
-
-  # Routing and CSRF
-  location / {
-    try_files $uri $uri/ /index.php?$query_string;
-    add_header 'Access-Control-Allow-Origin' 'https://api.example.com';
-    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PUT, DELETE';
-    add_header 'Access-Control-Allow-Headers' '*';
-    add_header 'Access-Control-Expose-Headers' '*';
-  }
-
-  # Handle PHP files
-  location ~ \.php$ {
-    fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
-    fastcgi_index index.php;
-    fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-    include misc.d/fastcgi_params;
-  }
-}
-
-# Frontend Configuration
-server {
-  listen 80;
-  listen [::]:80;
-  server_name example.com;
-  client_max_body_size 256M;
-
-  # Security headers
-  add_header X-XSS-Protection 1;
-  add_header X-Content-Type-Options nosniff;
-  add_header Referrer-Policy "same-origin";
-  add_header Upgrade-Insecure-Requests 1;
-  add_header Content-Security-Policy upgrade-insecure-requests;
-  add_header Strict-Transport-Security "max-age=31536000; preload;";
-
-  # Serve static content
-  root /srv/dev/frontend/dist;
+  # Serve frontend
+  root /opt/frontend-application/dist;
   index index.html;
 
-  # Routing rewrite
+  # Setup redirection for direct frontend links
+  # Cattr uses HTML5 History API for routing
   location / {
     try_files $uri $uri/ /index.html;
   }
 
-  # API proxy
-  # At this particular example we're using "https://example.com/api" as an API endpoint
-  # To prevent CORS issues
+  # Backend (API) configuration
   location /api {
+
     rewrite ^/api/(.+)$ /$1 break;
-    proxy_pass http://api.example.com;
+    try_files $uri $uri/ /api/index.php?$query_string;
+    
+    # Increase max POST size for batch intervals uploading
+    client_max_body_size 64M;
+
+    # Serve PHP scripts
+    location ~ \.php$ {
+      include fastcgi_params;
+      fastcgi_param SCRIPT_FILENAME /opt/backend-application/public/index.php;
+      fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+    }
+
   }
 
 }

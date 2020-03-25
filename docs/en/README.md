@@ -1,66 +1,31 @@
-# Getting started  :id=intro
+# Introduction
+Cattr is an open-source time-tracking application, designed to be flawlessly integrated with your infrastructure. Superpowered with features like built-in screenshots capture and activity detection, it's a great instrument to boost your team's performance straight to the top.
 
-Cattr is an open-source time tracking solution, designed to be flawlessly integrated with your infrastructure. Superpowered with features like built-in screenshot capture and activity detection, it's a great instrument to boost your team's performance straight to the top.
+## If you're an employee
+To begin working with Cattr, you need to obtain credentials (hostname, email, and password) for your user account from an administrator of your company. After obtaining these credentials, download the desktop app here — [https://cattr.app/desktop](https://cattr.app/desktop).
 
-## Minimal requirements  :id=requirements
-* CPU: 2 core
-* RAM: 2 GB
-* HDD/SSD: 5 GB reserved space (it is highly recommended)
-* Docker: >= 18.09
+?> Notice that Cattr for Windows is not popular enough yet to pass Microsoft SmartScreen protection. If you see the SmartScreen popup when opening Cattr, click on the "More info" link then on the "Run anyway" button.
 
-## Installation  :id=installation
+On the first run, Cattr will ask you for the credentials from your administrator. After a successful login, the Task list will appear. To start tracking, click on a button on the right from the task name. The current task name will appear at the bottom of the application window.
 
-?> If you're experienced system administrator, you can use the [Advanced install](en/advanced/?id=intro) manual
+?> Cattr for macOS will also request access to screen recording and universal access for screenshots capture and activity tracking, respectively.
 
-To install Cattr core execute the following command and wait until Catt will setup (it can take some time):
+To access the web application, follow the link provided by your company's administrator and enter your email and password. For the future configuration instructions, ask the administrator.
 
-```shell
-docker volume create cattr-db && \
-docker volume create cattr-screenshots && \
-docker volume create cattr-ssl && \
-docker run -d -it --restart on-failure:10 -p 80:80 -p 443:443 --name cattr \
--v cattr-db:/var/lib/mysql \
--v cattr-screenshots:/app/backend/storage/app/uploads/screenshots \
--v cattr-ssl:/etc/letsencrypt \
--e FRONTEND_DOMAIN="YOUR_FRONTEND_DOMAIN" \
--e BACKEND_DOMAIN="YOUR_BACKEND_DOMAIN" \
--e ADMIN_NAME="YOUR_NAME" \
--e ADMIN_MAIL="mail@example.com" \
--e ADMIN_PASSWORD="SUPER_PASSWORD" \
--e HTTPS="HTTPS_STATE" \
-amazingcat/cattr
-```
+## If you're a company owner
+Cattr will let you understand better how your employees work. There is a shortlist of built-in instruments, each one of them created for the specific task.
 
-Don't forget yo use the correct params for Cattr installation:
-- `YOUR_FRONTEND_DOMAIN` domain name the Frontend part will use
-- `YOUR_BACKEND_DOMAIN` domain name the Backend part will use
-- `YOUR_NAME` administrator account's name 
-- `mail@example.com` administrator account's email
-- `SUPER_PASSWORD` administrator account's password 
-- `HTTPS_STATE` should be `true` or `false` (if you set it as `true`, the Cattr's domains will have the https certificate issued by [Let's Encrypt](https://letsencrypt.org))
+### Screenshots and activity tracking
+For each employee, you can specifically enable screenshot capture and activity tracking for keyboard and mouse. These instruments will help you get insights about how good is workflow built in your company.
 
-## Common errors list  :id=errors
+### Dashboard
+Dashboard allows you to see what's going on with your team in both real-time and retrospective.
 
-<details>
-<summary>
-docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
-</summary>
+### Project and Time Use Report
+Both types of reports give you a representation of spent time but from opposite perspectives. Time Use Report is focused on employees, showing what they did for the selected time interval. In turn, Project Report focused on the projects and tasks.
 
-**Make sure Docker is installed on the server you're trying to launch Cattr, and execute the command one more time**
-</details>
+### Invoices
+Invoices will ease the calculation of employees' salaries and customers' bills.
 
-<details>
-<summary>
-Error starting userland proxy: listen tcp 0.0.0.0:80 bind: address already in use.
-</summary>
-
-**Make sure Cattr is not running already, and there is no other web services installed on the server you're trying to launch Cattr on. We would suggest you consulting your system administrator for that matter.**
-</details>
-
-?> If you bumped into error that wasn't described above, feel free to ask a question in our [community](https://community.cattr.app).
-
-## What's next?  :id=next
-
-After you finish installing and configuring the Frontend and Backend modules, you will be able to login with the credentials you provided for Administrator user. Once you log in, you'll be able to create projects, tasks, and assign them to the new users.
-
-?>You can read about how to do it all in [Create project](ru/workflow/?id=project), [Create task](ru/workflow/?id=task) and [Create user](ru/users/?id=create) sections.
+## Installation
+Notice that Cattr is an on-premises application, which requires installation on your server. Check out the «[Getting started](/en/getting-started/)» and «[Advanced installation](/en/advanced/)» articles for more info.
