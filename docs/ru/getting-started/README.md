@@ -12,7 +12,8 @@
 
 Для установки, выполните следующую команду в Терминале и следуйте указаниям:
 ```bash
-curl -sSL https://dl.cattr.app/installer/cattr.sh | bash -
+wget https://dl.cattr.app/installer/cattr.sh
+bash cattr.sh
 ```
 
 ## Часто возникающие ошибки  :id=errors

@@ -7,9 +7,10 @@ This article describes simplified installation using Docker. For standalone inst
 * Docker: >= 18.09
 
 ## Installation  :id=installation
-Execute the command above in Terminal and follow installation wizard's instructions
+Execute commands below in Terminal and follow installation wizard's instructions
 ```bash
-curl -sSL https://dl.cattr.app/installer/cattr.sh | bash -
+wget https://dl.cattr.app/installer/cattr.sh
+bash cattr.sh
 ```
 
 ## Common errors list  :id=errors
