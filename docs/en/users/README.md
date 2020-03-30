@@ -1,4 +1,4 @@
-# Users  :id=intro
+# Users  :id=intro :priority=7
 
 !> In order to change anything about company's users, your account should have the `root` role.
 

@@ -1,4 +1,4 @@
-# Advanced installation  :id=intro
+# Advanced installation  :id=intro :priority=8
 
 ## System requirements  :id=requirements
 In order for your server to be able to work with our Core application, you'll need:

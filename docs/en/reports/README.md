@@ -1,4 +1,4 @@
-# Reports  :id=intro
+# Reports  :id=intro :priority=7
 
 Cattr lets you generate different reports to control the company's time use
 

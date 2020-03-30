@@ -31,7 +31,7 @@ const scan = (currentPath, relativePath, initialPriority) => {
                       .toString()
                       .padStart(2, '0')}`,
                     priority: (priority)
-                      ? parseInt(priority[0], 10)
+                      ? parseInt(priority[0], 10) / 10
                       : initialPriority,
                 });
             }

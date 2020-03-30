@@ -1,4 +1,4 @@
-# Access roles  :id=intro
+# Access roles  :id=intro :priority=7
 
 !> In order to make any changes for users' roles, your account has to have a `root` role.
 

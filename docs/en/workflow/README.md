@@ -1,4 +1,4 @@
-# Workflow  :id=intro
+# Workflow  :id=intro :priority=7
 
 Work with Cattr can be described in the following sections.
 

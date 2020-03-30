@@ -1,4 +1,4 @@
-# Getting started :id=intro
+# Getting started :id=intro :priority=9
 This article describes simplified installation using Docker. For standalone installation, check «[Advanced installation](/en/advanced/)» guide.
 
 ## Minimal requirements  :id=requirements

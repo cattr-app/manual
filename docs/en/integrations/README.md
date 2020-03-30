@@ -1,4 +1,4 @@
-# Integrations  :id=intro
+# Integrations  :id=intro :priority=7
 
 Cattr's integrations provides more abilities for the system, automotizes some of the Cattr's actions, and integrate the service to the existing workflow.
 
