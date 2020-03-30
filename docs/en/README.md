@@ -1,4 +1,4 @@
-# Introduction
+# Introduction  :id=intro
 Cattr is an open-source time-tracking application, designed to be flawlessly integrated with your infrastructure. Superpowered with features like built-in screenshots capture and activity detection, it's a great instrument to boost your team's performance straight to the top.
 
 ## If you're an employee

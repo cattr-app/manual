@@ -2,3 +2,7 @@
 node_modules
 screenshots-assets
 user-assets
+
+docs/sitemap.xml
+docs/snapshots/
+prerender/sitemap_local.xml

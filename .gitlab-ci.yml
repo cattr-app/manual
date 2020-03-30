@@ -17,6 +17,7 @@ deploy:
 
   script:
     - npm i -g pm2
+    - npm run sitemap
     - pm2 deploy production
 
   only:
