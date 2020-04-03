@@ -16,6 +16,12 @@ wget https://dl.cattr.app/installer/cattr.sh
 bash cattr.sh
 ```
 
+Для обновления Cattr, выполните команду в Терминале на сервере, где Вы проводили изначальную установку Cattr:
+```bash
+wget https://dl.cattr.app/installer/updater.sh
+bash updater.sh
+```
+
 ## Часто возникающие ошибки  :id=errors
 
 <details>

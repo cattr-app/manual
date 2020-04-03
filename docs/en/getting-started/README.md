@@ -7,10 +7,17 @@ This article describes simplified installation using Docker. For standalone inst
 * Docker: >= 18.09
 
 ## Installation  :id=installation
+
 Execute commands below in Terminal and follow installation wizard's instructions
 ```bash
 wget https://dl.cattr.app/installer/cattr.sh
 bash cattr.sh
+```
+
+If you want to update your Cattr instance execute commands below in Terminal at the server, where Cattr was installed
+```bash
+wget https://dl.cattr.app/installer/updater.sh
+bash updater.sh
 ```
 
 ## Common errors list  :id=errors
