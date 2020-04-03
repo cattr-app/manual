@@ -268,6 +268,56 @@
 					"/(.*)/.*/_sidebar.md": "/$1/_sidebar.md"
 				}
 			};
+
+			function getLangCookie() {
+				var v = document.cookie.match('(^|;) ?lang=([^;]*)(;|$)');
+				return v ? v[2] : null;
+			};
+
+			// Set root domain cookie, ex: *.cattr.app
+			function setLangCookie(lang) {
+				var rootDomain = location.hostname.split('.').reverse().splice(0,2).reverse().join('.');
+				document.cookie = 'lang=' + lang + '; domain=' + rootDomain;
+			};
+
+			// Get the browser language
+			function getUserLang() {
+				return typeof navigator.language !== 'undefined' && navigator.language.length
+					? navigator.language.substring(0, 2).toLowerCase() : 'en';
+			};
+
+			document.addEventListener('DOMContentLoaded', function () {
+				// Get user language
+				var lang = getLangCookie() || getUserLang();
+
+				var hashSegments = document.location.hash.split('/');
+				var hashLang = hashSegments[1];
+				if (hashLang !== lang) {
+					// Redirect to location approriate to the user's language
+					hashSegments[1] = lang;
+
+					var hash = hashSegments.join('/');
+					if (hashSegments.length === 2) {
+						hash += '/';
+					}
+
+					document.location.hash = hash;
+				}
+			});
+
+			document.addEventListener('click', function (event) {
+				if (event.target.tagName !== 'A') {
+					return;
+				}
+
+				var hash = event.target.href.split('#')[1];
+				if (!hash) {
+					return;
+				}
+
+				var urlLang = hash.split('/')[1];
+				setLangCookie(urlLang);
+			});
 		</script>
 
 		<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
