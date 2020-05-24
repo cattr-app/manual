@@ -43,13 +43,13 @@ sudo apt install php7.4-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 
 3. Перейдите в директорию с Backend-модулем, выполните следующую команду и следуйте указаниям установщика:
 ```bash
-composer install && php artisan at:install
+composer install && php artisan cattr:install
 ```
 
 ?> В течении установки, у вас будут запрошены учётные данные для администраторского доступа. Используйте их в дальнейшем для входа в систему.
 
 4. Перейдите в директорию с Frontend-модулем:
-  1. Перейдите в директорию `app/etc` и скопируйте файл `env.sample.js` в `env.js`.
+  1. Перейдите в директорию `app/etc` и скопируйте файл `env.production.js` в `env.js`.
   2. Отредактируйте `env.js` и удостоверьтесь, что значения в нём соответствуют перечисленным ниже:
     * **API_URL:** полный URL-адрес Backend-приложения
     * **API_VERSION:** `v1`

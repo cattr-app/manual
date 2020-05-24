@@ -43,15 +43,15 @@ sudo apt install php7.4-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 
 3. Go to the directory with the Backend part, execute the following command and follow the installation manager instructions:
 ```bash
-composer install && php artisan at:install
+composer install && php artisan cattr:install
 ```
 
 ?> You'll be asked to provide the credentials you're gonna use for Administrator account. Use them to log in after you finish installation.
 
 4. Go to the directory with the Frontend part:
-  1. Open `app/etc` directory and copy the `env.sample.js` file to `env.js`.
+  1. Open `app/etc` directory and copy the `env.production.js` file to `env.js`.
   2. Edit the `env.js`, so it had the following variables' values:
-    * **API_URL:** Full URL to the backend (API), which you have already entered in the backend installer.
+    * **API_URL:** Full URL to the backend (API)
     * **API_VERSION:** `v1`
     * **DEVELOPER_MODE:** `package`
     * **LOCAL_BUILD:** `false`
