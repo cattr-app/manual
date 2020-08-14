@@ -18,8 +18,6 @@ Once you enable the integration, you'll see an additional tab on the `Company se
 - `Redmine URL` defines the address where the project management system is located
 - `Redmine API Key` you'll need to add the key which is going to be used for roles and statuses sync (you can find out how do you get one [bellow](en/integrations/?id=redmine-personal))
 
-![Settings](../../assets/en/integrations/redmine/company_settings.png)
-
 
 ### User settings  :id=redmine-personal
 
@@ -58,7 +56,6 @@ To toggle the Gitlab synchronization, change the according setting on the `Compa
 
 To turn on integration, add your Gitlab's address  on the  on the `Company settings`'s `Gitlab` section.
 
-![Gitlab settings](../../assets/en/integrations/gitlab/company_settings.png)
 
 ### User settings :id=gitlab-personal
 

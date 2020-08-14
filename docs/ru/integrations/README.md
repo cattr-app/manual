@@ -18,7 +18,6 @@
 - `Redmine URL` определяет адрес, на котором расположена система управления проектов
 - В поле `API Ключ` необходимо указать ключ, который будет использоваться для синхронизации ролей и статусов задач (как его получить можно прочитать [ниже](ru/integrations/?id=redmine-personal))
 
-![Настройки](../../assets/ru/integrations/redmine/company_settings.png)
 
 ### Настройки для пользователя  :id=redmine-personal
 
@@ -56,8 +55,6 @@ Cattr опрашивает систему управления проектов 
 ![Включить интеграцию](../../assets/ru/integrations/gitlab/enable.png)
 
 Для работы интеграции необходимо задать адрес Gitlab в поле Gitlab URL. Также вы можете задать период синхронизации времени в соответствующем поле.
-
-![Настройки Gitlab](../../assets/ru/integrations/gitlab/company_settings.png)
 
 ### Настройки для пользователя  :id=gitlab-personal
 
