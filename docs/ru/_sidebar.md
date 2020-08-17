@@ -10,6 +10,7 @@
   - [Примеры конфигурации](ru/advanced/?id=configuration-examples)
 - [Пользователи](ru/users/?id=intro)
   - [Создание пользователя](ru/users/?id=create)
+  - [Приглашение пользователя](ru/users/?id=invite)
   - [Сброс пароля](ru/users/?id=reset)
   - [Часовой пояс](ru/users/?id=timezone)
 - [Рабочий процесс](ru/workflow/?id=intro)
