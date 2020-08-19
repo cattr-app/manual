@@ -24,6 +24,7 @@
   - [Ручное добавление времени](ru/roles/?id=manual-time)
 - [Отчёты](ru/reports/?id=intro)
   - [Текущая работа](ru/reports/?id=online)
+  - [Активность сотрудника](ru/reports/?id=activity)
   - [Временные затраты](ru/reports/?id=project)
   - [Использование времени](ru/reports/?id=use)
 - [Интеграции](ru/integrations/?id=intro)
