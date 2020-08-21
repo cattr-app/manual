@@ -76,10 +76,10 @@ composer install && php artisan cattr:install
 
 ### Конфигурация nginx с одним доменом
 В этой конфигурации, Cattr устанавливается на один домен **cattr.acme.corp** и для Frontend, и для Backend.
+Параметр `GET_SCREENSHOTS_BY_ID` влияет на то, каким образом Frontend будет обращаться к Backend при запрашивании скриншотов. Флаг `true` позволит запрашивать скриншоты по ID, а `false` по полному имени файла. 
 В этом примере, в качестве путей для директорий Frontend и Backend используются следующие значения:
   - **Frontend:** /opt/frontend-application
-  - **Backend:** /opt/backend-application
-
+  - **Backend:** /opt/backend-application 
 Конфигурационный файл Frontend-модуля (/opt/frontend-application/app/etc/env.js) должен содержать следующие значения:
 ```js
 module.exports = {
