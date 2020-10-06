@@ -30,12 +30,12 @@
     }
   },
   "devDependencies": {
-    "docsify-cli": "^4.4.0"
+    "docsify-cli": "^4.4.1"
   },
   "dependencies": {
     "html-minifier": "^4.0.0",
-    "html-snapshots": "^0.17.1",
-    "pm2": "^4.2.3"
+    "html-snapshots": "^0.17.2",
+    "pm2": "^4.5.0"
   },
   "config": {
     "domain": "docs.cattr.app",
