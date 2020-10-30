@@ -2,163 +2,184 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8" />
-	<title>Cattr User manual</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="description" content="Description" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css" />
+    <meta charset="UTF-8"/>
+    <title>Cattr User manual</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+    <meta content="Description" name="description"/>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css" rel="stylesheet"/>
 
-	<style>
-		:root {
-			--base-font-size: 15px;
-		}
+    <style>
+        :root {
+            --base-font-size: 15px;
+        }
 
-		img:not(.emoji) {
-			box-shadow: 0 0 3px 0 #000;
-		}
+        img:not(.emoji) {
+            box-shadow: 0 0 3px 0 #000;
+        }
 
-		summary {
-			cursor: pointer;
-		}
+        summary {
+            cursor: pointer;
+        }
 
-		body {
-			padding-top: 52px;
-		}
+        body {
+            padding-top: 52px;
+        }
 
-		ul {
-			display: block;
-			list-style-type: disc;
-			margin-block-start: 0;
-			margin-block-end: 0;
-			margin-inline-start: 0;
-			margin-inline-end: 0;
-			padding-inline-start: 0px;
-		}
+        ul {
+            display: block;
+            list-style-type: disc;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+            padding-inline-start: 0px;
+        }
 
-		#header {
-			top: 0;
-			max-width: 100%;
-			padding: 0 3%;
-			position: fixed;
-			z-index: 1000;
-			background: #fff;
-			right: 0;
-			left: 0;
-			border-bottom: 1px solid #e4e6f6;
-		}
+        #header {
+            top: 0;
+            max-width: 100%;
+            padding: 0 3%;
+            position: fixed;
+            z-index: 1000;
+            background: #fff;
+            right: 0;
+            left: 0;
+            border-bottom: 1px solid #e4e6f6;
+        }
 
-		#header li {
-			display: inline-block;
-		}
+        #header li {
+            display: inline-block;
+        }
 
-		.sidebar {
-			top: calc(38px + (0.5em * var(--base-line-height)));
-		}
+        .sidebar {
+            top: calc(38px + (0.5em * var(--base-line-height)));
+        }
 
-		main>section>article {
-			margin-top: 54px !important;
-		}
+        main > section > article {
+            margin-top: 54px !important;
+        }
 
-		#header-logo {
-			max-height: 30px;
-			max-width: 30px;
-			vertical-align: middle;
-			box-shadow: 0 0 0 0 #000;
-		}
+        #header-logo {
+            max-height: 30px;
+            max-width: 30px;
+            vertical-align: middle;
+            box-shadow: 0 0 0 0 #000;
+        }
 
-		.sidebar-toggle {
-			top: auto;
-			bottom: 0;
-		}
+        .sidebar-toggle {
+            top: auto;
+            bottom: 0;
+        }
 
-		#header .multiple-item:hover .submenu {
-			display: block;
-		}
+        #header .multiple-item:hover .submenu {
+            display: block;
+        }
 
-		#header a {
-			white-space: nowrap;
-		}
+        #header a {
+            white-space: nowrap;
+        }
 
-		.submenu {
-			display: none;
-			position: absolute;
-			top: 120%;
-			right: 50%;
-			padding: var(--navbar-menu-padding);
-			border-width: var(--navbar-menu-border-width, 0);
-			border-style: solid;
-			border-color: var(--navbar-menu-border-color);
-			border-radius: var(--navbar-menu-border-radius);
-			background: var(--navbar-menu-background);
-			box-shadow: var(--navbar-menu-box-shadow);
-			transform: translate(50%, -0.35em);
-		}
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 120%;
+            right: 50%;
+            padding: var(--navbar-menu-padding);
+            border-width: var(--navbar-menu-border-width, 0);
+            border-style: solid;
+            border-color: var(--navbar-menu-border-color);
+            border-radius: var(--navbar-menu-border-radius);
+            background: var(--navbar-menu-background);
+            box-shadow: var(--navbar-menu-box-shadow);
+            transform: translate(50%, -0.35em);
+        }
 
-		.submenu li {
-			width: 100%;
-			height: 100%;
-			display: inline-block;
-			white-space: nowrap;
-			padding: 4px 20px;
-		}
+        .submenu li {
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            white-space: nowrap;
+            padding: 4px 20px;
+        }
 
-		.header-container {
-			height: 52px;
-		}
+        .header-container {
+            height: 52px;
+        }
 
-		.close {
-			float: none;
-			font-size: inherit;
-			font-weight: inherit;
-			line-height: inherit;
-			color: #000;
-			text-shadow: 0 1px 0 #fff;
-			opacity: 1;
-		}
+        .close {
+            float: none;
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            opacity: 1;
+        }
 
-		.close:not(:disabled):not(.disabled):focus,
-		.close:not(:disabled):not(.disabled):hover {
-			opacity: 1;
-		}
+        .close:not(:disabled):not(.disabled):focus,
+        .close:not(:disabled):not(.disabled):hover {
+            opacity: 1;
+        }
 
-		.common-items,
-		.main-items {
-			height: 52px;
-		}
+        .common-items,
+        .main-items {
+            height: 52px;
+        }
 
-		.item-url {
-			color: #666a99;
-		}
+        .item-url {
+            color: #666a99;
+        }
 
-		@media (max-width: 767px) {
+        @media (max-width: 767px) {
 
-			#header,
-			.header-container {
-				height: 120px;
-			}
+            #header,
+            .header-container {
+                height: 120px;
+            }
 
-			.sidebar {
-				top: 120px;
-			}
+            .sidebar {
+                top: 120px;
+            }
 
-			.item,
-			.multiple-item {
-				text-align: center;
-			}
+            .item,
+            .multiple-item {
+                text-align: center;
+            }
 
-			.sidebar-toggle {
-				top: auto;
-				bottom: 54px;
-			}
-		}
-	</style>
+            .sidebar-toggle {
+                top: auto;
+                bottom: 54px;
+            }
+        }
+    </style>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+              new Date().getTime(), event: 'gtm.js',
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-N3HR36N');</script>
+    <!-- End Google Tag Manager -->
 </head>
 
 <body>
-	<header id="header">
-		<ul class="header-container
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe height="0"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-N3HR36N" style="display:none;visibility:hidden" width="0"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<header id="header">
+    <ul class="header-container
 				row
 				flex-md-nowrap
 				row-cols-md-9
@@ -168,165 +189,153 @@
 				justify-content-center
 				align-items-center
 				">
-			<li class="item col-md-auto col">
-				<a href="https://cattr.app/" class="item">
-					<img src="https://community.cattr.app/public/assets/logo-vdfl6su4.png" alt="" id="header-logo" />
-				</a>
-			</li>
+        <li class="item col-md-auto col">
+            <a class="item" href="https://cattr.app/">
+                <img alt="" id="header-logo" src="https://community.cattr.app/public/assets/logo-vdfl6su4.png"/>
+            </a>
+        </li>
 
-			<li class="item col-md-auto col">
-				<a class="item-url" href="https://cattr.app">Cattr</a>
-			</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://cattr.app">Cattr</a>
+        </li>
 
-			<li class="item col-md-auto col">
-				<a class="item-url" href="https://demo.cattr.app">Demo</a>
-			</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://demo.cattr.app">Demo</a>
+        </li>
 
-			<li class="item col-md col">
-				<a class="item-url" href="https://community.cattr.app/public/">Community</a>
-			</li>
+        <li class="item col-md col">
+            <a class="item-url" href="https://community.cattr.app/public/">Community</a>
+        </li>
 
-			<li class="item col-md-auto col">
-				<a class="item-url" href="https://docs.cattr.app/">User Guide</a>
-			</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://docs.cattr.app/">User Guide</a>
+        </li>
 
-			<li class="item col-md-auto col">
-				<a class="item-url" href="https://docs.cattr.app/api">API</a>
-			</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://docs.cattr.app/api">API</a>
+        </li>
 
-			<li class="item col-md-auto col">
-				<a class="item-url" href="https://docs.cattr.app/frontend">Frontend</a>
-			</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://docs.cattr.app/frontend">Frontend</a>
+        </li>
 
-			<li class="item col-md-auto col">
-				<a class="item-url" href="https://docs.cattr.app/backend#/">Backend</a>
-			</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://docs.cattr.app/backend#/">Backend</a>
+        </li>
 
-			<li class="multiple-item col-md-auto col">
-				<a class="item-url" href="">Translations</a>
-				<ul class="submenu">
-					<li><a class="item-url" href="#/en/">English</a></li>
-					<li><a class="item-url" href="#/ru/">Russian</a></li>
-				</ul>
-			</li>
-		</ul>
-	</header>
+        <li class="multiple-item col-md-auto col">
+            <a class="item-url" href="">Translations</a>
+            <ul class="submenu">
+                <li><a class="item-url" href="#/en/">English</a></li>
+                <li><a class="item-url" href="#/ru/">Russian</a></li>
+            </ul>
+        </li>
+    </ul>
+</header>
 
-	<div id="app"></div>
+<div id="app"></div>
 
-	<script>
+<script>
 
-		/**
-		 * List of supported languages
-		 * @type {Array<String>}
-		 */
-		const SUPPORTED_LANGUAGES = ['en', 'ru'];
+    /**
+     * List of supported languages
+     * @type {Array<String>}
+     */
+    const SUPPORTED_LANGUAGES = ['en', 'ru'];
 
-		window.$docsify = {
-			name: "Cattr User Manual",
+    window.$docsify = {
+        name: 'Cattr User Manual',
 
-			nameLink: {
-				"/ru/": "#/ru/",
-				"/en/": "#/en/"
-			},
+        nameLink: {
+            '/ru/': '#/ru/',
+            '/en/': '#/en/',
+        },
 
-			loadSidebar: true,
-			subMaxLevels: 3,
-			maxLevel: 3,
+        loadSidebar: true,
+        subMaxLevels: 3,
+        maxLevel: 3,
 
-			auto2top: true,
-			executeScript: true,
-			ga: "UA-160871084-2",
-			search: {
-				depth: 3,
-				noData: {
-					"/ru/": "Нет результатов!",
-					"/en/": "No results!",
-					"/": "No results!"
-				},
-				placeholder: {
-					"/ru/": "Искать...",
-					"/en/": "Search...",
-					"/": "Search..."
-				}
-			},
+        auto2top: true,
+        executeScript: true,
+        search: {
+            depth: 3,
+            noData: {
+                '/ru/': 'Нет результатов!',
+                '/en/': 'No results!',
+                '/': 'No results!',
+            },
+            placeholder: {
+                '/ru/': 'Искать...',
+                '/en/': 'Search...',
+                '/': 'Search...',
+            },
+        },
 
-			alias: {
-				"/(.*)/.*/_sidebar.md": "/$1/_sidebar.md"
-			}
-		};
+        alias: {
+            '/(.*)/.*/_sidebar.md': '/$1/_sidebar.md',
+        },
+    };
 
-		function getLangCookie() {
-			var v = document.cookie.match('(^|;) ?lang=([^;]*)(;|$)');
-			return v ? v[2] : null;
-		};
+    function getLangCookie() {
+        var v = document.cookie.match('(^|;) ?lang=([^;]*)(;|$)');
+        return v ? v[2] : null;
+    };
 
-		// Set root domain cookie, ex: *.cattr.app
-		function setLangCookie(lang) {
-			var rootDomain = location.hostname.split('.').reverse().splice(0, 2).reverse().join('.');
-			document.cookie = 'lang=' + lang + '; domain=' + rootDomain;
-		};
+    // Set root domain cookie, ex: *.cattr.app
+    function setLangCookie(lang) {
+        var rootDomain = location.hostname.split('.').reverse().splice(0, 2).reverse().join('.');
+        document.cookie = 'lang=' + lang + '; domain=' + rootDomain;
+    };
 
-		// Get the browser language
-		function getUserLang() {
-			return typeof navigator.language !== 'undefined' && navigator.language.length
-				? navigator.language.substring(0, 2).toLowerCase() : 'en';
-		};
+    // Get the browser language
+    function getUserLang() {
+        return typeof navigator.language !== 'undefined' && navigator.language.length
+          ? navigator.language.substring(0, 2).toLowerCase() : 'en';
+    };
 
-		document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
 
-			// Get user language
-			var lang = getLangCookie() || getUserLang();
+        // Get user language
+        var lang = getLangCookie() || getUserLang();
 
-			// Falling back to English if detected language is not supported
-			lang = SUPPORTED_LANGUAGES.includes(lang) ? lang : 'en';
+        // Falling back to English if detected language is not supported
+        lang = SUPPORTED_LANGUAGES.includes(lang) ? lang : 'en';
 
-			var hashSegments = document.location.hash.split('/');
-			var hashLang = hashSegments[1];
-			if (hashLang !== lang) {
-				// Redirect to location approriate to the user's language
-				hashSegments[1] = lang;
+        var hashSegments = document.location.hash.split('/');
+        var hashLang = hashSegments[1];
+        if (hashLang !== lang) {
+            // Redirect to location approriate to the user's language
+            hashSegments[1] = lang;
 
-				var hash = hashSegments.join('/');
-				if (hashSegments.length === 2) {
-					hash += '/';
-				}
+            var hash = hashSegments.join('/');
+            if (hashSegments.length === 2) {
+                hash += '/';
+            }
 
-				document.location.hash = hash;
-			}
-		});
+            document.location.hash = hash;
+        }
+    });
 
-		document.addEventListener('click', function (event) {
-			if (event.target.tagName !== 'A') {
-				return;
-			}
+    document.addEventListener('click', function (event) {
+        if (event.target.tagName !== 'A') {
+            return;
+        }
 
-			var hash = event.target.href.split('#')[1];
-			if (!hash) {
-				return;
-			}
+        var hash = event.target.href.split('#')[1];
+        if (!hash) {
+            return;
+        }
 
-			var urlLang = hash.split('/')[1];
-			setLangCookie(urlLang);
-		});
-	</script>
+        var urlLang = hash.split('/')[1];
+        setLangCookie(urlLang);
+    });
+</script>
 
-	<script src="https://unpkg.com/docsify/lib/docsify.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
-	<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/ga.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+<script src="https://unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
 
-	<script src="https://unpkg.com/prismjs/components/prism-nginx.min.js"></script>
-	<!-- Start of Rocket.Chat Livechat Script -->
-	<script type="text/javascript">
-		(function (w, d, s, u) {
-			w.RocketChat = function (c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-			var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-			j.async = true; j.src = 'https://chat.amazingcat.net/livechat/rocketchat-livechat.min.js?_=201903270000';
-			h.parentNode.insertBefore(j, h);
-		})(window, document, 'script', 'https://chat.amazingcat.net/livechat');
-	</script>
-	<!-- End of Rocket.Chat Livechat Script -->
+<script src="https://unpkg.com/prismjs/components/prism-nginx.min.js"></script>
 </body>
 
 </html>
