@@ -10,7 +10,6 @@
   "scripts": {
     "start": "docsify start ./docs",
     "serve": "docsify serve ./docs",
-    "postinstall": "vim ./node_modules/docsify-cli/bin/docsify -c \"set ff=unix\" -c \":wq\"",
     "sitemap": "node prerender/sitemap.js",
     "render": "node prerender/main.js"
   },
@@ -30,12 +29,11 @@
     }
   },
   "devDependencies": {
-    "docsify-cli": "^4.4.1"
+    "docsify-cli": "^4.4"
   },
   "dependencies": {
-    "html-minifier": "^4.0.0",
-    "html-snapshots": "^0.17.2",
-    "pm2": "^4.5.0"
+    "html-minifier": "^4.0",
+    "html-snapshots": "^0.17"
   },
   "config": {
     "domain": "docs.cattr.app",
