@@ -174,171 +174,154 @@
 				justify-content-md-between
 				justify-content-center
 				align-items-center
-				"
-			>
-				<li class="item col-md-auto col">
-					<a href="https://cattr.app/" class="item">
-						<img
-							src="https://community.cattr.app/public/assets/logo-vdfl6su4.png"
-							alt=""
-							id="header-logo"
-						/>
-					</a>
-				</li>
+				">
+        <li class="item col-md-auto col">
+            <a class="item" href="https://cattr.app/">
+                <img alt="" id="header-logo" src="https://community.cattr.app/public/assets/logo-vdfl6su4.png"/>
+            </a>
+        </li>
 
-				<li class="item col-md-auto col">
-					<a class="item-url" href="https://cattr.app">Cattr</a>
-				</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://cattr.app">Cattr</a>
+        </li>
 
-				<li class="item col-md-auto col">
-					<a class="item-url" href="https://demo.cattr.app">Demo</a>
-				</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://demo.cattr.app">Demo</a>
+        </li>
 
-				<li class="item col-md col">
-					<a
-						class="item-url"
-						href="https://community.cattr.app/public/"
-						>Community</a
-					>
-				</li>
+        <li class="item col-md col">
+            <a class="item-url" href="https://community.cattr.app/public/">Community</a>
+        </li>
 
-				<li class="item col-md-auto col">
-					<a class="item-url" href="https://docs.cattr.app/"
-						>User Guide</a
-					>
-				</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://docs.cattr.app/">User Guide</a>
+        </li>
 
-				<li class="item col-md-auto col">
-					<a class="item-url" href="https://docs.cattr.app/api"
-						>API</a
-					>
-				</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://docs.cattr.app/api">API</a>
+        </li>
 
-				<li class="item col-md-auto col">
-					<a class="item-url" href="https://docs.cattr.app/frontend"
-						>Frontend</a
-					>
-				</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://docs.cattr.app/frontend">Frontend</a>
+        </li>
 
-				<li class="item col-md-auto col">
-					<a class="item-url" href="https://docs.cattr.app/backend#/"
-						>Backend</a
-					>
-				</li>
+        <li class="item col-md-auto col">
+            <a class="item-url" href="https://docs.cattr.app/backend#/">Backend</a>
+        </li>
 
-				<li class="multiple-item col-md-auto col">
-					<a class="item-url" href="">Translations</a>
-					<ul class="submenu">
-						<li><a class="item-url" href="#/en/">English</a></li>
-						<li><a class="item-url" href="#/ru/">Russian</a></li>
-					</ul>
-				</li>
-			</ul>
-		</header>
+        <li class="multiple-item col-md-auto col">
+            <a class="item-url" href="">Translations</a>
+            <ul class="submenu">
+                <li><a class="item-url" href="#/en/">English</a></li>
+                <li><a class="item-url" href="#/ru/">Russian</a></li>
+            </ul>
+        </li>
+    </ul>
+</header>
 
-		<div id="app"></div>
+<div id="app"></div>
 
-		<script>
-			window.$docsify = {
-				name: "Cattr User Manual",
+<script>
 
-				nameLink: {
-					"/ru/": "#/ru/",
-					"/en/": "#/en/"
-				},
+    /**
+     * List of supported languages
+     * @type {Array<String>}
+     */
+    const SUPPORTED_LANGUAGES = ['en', 'ru'];
 
-				loadSidebar: true,
-				subMaxLevels: 3,
-				maxLevel: 3,
+    window.$docsify = {
+        name: 'Cattr User Manual',
 
-				auto2top: true,
-				executeScript: true,
-				ga: "UA-160871084-2",
-				search: {
-					depth: 3,
-					noData: {
-						"/ru/": "Нет результатов!",
-						"/en/": "No results!",
-						"/": "No results!"
-					},
-					placeholder: {
-						"/ru/": "Искать...",
-						"/en/": "Search...",
-						"/": "Search..."
-					}
-				},
+        nameLink: {
+            '/ru/': '#/ru/',
+            '/en/': '#/en/',
+        },
 
-				alias: {
-					"/(.*)/.*/_sidebar.md": "/$1/_sidebar.md"
-				}
-			};
+        loadSidebar: true,
+        subMaxLevels: 3,
+        maxLevel: 3,
 
-			function getLangCookie() {
-				var v = document.cookie.match('(^|;) ?lang=([^;]*)(;|$)');
-				return v ? v[2] : null;
-			};
+        auto2top: true,
+        executeScript: true,
+        search: {
+            depth: 3,
+            noData: {
+                '/ru/': 'Нет результатов!',
+                '/en/': 'No results!',
+                '/': 'No results!',
+            },
+            placeholder: {
+                '/ru/': 'Искать...',
+                '/en/': 'Search...',
+                '/': 'Search...',
+            },
+        },
 
-			// Set root domain cookie, ex: *.cattr.app
-			function setLangCookie(lang) {
-				var rootDomain = location.hostname.split('.').reverse().splice(0,2).reverse().join('.');
-				document.cookie = 'lang=' + lang + '; domain=' + rootDomain;
-			};
+        alias: {
+            '/(.*)/.*/_sidebar.md': '/$1/_sidebar.md',
+        },
+    };
 
-			// Get the browser language
-			function getUserLang() {
-				return typeof navigator.language !== 'undefined' && navigator.language.length
-					? navigator.language.substring(0, 2).toLowerCase() : 'en';
-			};
+    function getLangCookie() {
+        var v = document.cookie.match('(^|;) ?lang=([^;]*)(;|$)');
+        return v ? v[2] : null;
+    };
 
-			document.addEventListener('DOMContentLoaded', function () {
-				// Get user language
-				var lang = getLangCookie() || getUserLang();
+    // Set root domain cookie, ex: *.cattr.app
+    function setLangCookie(lang) {
+        var rootDomain = location.hostname.split('.').reverse().splice(0, 2).reverse().join('.');
+        document.cookie = 'lang=' + lang + '; domain=' + rootDomain;
+    };
 
-				var hashSegments = document.location.hash.split('/');
-				var hashLang = hashSegments[1];
-				if (hashLang !== lang) {
-					// Redirect to location approriate to the user's language
-					hashSegments[1] = lang;
+    // Get the browser language
+    function getUserLang() {
+        return typeof navigator.language !== 'undefined' && navigator.language.length
+          ? navigator.language.substring(0, 2).toLowerCase() : 'en';
+    };
 
-					var hash = hashSegments.join('/');
-					if (hashSegments.length === 2) {
-						hash += '/';
-					}
+    document.addEventListener('DOMContentLoaded', function () {
 
-					document.location.hash = hash;
-				}
-			});
+        // Get user language
+        var lang = getLangCookie() || getUserLang();
 
-			document.addEventListener('click', function (event) {
-				if (event.target.tagName !== 'A') {
-					return;
-				}
+        // Falling back to English if detected language is not supported
+        lang = SUPPORTED_LANGUAGES.includes(lang) ? lang : 'en';
 
-				var hash = event.target.href.split('#')[1];
-				if (!hash) {
-					return;
-				}
+        var hashSegments = document.location.hash.split('/');
+        var hashLang = hashSegments[1];
+        if (hashLang !== lang) {
+            // Redirect to location approriate to the user's language
+            hashSegments[1] = lang;
 
-				var urlLang = hash.split('/')[1];
-				setLangCookie(urlLang);
-			});
-		</script>
+            var hash = hashSegments.join('/');
+            if (hashSegments.length === 2) {
+                hash += '/';
+            }
 
-		<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
-		<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/ga.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+            document.location.hash = hash;
+        }
+    });
 
-		<script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
-		<!-- Start of Rocket.Chat Livechat Script -->
-		<script type="text/javascript">
-			(function(w, d, s, u) {
-				w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-				var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-				j.async = true; j.src = 'https://chat.amazingcat.net/livechat/rocketchat-livechat.min.js?_=201903270000';
-				h.parentNode.insertBefore(j, h);
-			})(window, document, 'script', 'https://chat.amazingcat.net/livechat');
-		</script>
-		<!-- End of Rocket.Chat Livechat Script -->
-	</body>
+    document.addEventListener('click', function (event) {
+        if (event.target.tagName !== 'A') {
+            return;
+        }
+
+        var hash = event.target.href.split('#')[1];
+        if (!hash) {
+            return;
+        }
+
+        var urlLang = hash.split('/')[1];
+        setLangCookie(urlLang);
+    });
+</script>
+
+<script src="https://unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0"></script>
+<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+
+<script src="https://unpkg.com/prismjs/components/prism-nginx.min.js"></script>
+</body>
+
 </html>

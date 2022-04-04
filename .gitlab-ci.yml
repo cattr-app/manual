@@ -1,23 +1,15 @@
-image: node:alpine
+image: node:14-alpine
 
-stages:
-  - deploy
-
-deploy:
+pages:
   stage: deploy
   before_script:
-    - 'which ssh-agent || ( apk add --update openssh )'
-    - apk add --update bash
-    - apk add --update git
-    - eval $(ssh-agent -s)
-    - echo "$CI_SSH_DEPLOY_SECRET" | ssh-add -
-    - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-    - 'ssh-keyscan -H git.amazingcat.net >> ~/.ssh/known_hosts'
-
+    - apk add yarn
+    - yarn
   script:
-    - npm i -g pm2
-    - pm2 deploy production
-
+    - yarn sitemap
+    - mv docs public
   only:
     - release
+  artifacts:
+    paths:
+      - public
