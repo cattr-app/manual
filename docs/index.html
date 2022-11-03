@@ -1,185 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Cattr User manual</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="description" content="Description" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"
+		/>
 
-<head>
-    <meta charset="UTF-8"/>
-    <title>Cattr User manual</title>
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
-    <meta content="Description" name="description"/>
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css" rel="stylesheet"/>
+		<style>
+			:root {
+				--base-font-size: 15px;
+			}
 
-    <style>
-        :root {
-            --base-font-size: 15px;
-        }
+			img:not(.emoji) {
+				box-shadow: 0 0 3px 0 #000;
+			}
 
-        img:not(.emoji) {
-            box-shadow: 0 0 3px 0 #000;
-        }
+			img[alt="Настройка клиента"], img[alt="Отчет о работе"], img[alt="Описание задачи"], img[alt="Список задач"], img[alt="Авторизация в клиенте: данные"], img[alt="Авторизация в клиенте: хост"] {
+				max-width: 60%;
+			}
 
-        summary {
-            cursor: pointer;
-        }
+			summary {
+				cursor: pointer;
+			}
 
-        body {
-            padding-top: 52px;
-        }
+			body {
+				padding-top: 52px;
+			}
 
-        ul {
-            display: block;
-            list-style-type: disc;
-            margin-block-start: 0;
-            margin-block-end: 0;
-            margin-inline-start: 0;
-            margin-inline-end: 0;
-            padding-inline-start: 0px;
-        }
+			ul {
+				display: block;
+				list-style-type: disc;
+				margin-block-start: 0;
+				margin-block-end: 0;
+				margin-inline-start: 0;
+				margin-inline-end: 0;
+				padding-inline-start: 0px;
+			}
 
-        #header {
-            top: 0;
-            max-width: 100%;
-            padding: 0 3%;
-            position: fixed;
-            z-index: 1000;
-            background: #fff;
-            right: 0;
-            left: 0;
-            border-bottom: 1px solid #e4e6f6;
-        }
+			#header {
+				top: 0;
+				max-width: 100%;
+				padding: 0 3%;
+				position: fixed;
+				z-index: 1000;
+				background: #fff;
+				right: 0;
+				left: 0;
+				border-bottom: 1px solid #e4e6f6;
+			}
 
-        #header li {
-            display: inline-block;
-        }
+			#header li {
+				display: inline-block;
+			}
 
-        .sidebar {
-            top: calc(38px + (0.5em * var(--base-line-height)));
-        }
+			.sidebar {
+				top: calc(38px + (0.5em * var(--base-line-height)));
+			}
 
-        main > section > article {
-            margin-top: 54px !important;
-        }
+			main > section > article {
+				margin-top: 54px !important;
+			}
 
-        #header-logo {
-            max-height: 30px;
-            max-width: 30px;
-            vertical-align: middle;
-            box-shadow: 0 0 0 0 #000;
-        }
+			#header-logo {
+				max-height: 30px;
+				max-width: 30px;
+				vertical-align: middle;
+				box-shadow: 0 0 0 0 #000;
+			}
 
-        .sidebar-toggle {
-            top: auto;
-            bottom: 0;
-        }
+			.sidebar-toggle {
+				top: auto;
+				bottom: 0;
+			}
 
-        #header .multiple-item:hover .submenu {
-            display: block;
-        }
+			#header .multiple-item:hover .submenu {
+				display: block;
+			}
 
-        #header a {
-            white-space: nowrap;
-        }
+			#header a {
+				white-space: nowrap;
+			}
 
-        .submenu {
-            display: none;
-            position: absolute;
-            top: 120%;
-            right: 50%;
-            padding: var(--navbar-menu-padding);
-            border-width: var(--navbar-menu-border-width, 0);
-            border-style: solid;
-            border-color: var(--navbar-menu-border-color);
-            border-radius: var(--navbar-menu-border-radius);
-            background: var(--navbar-menu-background);
-            box-shadow: var(--navbar-menu-box-shadow);
-            transform: translate(50%, -0.35em);
-        }
+			.submenu {
+				display: none;
+				position: absolute;
+				top: 120%;
+				right: 50%;
+				padding: var(--navbar-menu-padding);
+				border-width: var(--navbar-menu-border-width, 0);
+				border-style: solid;
+				border-color: var(--navbar-menu-border-color);
+				border-radius: var(--navbar-menu-border-radius);
+				background: var(--navbar-menu-background);
+				box-shadow: var(--navbar-menu-box-shadow);
+				transform: translate(50%, -0.35em);
+			}
 
-        .submenu li {
-            width: 100%;
-            height: 100%;
-            display: inline-block;
-            white-space: nowrap;
-            padding: 4px 20px;
-        }
+			.submenu li {
+				width: 100%;
+				height: 100%;
+				display: inline-block;
+				white-space: nowrap;
+				padding: 4px 20px;
+			}
 
-        .header-container {
-            height: 52px;
-        }
+			.header-container {
+				height: 52px;
+			}
 
-        .close {
-            float: none;
-            font-size: inherit;
-            font-weight: inherit;
-            line-height: inherit;
-            color: #000;
-            text-shadow: 0 1px 0 #fff;
-            opacity: 1;
-        }
+			.close {
+				float: none;
+				font-size: inherit;
+				font-weight: inherit;
+				line-height: inherit;
+				color: #000;
+				text-shadow: 0 1px 0 #fff;
+				opacity: 1;
+			}
 
-        .close:not(:disabled):not(.disabled):focus,
-        .close:not(:disabled):not(.disabled):hover {
-            opacity: 1;
-        }
+			.close:not(:disabled):not(.disabled):focus,
+			.close:not(:disabled):not(.disabled):hover {
+				opacity: 1;
+			}
 
-        .common-items,
-        .main-items {
-            height: 52px;
-        }
+			.common-items,
+			.main-items {
+				height: 52px;
+			}
 
-        .item-url {
-            color: #666a99;
-        }
+			.item-url {
+				color: #666a99;
+			}
 
-        @media (max-width: 767px) {
+			@media (max-width: 767px) {
+				#header,
+				.header-container {
+					height: 120px;
+				}
+				.sidebar {
+					top: 120px;
+				}
+				.item,
+				.multiple-item {
+					text-align: center;
+				}
+				.sidebar-toggle {
+					top: auto;
+					bottom: 54px;
+				}
+			}
+		</style>
+	</head>
 
-            #header,
-            .header-container {
-                height: 120px;
-            }
-
-            .sidebar {
-                top: 120px;
-            }
-
-            .item,
-            .multiple-item {
-                text-align: center;
-            }
-
-            .sidebar-toggle {
-                top: auto;
-                bottom: 54px;
-            }
-        }
-    </style>
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start':
-              new Date().getTime(), event: 'gtm.js',
-        });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-N3HR36N');</script>
-    <!-- End Google Tag Manager -->
-</head>
-
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe height="0"
-            src="https://www.googletagmanager.com/ns.html?id=GTM-N3HR36N" style="display:none;visibility:hidden" width="0"></iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
-<header id="header">
-    <ul class="header-container
+	<body>
+		<header id="header">
+			<ul
+				class="header-container
 				row
 				flex-md-nowrap
 				row-cols-md-9

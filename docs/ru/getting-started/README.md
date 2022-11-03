@@ -4,7 +4,8 @@
 ## Минимальные требования  :id=requirements
 * RAM: не менее 2Гб
 * Storage: не менее 5Гб зарезервированного свободного места
-* Docker: >= 18.09
+* Docker: >= 20.10
+* Docker compose: >= 2.3.4
 
 ## Установка  :id=installation
 
@@ -12,15 +13,10 @@
 
 Для установки, выполните следующую команду в Терминале и следуйте указаниям:
 ```bash
-wget https://dl.cattr.app/installer/cattr.sh
+wget https://git.amazingcat.net/cattr/core/docker/-/releases/permalink/latest/downloads/installer
 bash cattr.sh
 ```
 
-Для обновления Cattr, выполните команду в Терминале на сервере, где Вы проводили изначальную установку Cattr:
-```bash
-wget https://dl.cattr.app/installer/updater.sh
-bash updater.sh
-```
 
 ## Часто возникающие ошибки  :id=errors
 

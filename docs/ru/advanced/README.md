@@ -51,10 +51,7 @@ composer install && php artisan cattr:install
 4. Перейдите в директорию с Frontend-модулем:
   1. Перейдите в директорию `app/etc` и скопируйте файл `env.production.js` в `env.js`.
   2. Отредактируйте `env.js` и удостоверьтесь, что значения в нём соответствуют перечисленным ниже:
-    * **API_URL:** полный URL-адрес Backend-приложения
-    * **API_VERSION:** `v1`
-    * **DEVELOPER_MODE:** `package`
-    * **LOCAL_BUILD:** `false`
+    * **API_URL:** полный URL-адрес Backend-приложения, иначе обычное местоположение
   3. Выполните следующие команды в директории с Frontend-модулем
      ```
      # Install dependencies
@@ -71,9 +68,6 @@ composer install && php artisan cattr:install
   * HTTP root directory для Frontend: `path/to/cattr-frontend-application/dist`
   * HTTP root directory для Backend (API): `path/to/cattr-backend-application/public`
 
-?> Если Frontend и Backend модули располагаются на разных доменах (например, api.cattr.acme.corp для Backend и cattr.acme.corp для Frontend),  
-то установите значение `CORS_ENABLED=true` в конфигурационном файле Backend-модуля (.env файл в папке Backend-модуля).
-
 ## Примеры конфигураций  :id=configuration-examples
 Ниже вы найдете примеры различных конфигураций Cattr.
 
@@ -82,17 +76,15 @@ composer install && php artisan cattr:install
 
 ### Конфигурация nginx с одним доменом
 В этой конфигурации, Cattr устанавливается на один домен **cattr.acme.corp** и для Frontend, и для Backend.
+Параметр `GET_SCREENSHOTS_BY_ID` влияет на то, каким образом Frontend будет обращаться к Backend при запрашивании скриншотов. Флаг `true` позволит запрашивать скриншоты по ID, а `false` по полному имени файла. 
 В этом примере, в качестве путей для директорий Frontend и Backend используются следующие значения:
   - **Frontend:** /opt/frontend-application
-  - **Backend:** /opt/backend-application
-
+  - **Backend:** /opt/backend-application 
 Конфигурационный файл Frontend-модуля (/opt/frontend-application/app/etc/env.js) должен содержать следующие значения:
 ```js
 module.exports = {
   API_URL: 'http://cattr.acme.corp/api',
-  API_VERSION: 'v1',
-  DEVELOPER_MODE: 'package',
-  LOCAL_BUILD: false
+  GET_SCREENSHOTS_BY_ID: true,
 };
 ```
 

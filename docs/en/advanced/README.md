@@ -51,10 +51,7 @@ composer install && php artisan cattr:install
 4. Go to the directory with the Frontend part:
   1. Open `app/etc` directory and copy the `env.production.js` file to `env.js`.
   2. Edit the `env.js`, so it had the following variables' values:
-    * **API_URL:** Full URL to the backend (API)
-    * **API_VERSION:** `v1`
-    * **DEVELOPER_MODE:** `package`
-    * **LOCAL_BUILD:** `false`
+    * **API_URL:** Full URL to the backend (API), origin location will be used otherwise
   3. In the Frontend directory execute the following commands:
      ```
      # Install dependencies
@@ -90,9 +87,7 @@ Frontend configuration (/opt/frontend-application/app/etc/env.js) should looks l
 ```js
 module.exports = {
   API_URL: 'http://cattr.acme.corp/api',
-  API_VERSION: 'v1',
-  DEVELOPER_MODE: 'package',
-  LOCAL_BUILD: false
+  GET_SCREENSHOTS_BY_ID: true,
 };
 ```
 

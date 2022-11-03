@@ -2,7 +2,7 @@
 
 !> In order to change anything about company's users, your account should have the `root` role.
 
-On page `Settings` Each user is able to chane its email, displayed name, password and app's language.
+On page `Settings` Each user is able to change its email, displayed name, password and app's language.
 
 ![User's personal settings](../../assets/en/users/settings_personal.png)
 
@@ -14,15 +14,14 @@ You can create a new user on the `Company settings` page in `Users` section.
 
 ![Create user](../../assets/en/users/create.png)
 
-Once you're done adding username, email and password, click `Save`, and the user will be created.
+Once you're done adding username and email, click `Save`, and the user will be created.
 
 ---
 
 - `Default role` sets the default user's role for the projects (excluding those projects where this particular user's role is overridden)
-- `Screenshots interval` defines how many seconds is going to go before the client application create a new screenshot
-- `Computer time popup` defines how many seconds will the user have before the work timer is stopped once the user's inactivity (no mouse moves or any key presses) is detected
+- `Screenshots interval` defines how many minutes is going to go before the client application create a new screenshot
+- `Inactivity time popup` defines how many minutes will the user have before the work timer is stopped once the user's inactivity (no mouse moves or any key presses) is detected
 - `Timezone` defines the user's timezone
-- If you set the `Send invite` param as `Yes`, the user's Cattr account credentials will be sent to the user's email
 - `Manual time` param is described on the [Manual time addition](ru/roles/?id=manual-time) page
 
 ?> You can learn more about the user's roles on the [Access roles](en/roles/) page
