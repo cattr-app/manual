@@ -4,20 +4,15 @@ This article describes simplified installation using Docker. For standalone inst
 ## Minimal requirements  :id=requirements
 * RAM: at least 2Gb
 * Storage: at least 5Gb of reserved disk space
-* Docker: >= 18.09
+* Docker: >= 20.10
+* Docker compose: >= 2.3.4
 
 ## Installation  :id=installation
 
 Execute commands below in Terminal and follow installation wizard's instructions
 ```bash
-wget https://dl.cattr.app/installer/cattr.sh
+wget https://git.amazingcat.net/cattr/core/docker/-/releases/permalink/latest/downloads/compose
 bash cattr.sh
-```
-
-If you want to update your Cattr instance execute commands below in Terminal at the server, where Cattr was installed
-```bash
-wget https://dl.cattr.app/installer/updater.sh
-bash updater.sh
 ```
 
 ## Common errors list  :id=errors
