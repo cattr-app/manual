@@ -39,4 +39,4 @@ Error starting userland proxy: listen tcp 0.0.0.0:80 bind: address already in us
 
 After you finish installing and configuring the Frontend and Backend modules, you will be able to login with the credentials you provided for Administrator user. Once you log in, you'll be able to create projects, tasks, and assign them to the new users.
 
-?>You can read about how to do it all in [Create project](ru/workflow/?id=project), [Create task](ru/workflow/?id=task) and [Create user](ru/users/?id=create) sections.
+?>You can read about how to do it all in [Create project](en/workflow/?id=project), [Create task](en/workflow/?id=task) and [Create user](en/users/?id=create) sections.
