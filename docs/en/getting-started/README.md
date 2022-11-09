@@ -11,7 +11,7 @@ This article describes simplified installation using Docker. For standalone inst
 
 Execute commands below in Terminal and follow installation wizard's instructions
 ```bash
-wget https://git.amazingcat.net/cattr/core/docker/-/releases/permalink/latest/downloads/installer
+wget https://git.amazingcat.net/cattr/core/docker/-/releases/permalink/latest/downloads/installer -O cattr.sh
 bash cattr.sh
 ```
 

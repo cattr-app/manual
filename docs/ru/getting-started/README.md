@@ -13,7 +13,7 @@
 
 Для установки, выполните следующую команду в Терминале и следуйте указаниям:
 ```bash
-wget https://git.amazingcat.net/cattr/core/docker/-/releases/permalink/latest/downloads/installer
+wget https://git.amazingcat.net/cattr/core/docker/-/releases/permalink/latest/downloads/installer -O cattr.sh
 bash cattr.sh
 ```
 
