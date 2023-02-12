@@ -1,15 +1,17 @@
-image: node:14-alpine
-
 pages:
   stage: deploy
+  image: node:14-alpine
+  environment:
+    name: production
+    url: https://docs.cattr.app
+  only:
+    - tags
   before_script:
     - apk add yarn
     - yarn
   script:
     - yarn sitemap
     - mv docs public
-  only:
-    - release
   artifacts:
     paths:
       - public
