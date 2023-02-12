@@ -4,9 +4,9 @@
         <loc>https://docs.cattr.app/sitemap.xml</loc>
     </sitemap>
     <sitemap>
-        <loc>https://docs.cattr.app/backend/sitemap.xml</loc>
+        <loc>https://backend.docs.cattr.app/sitemap.xml</loc>
     </sitemap>
     <sitemap>
-        <loc>https://docs.cattr.app/frontend/sitemap.xml</loc>
+        <loc>https://frontend.docs.cattr.app/sitemap.xml</loc>
     </sitemap>
 </sitemapindex>
