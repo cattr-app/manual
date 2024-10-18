@@ -12,7 +12,7 @@ pages:
   script:
     - yarn sitemap
     - mv docs public
-    - mv _redirects ./public
+    - mv _redirects ./public/_redirects
   artifacts:
     paths:
       - public
