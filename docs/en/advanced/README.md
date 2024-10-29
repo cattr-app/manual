@@ -143,7 +143,7 @@ Server block for nginx:
    }
 server {
     listen 80 default;
-    server_name 157.245.139.136;
+    server_name server_name;
 
     root /var/www/app/public;
     index index.php;
