@@ -8,7 +8,7 @@ In order for your server to be able to work with our Core application, you'll ne
 - Storage: at least 5Gb of reserved disk space
 - MySQL: >=8.0.19
 - PHP: >=8.2
-- Node: >=16
+- Node: =18
 - Composer and cURL are necessary to work with the Backend part
 - A web-server, we recommend nginx
 
@@ -63,7 +63,7 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 3. Go to the directory of the project, execute the following command and follow the installation manager instructions:
 
 ```bash
-composer install && php artisan cattr:install
+  composer install 
 ```
 
 ?> You'll be asked to provide the credentials you're gonna use for Administrator account. Use them to log in after you finish installation.
@@ -72,13 +72,11 @@ composer install && php artisan cattr:install
 
    ```
    # Install dependencies
-   yarn
+   yarn install
 
    # Build frontend application
    yarn prod
    ```
-
-!> Information below needs to be updated.
 
 5. Set up your web server so it could work with both Cattr backend and frontend modules
 
@@ -86,7 +84,11 @@ composer install && php artisan cattr:install
 
 ?> If the backend module is located on a different domain rather than Frontend module, you'll need to enable the `CORS_ENABLED=true` option in the Backend's environment configuration (`.env` file).
 
-6.  Set up a cron job to run the command php82 /app/artisan schedule:run every minute.
+6. After connecting to the database via .env, run the following commands to perform migrations:
+```bash
+  php artisan migrate
+```
+7.  Set up a cron job to run the command php82 /app/artisan schedule:run every minute.
 
 Run the command to edit the cron jobs:
 
@@ -99,16 +101,20 @@ In the opened file, add the following line:
 ```bash
   * * * * * php82 /app/artisan schedule:run 
 ```
-7. Start the WebSocket in the background and log the output to reverb.log:  
+8. Start the WebSocket in the background and log the output to reverb.log:  
 ```bash
      nohup php artisan reverb:serve > reverb.log 2>&1 &
 ```
-8. Start the queue listener in the background, and all output, including errors, will be logged to queue.log: 
+9. Start the queue listener in the background, and all output, including errors, will be logged to queue.log: 
 
 ```bash
   nohup php artisan queue:listen > queue.log 2>&1 &
 ```
+10. Creating a key for the project
 
+```bash
+  php artisan key:generate
+```
 ## Configuration Examples :id=configuration-examples
 
 You'll find web server configuration examples for Cattr bellow.
@@ -122,17 +128,8 @@ available only via HTTPS connection with modern ciphersuits, unless you have som
 Let's assume that Cattr should be installed to **cattr.acme.corp** without HTTPS with both frontend and backend on the same domain,
 and paths to Cattr's Core apps are:
 
-- **Frontend:** /opt/frontend-application
-- **Backend:** /opt/backend-application
+- **Frontend:**,**Backend:** /opt/server-application/app
 
-Frontend configuration (/opt/frontend-application/app/etc/env.js) should looks like this:
-
-```js
-module.exports = {
-  API_URL: "http://cattr.acme.corp/api",
-  GET_SCREENSHOTS_BY_ID: true,
-};
-```
 
 Server block for nginx:
 

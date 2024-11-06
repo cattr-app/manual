@@ -8,7 +8,7 @@
 - Хранилище: не менее 5Gb зарезервированного дискового пространства
 - MySQL: >=8.0.19
 - PHP: >=8.2
-- Node: >=16
+- Node: =18
 - Composer и cURL необходимы для функционирования приложения
 - Веб-сервер, мы рекомендуем nginx
 
@@ -63,7 +63,7 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 3. Перейдите в директорию с проектом, выполните следующую команду и следуйте указаниям установщика:
 
 ```bash
-composer install && php artisan cattr:install
+  composer install 
 ```
 
 ?> В течении установки, у вас будут запрошены учётные данные для администраторского доступа. Используйте их в дальнейшем для входа в систему.
@@ -72,19 +72,24 @@ composer install && php artisan cattr:install
 
    ```
    # Install dependencies
-   yarn
+   yarn install
+
 
    # Build frontend application
    yarn prod
    ```
 
-!> Информация ниже требует обновления.
-
 5. Настройте ваш веб-сервер на работу с Cattr. Ниже указан пример папок, которые следует использовать как root-директории в Nginx или DocumentRoot-директории в Apache:
 
 - HTTP root directory для Frontend и для Backend (API): `/app/public`
 
-6. Настройте ваш cron задачи, которая будет запускать команду php82 /app/artisan schedule:run каждую минуту
+6. После подключения по .env к базе выполните миграции
+
+```bash
+  php artisan migrate
+```
+
+7. Настройте ваш cron задачи, которая будет запускать команду php82 /app/artisan schedule:run каждую минуту
 
 Выполните команду для редактирования заданий cron:
 
@@ -97,14 +102,20 @@ composer install && php artisan cattr:install
 ```bash
   * * * * * php82 /app/artisan schedule:run 
 ```
-7. Запускаем websocket в фоновом режиме и записываем выводы reverb.log
+8. Запускаем websocket в фоновом режиме и записываем выводы reverb.log
 ```bash
-     nohup php artisan reverb:serve > reverb.log 2>&1 &
+  nohup php artisan reverb:serve > reverb.log 2>&1 &
 ```
-8. Запускаем очереди в фоновом режиме и все выводы включая ошибки будут записаны в queue.log
+9. Запускаем очереди в фоновом режиме и все выводы включая ошибки будут записаны в queue.log
 
 ```bash
   nohup php artisan queue:listen > queue.log 2>&1 &
+```
+
+10. Создаем ключ для проекта
+
+```bash
+  php artisan key:generate
 ```
 ## Примеры конфигураций :id=configuration-examples
 
@@ -116,19 +127,9 @@ composer install && php artisan cattr:install
 ### Конфигурация nginx с одним доменом
 
 В этой конфигурации, Cattr устанавливается на один домен **cattr.acme.corp** и для Frontend, и для Backend.
-Параметр `GET_SCREENSHOTS_BY_ID` влияет на то, каким образом Frontend будет обращаться к Backend при запрашивании скриншотов. Флаг `true` позволит запрашивать скриншоты по ID, а `false` по полному имени файла.
 В этом примере, в качестве путей для директорий Frontend и Backend используются следующие значения:
 
-- **Frontend:** /opt/frontend-application
-- **Backend:** /opt/backend-application
-  Конфигурационный файл Frontend-модуля (/opt/frontend-application/app/etc/env.js) должен содержать следующие значения:
-
-```js
-module.exports = {
-  API_URL: "http://cattr.acme.corp/api",
-  GET_SCREENSHOTS_BY_ID: true,
-};
-```
+- **Frontend:**,**Backend:** /opt/server-application/app
 
 Конфигурация сервера для nginx:
 
