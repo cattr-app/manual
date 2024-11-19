@@ -84,11 +84,24 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 
 ?> If the backend module is located on a different domain rather than Frontend module, you'll need to enable the `CORS_ENABLED=true` option in the Backend's environment configuration (`.env` file).
 
-6. After connecting to the database via .env, run the following commands to perform migrations:
+6. Creating a key for the project
+
+```bash
+  php artisan key:generate
+```
+
+7. After connecting to the database via .env, run the following commands to perform migrations:
 ```bash
   php artisan migrate
 ```
-7.  Set up a cron job to run the command php82 /app/artisan schedule:run every minute.
+
+8. Configure statuses, priorities, and companies.
+
+```bash 
+    php artisan db:seed --class=InitialSeeder
+```
+
+9.  Set up a cron job to run the command php82 /app/artisan schedule:run every minute.
 
 Run the command to edit the cron jobs:
 
@@ -101,20 +114,16 @@ In the opened file, add the following line:
 ```bash
   * * * * * php82 /app/artisan schedule:run 
 ```
-8. Start the WebSocket in the background and log the output to reverb.log:  
+10. Start the WebSocket in the background and log the output to reverb.log:  
 ```bash
      nohup php artisan reverb:serve > reverb.log 2>&1 &
 ```
-9. Start the queue listener in the background, and all output, including errors, will be logged to queue.log: 
+11. Start the queue listener in the background, and all output, including errors, will be logged to queue.log: 
 
 ```bash
   nohup php artisan queue:listen > queue.log 2>&1 &
 ```
-10. Creating a key for the project
 
-```bash
-  php artisan key:generate
-```
 ## Configuration Examples :id=configuration-examples
 
 You'll find web server configuration examples for Cattr bellow.

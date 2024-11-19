@@ -83,13 +83,24 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 
 - HTTP root directory для Frontend и для Backend (API): `/app/public`
 
-6. После подключения по .env к базе выполните миграции
+6. Создаем ключ для проекта
+
+```bash
+  php artisan key:generate
+```
+
+7. После подключения по .env к базе выполните миграции
 
 ```bash
   php artisan migrate
 ```
 
-7. Настройте ваш cron задачи, которая будет запускать команду php82 /app/artisan schedule:run каждую минуту
+8. Настройте статусы, приоритеты, компании. 
+
+```bash 
+    php artisan db:seed --class=InitialSeeder
+```
+9. Настройте ваш cron задачи, которая будет запускать команду php82 /app/artisan schedule:run каждую минуту
 
 Выполните команду для редактирования заданий cron:
 
@@ -102,21 +113,17 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 ```bash
   * * * * * php82 /app/artisan schedule:run 
 ```
-8. Запускаем websocket в фоновом режиме и записываем выводы reverb.log
+10. Запускаем websocket в фоновом режиме и записываем выводы reverb.log
 ```bash
   nohup php artisan reverb:serve > reverb.log 2>&1 &
 ```
-9. Запускаем очереди в фоновом режиме и все выводы включая ошибки будут записаны в queue.log
+11. Запускаем очереди в фоновом режиме и все выводы включая ошибки будут записаны в queue.log
 
 ```bash
   nohup php artisan queue:listen > queue.log 2>&1 &
 ```
 
-10. Создаем ключ для проекта
 
-```bash
-  php artisan key:generate
-```
 ## Примеры конфигураций :id=configuration-examples
 
 Ниже вы найдете примеры различных конфигураций Cattr.
