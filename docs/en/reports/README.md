@@ -35,3 +35,5 @@ You can get the time the user spent in the according interval in the `Time use r
 ![Time use report](../../assets/en/reports/time.png)
 
 If you select the user, you can see the tasks (and the tasks' projects), the user has been working on, and the time use's comparison for them.
+
+![Gantt](../../assets/en/reports/gantt.png)
