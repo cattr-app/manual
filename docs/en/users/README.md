@@ -14,7 +14,7 @@ You can create a new user on the `Company settings` page in `Users` section.
 
 ![Create user](../../assets/en/users/create.png)
 
-Once you're done adding username and email, click `Save`, and the user will be created.
+Once you're done adding username, email, etc click `Save`, and the user will be created.
 
 ---
 
