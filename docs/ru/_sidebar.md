@@ -31,7 +31,7 @@
   - [Универсальный отчет](ru/reports/?id=universal)
   - [Диаграмма Ганта](ru/reports/?id=gant)
   - [Канбан](ru/reports/?id=kanban)
-  - [Интеграции](ru/integrations/?id=intro)
+- [Интеграции](ru/integrations/?id=intro)
   - [Redmine](ru/integrations/?id=redmine)
     - [Глобальные настройки](ru/integrations/?id=redmine-global)
     - [Настройки пользователя](ru/integrations/?id=redmine-personal)
