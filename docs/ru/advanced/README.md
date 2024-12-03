@@ -86,41 +86,52 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 6. Создаем ключ для проекта
 
 ```bash
-  php artisan key:generate
+php artisan key:generate
 ```
 
 7. После подключения по .env к базе выполните миграции
 
 ```bash
-  php artisan migrate
+php artisan migrate
 ```
 
 8. Настройте статусы, приоритеты, компании. 
 
 ```bash 
-    php artisan db:seed --class=InitialSeeder
+php artisan db:seed --class=InitialSeeder
 ```
-9. Настройте ваш cron задачи, которая будет запускать команду php82 /app/artisan schedule:run каждую минуту
+
+9. Чтобы создать пользователя с правами администратора, запустите команду  
+```bash
+php artisan cattr:make:admin
+```  
+Используйте следующие доступы для входа:
+```
+admin@cattr.app
+password
+```
+
+10. Настройте ваш cron задачи, которая будет запускать команду php82 /app/artisan schedule:run каждую минуту
 
 Выполните команду для редактирования заданий cron:
 
 ```bash
-  crontab -e
+crontab -e
 ```
 
 В открывшемся файле добавьте следующую строку:
 
 ```bash
-  * * * * * php82 /app/artisan schedule:run 
+* * * * * php82 /app/artisan schedule:run 
 ```
-10. Запускаем websocket в фоновом режиме и записываем выводы reverb.log
+11. Запускаем websocket в фоновом режиме и записываем выводы reverb.log
 ```bash
-  nohup php artisan reverb:serve > reverb.log 2>&1 &
+nohup php artisan reverb:serve > reverb.log 2>&1 &
 ```
-11. Запускаем очереди в фоновом режиме и все выводы включая ошибки будут записаны в queue.log
+12. Запускаем очереди в фоновом режиме и все выводы включая ошибки будут записаны в queue.log
 
 ```bash
-  nohup php artisan queue:listen > queue.log 2>&1 &
+nohup php artisan queue:listen > queue.log 2>&1 &
 ```
 
 

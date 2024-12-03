@@ -63,7 +63,7 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 3. Go to the directory of the project, execute the following command and follow the installation manager instructions:
 
 ```bash
-  composer install 
+composer install 
 ```
 
 ?> You'll be asked to provide the credentials you're gonna use for Administrator account. Use them to log in after you finish installation.
@@ -85,41 +85,51 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 6. Creating a key for the project
 
 ```bash
-  php artisan key:generate
+php artisan key:generate
 ```
 
 7. After connecting to the database via .env, run the following commands to perform migrations:
 ```bash
-  php artisan migrate
+php artisan migrate
 ```
 
 8. Configure statuses, priorities, and companies.
 
 ```bash 
-    php artisan db:seed --class=InitialSeeder
+php artisan db:seed --class=InitialSeeder
 ```
 
-9.  Set up a cron job to run the command php82 /app/artisan schedule:run every minute.
+9. To create admin user run  
+```bash
+php artisan cattr:make:admin
+```  
+Use following creadentials to login:
+```
+admin@cattr.app
+password
+```
+
+10.  Set up a cron job to run the command php82 /app/artisan schedule:run every minute.
 
 Run the command to edit the cron jobs:
 
 ```bash
-  crontab -e
+crontab -e
 ```
 
 In the opened file, add the following line: 
 
 ```bash
-  * * * * * php82 /app/artisan schedule:run 
+* * * * * php82 /app/artisan schedule:run 
 ```
-10. Start the WebSocket in the background and log the output to reverb.log:  
+11. Start the WebSocket in the background and log the output to reverb.log:  
 ```bash
-     nohup php artisan reverb:serve > reverb.log 2>&1 &
+nohup php artisan reverb:serve > reverb.log 2>&1 &
 ```
-11. Start the queue listener in the background, and all output, including errors, will be logged to queue.log: 
+12. Start the queue listener in the background, and all output, including errors, will be logged to queue.log: 
 
 ```bash
-  nohup php artisan queue:listen > queue.log 2>&1 &
+nohup php artisan queue:listen > queue.log 2>&1 &
 ```
 
 ## Configuration Examples :id=configuration-examples
