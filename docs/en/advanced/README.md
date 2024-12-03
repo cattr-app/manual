@@ -82,8 +82,6 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 
 - HTTP root directory for Frontend part and Backend (API) part: `/app/public`
 
-?> If the backend module is located on a different domain rather than Frontend module, you'll need to enable the `CORS_ENABLED=true` option in the Backend's environment configuration (`.env` file).
-
 6. Creating a key for the project
 
 ```bash
