@@ -67,13 +67,13 @@ Also this report type includes charts, these are displayed on the frontend when 
 
 To view a project as a Gantt chart, go to the `Projects` menu item and select the appropriate option from the project list:
 
-![Gantt Chart Path](../../assets/en/reports/gant_choose.png)
+![Gantt Chart Path](../../assets/en/reports/gant_choose_en.png)
 
 ?> A Gantt chart is a project visualisation tool that shows a project as a sequence of related tasks over time. It is a chart-table with a list of tasks on the vertical axis and a timeline on the horizontal axis, on which the stages and tasks of the project are marked. When you hover over a task, a pop-up window with general information about it appears.
 
 The red vertical bar marks today's date.  Before the red line there are tasks whose planned completion date has already passed. If a task is overdue (completed later than planned), then the productivity value calculated as the ratio of time worked to the planned time will be indicated inside the task (if it is greater than 100, the task is overdue).
 
-![Gant chart](../../assets/en/reports/gant.png)
+![Gant chart](../../assets/en/reports/gant_en.png)
 
 ## Kanban :id=kanban
 
