@@ -52,7 +52,7 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 
 ## Установка :id=installation
 
- !> Если вы не чувствуете себя достаточно уверенно, то рекомендуем упрощённую установку, описанную в главе «[Начало работы](/en/getting-started/)».
+!> Если вы не чувствуете себя достаточно уверенно, то рекомендуем упрощённую установку, описанную в главе «[Начало работы](/en/getting-started/)».
 
 1. Установите необходимые зависимости (перечисленные в разделе «системные требования»).
 
@@ -70,14 +70,13 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 
 4. Выполните следующие команды в директории проекта
 
-   ```
-   # Install dependencies
-   yarn install
+```
+# Install dependencies
+yarn install
 
-
-   # Build frontend application
-   yarn prod
-   ```
+# Build frontend application
+yarn prod
+```
 
 5. Настройте ваш веб-сервер на работу с Cattr. Ниже указан пример папок, которые следует использовать как root-директории в Nginx или DocumentRoot-директории в Apache:
 
