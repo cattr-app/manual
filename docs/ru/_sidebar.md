@@ -18,6 +18,7 @@
   - [Создание задачи](ru/workflow/?id=task)
   - [Клиентское приложение](ru/workflow/?id=tracker)
   - [Добавить время](ru/workflow/?id=manual-time)
+  - [Отключение скриншотов](ru/workflow/?id=screenshots)
 - [Права доступа](ru/roles/?id=intro)
   - [Существующие роли](ru/roles/?id=existing)
   - [Назначение ролей](ru/roles/?id=promote)

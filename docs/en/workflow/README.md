@@ -67,3 +67,22 @@ Once you add the user, task, and time interval borders, click `Save`.
 ?> Manually created time intervals will be shown in a different color on page `Dashboard` in sections `Personal` and `Team`.
  
 ![Intervals](../../assets/en/workflow/time_manual.png)
+
+# Disable screenshots :id=screenshots
+
+Global selector can now be set not only in settings, but also in environment variables. If it is set in environment variables, it is not available to change in the interface (the value is shown, but even the administrator cannot change it).
+
+If it's disabled, then:
+- the link to the ‘Screenshots’ section in the top menu has been removed,
+- when clicking on working time in dashboard, the screenshot stops popping up over the interval,
+- in Project report we see a normal ‘date-time’ list instead of an expanding list of screenshots against the date.
+
+The settings to disable screenshots for the administrator role are displayed as follows:
+
+- if the screenshot setting is set to ’Required’ at the global level, the administrator sees an inactive selector,
+- if screenshots are set to ‘Optional’ at the global level, the administrator can make them mandatory for the user or disable them forcibly for the user.
+- If the screenshots setting is set to ‘Forbidden’ at the global level, the administrator sees an inactive selector that says ‘disabled’ and screenshots are forbidden for the entire company.
+
+![Interface to disable screenshots in company settings for the admin role](../../assets/en/workflow/screenshot_status_en.png)
+
+The settings for disabling screenshots for the User role are displayed similarly, but the user does not have the ‘Optional’ option and inherits the administrator and global settings.
