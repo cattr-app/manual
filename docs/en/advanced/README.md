@@ -58,7 +58,7 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 
 2. Download the Frontend and Backend monorepo. You can find it here:
 
-- Server application: [https://github.com/cattr-app/server-application](https://https://github.com/cattr-app/server-application)
+- Server application: [https://github.com/cattr-app/server-application](https://github.com/cattr-app/server-application)
 
 3. Go to the directory of the project, execute the following command and follow the installation manager instructions:
 
@@ -70,13 +70,13 @@ composer install
 
 4. Execute the following commands in the project directory:
 
-   ```
-   # Install dependencies
-   yarn install
+```
+# Install dependencies
+yarn install
 
-   # Build frontend application
-   yarn prod
-   ```
+# Build frontend application
+yarn prod
+```
 
 5. Set up your web server so it could work with both Cattr backend and frontend modules
 

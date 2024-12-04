@@ -58,7 +58,7 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 
 2. Загрузите Backend и Frontend монорепозиторий по ссылке ниже:
 
-- Server application: [https://github.com/cattr-app/server-application](https://https://github.com/cattr-app/server-application)
+- Server application: [https://github.com/cattr-app/server-application](https://github.com/cattr-app/server-application)
 
 3. Перейдите в директорию с проектом, выполните следующую команду и следуйте указаниям установщика:
 
