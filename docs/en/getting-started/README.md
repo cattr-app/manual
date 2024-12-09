@@ -9,7 +9,7 @@ This article describes simplified installation using Docker.
 
 ## Installation  :id=installation
 
-?> If you have enough experience, you can consider non docker [installation](ru/advanced/?id=intro)
+?> If you have enough experience, you can consider non docker [installation](en/advanced/?id=intro)
 
 ### Install docker
 ```bash
@@ -43,9 +43,10 @@ curl -SL https://github.com/docker/compose/releases/download/v2.30.3/docker-comp
 chmod +x ~/.docker/cli-plugins/docker-compose
 docker compose version # verify installation
 
-# create directory for cattr server application
+# create directory for cattr server application and enter it
 cd /home/cattr
 mkdir cattr-app
+cd cattr-app
 ```
 
 ### HTTP only setup, see HTTPS below  
