@@ -9,7 +9,7 @@ This article describes simplified installation using Docker.
 
 ## Installation  :id=installation
 
-?> If you have enough experience, you can consider non docker [installation](ru/advanced/?id=intro) (linux only)
+?> If you have enough experience, you can consider non docker [installation](en/advanced/?id=intro) (linux only)
 
 ### Install docker
 
