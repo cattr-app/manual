@@ -9,6 +9,7 @@ In order for your server to be able to work with our Core application, you'll ne
 - MySQL: >=8.0.19
 - PHP: >=8.2
 - Node: =18
+- Yarn
 - Composer and cURL are necessary to work with the Backend part
 - A web-server, we recommend nginx
 
@@ -65,8 +66,6 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 ```bash
 composer install 
 ```
-
-?> You'll be asked to provide the credentials you're gonna use for Administrator account. Use them to log in after you finish installation.
 
 4. Execute the following commands in the project directory:
 
