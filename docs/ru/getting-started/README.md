@@ -15,7 +15,7 @@
 ```bash
 # Создайте не root пользователя с правами sudo
 adduser cattr
-usermod-aG sudo cattr
+usermod -aG sudo cattr
 exit
 # Залогиньтесь в новосозданного юзера
 # установите docker 
