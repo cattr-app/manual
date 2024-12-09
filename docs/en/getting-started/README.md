@@ -15,7 +15,7 @@ This article describes simplified installation using Docker.
 ```bash
 # Create none root user with sudo privilages
 adduser cattr
-usermod-aG sudo cattr
+usermod -aG sudo cattr
 exit
 # login into newly created user
 # install docker 
