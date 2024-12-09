@@ -9,9 +9,22 @@ This article describes simplified installation using Docker.
 
 ## Installation  :id=installation
 
-?> If you have enough experience, you can consider non docker [installation](ru/advanced/?id=intro)
+?> If you have enough experience, you can consider non docker [installation](ru/advanced/?id=intro) (linux only)
 
 ### Install docker
+
+#### Windows
+
+Download and install Docker Desktop from the [official site](https://www.docker.com/).
+
+![docker](../../assets/en/getting-started/docker.png)
+
+For Docker to work in Windows you may need to enable virtualization in BIOS and [install WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install). The installation process is described in details [in the Docker user manual](https://docs.docker.com/desktop/setup/install/windows-install/).
+
+#### Linux
+
+Run the following commands in the terminal:
+
 ```bash
 # Create none root user with sudo privilages
 adduser cattr
@@ -49,7 +62,7 @@ mkdir cattr-app
 ```
 
 ### HTTP only setup, see HTTPS below  
-Create `docker-compose.yml`
+Create a `docker-compose.yml` file with the following content:
 ```yaml
 version: '3.9'
 
@@ -96,7 +109,7 @@ services:
 
 If you wish to use custom domain. You need to install and setup nginx with proper ssl certificates.
 
-You can setup nginx by youself or create the following `docker-compose.yml`
+You can setup nginx by youself or create the following `docker-compose.yml`:
 
 ```yaml
 version: '3.9'
@@ -150,13 +163,26 @@ services:
     networks:
       - default
 ```
+
+Create `nginx/conf.d` and `nginx/certs` directories for a nginx service
+
+#### Windows
+
+Create folders manually or run the following command in the cmd or PowerShelll:
+
 ```bash
-#create directories for nginx service
-mkdir nginx nginx/conf.d nginx/certs
+mkdir nginx
+mkdir nginx/conf.d
+mkdir nginx/certs
 ```
 
-Create `nginx.conf` file and put below content in it, the path should be `~/cattr-app/nginx/conf.d/nginx.conf`  
-Don’t foget to put you certificates in certs folder and make sure the path to the certificates is correct in the config file.
+#### Linux
+
+```bash
+mkdir -p nginx/conf.d nginx/certs
+```
+
+Create a `nginx.conf` file in the `nginx/conf.d` directory and put below content in it:
 
 ```nginx
 map $http_upgrade $connection_upgrade {
@@ -197,18 +223,32 @@ server {
 }
 ```
 
+Don’t foget to put you certificates in `nginx/certs` folder and make sure the path to the certificates is correct in the config file.
+
 ### Persist database data
+
+#### Windows
+
 ```bash
-#create directory to persist database data
-#check which permissions to give using the following command
-docker run --rm percona:8.0 id mysql 
-#outputs: uid=1001(mysql) gid=1001(mysql) groups=1001(mysql)
 mkdir data
+```
+
+#### Linux
+
+```bash
+# create directory to persist database data
+mkdir data
+
+# check which permissions to give using the following command
+docker run --rm percona:8.0 id mysql 
+# outputs: uid=1001(mysql) gid=1001(mysql) groups=1001(mysql)
+
+# set directory permissions
 sudo chown -R 1001:1001 ./data
 ```
 
 ### Launching the app
-Now you can launch the app with `docker compose up -d` command, first launch on a slow 4 core 2000MHz  server should take under 5 minutes.
+Now you can launch the app with `docker compose up -d` command in the folder where the docker-compose.yml file is located, first launch on a slow 4 core 2000MHz  server should take no more than 5 minutes.
 
 ![result of running docker compose up -d](../../assets/en/getting-started/up.png)
 
