@@ -1,5 +1,7 @@
 # Advanced installation :id=intro :priority=8
 
+In Windows, installation is only possible with [Docker](/en/getting-started/).
+
 ## System requirements :id=requirements
 
 In order for your server to be able to work with our Core application, you'll need:

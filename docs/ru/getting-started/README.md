@@ -6,12 +6,27 @@
 * Storage: не менее 10Гб зарезервированного свободного места
 * Docker: >= 20.10
 * Docker compose: >= 2.3.4
+* Для Linux: Ubuntu: LTS 22.04
+* Для Windows: Windows 10 или Windows 11
 
 ## Установка  :id=installation
 
-?> Если у вас достаточно опыта, то вы можете произвести [установку](ru/advanced/?id=intro) без докера
+?> Если у вас достаточно опыта, то вы можете произвести [установку](ru/advanced/?id=intro) без докера (только в linux)
 
 ### Установка docker
+
+#### Windows
+
+Скачайте и установите Docker Desktop с [официального сайта](https://www.docker.com/).
+
+![docker](../../assets/en/getting-started/docker.png)
+
+Для работы Docker в Windows вам может потребоваться включить виртуализацию в BIOS и [установить WSL 2](https://learn.microsoft.com/ru-ru/windows/wsl/install). Подробно процесс установки описан [в руководстве пользователя Docker](https://docs.docker.com/desktop/setup/install/windows-install/).
+
+#### Linux
+
+Выполните в терминале следующие команды:
+
 ```bash
 # Создайте не root пользователя с правами sudo
 adduser cattr
@@ -50,7 +65,9 @@ cd cattr-app
 ```
 
 ### Только HTTP установка, смотрите HTTPS ниже  
-Создайте `docker-compose.yml`
+
+Создайте файл `docker-compose.yml` со следующим содержимым:
+
 ```yaml
 version: '3.9'
 
@@ -97,7 +114,7 @@ services:
 
 Если вы хотите использовать собственный домен. Вам нужно установить nginx и подключить ssl сертификаты.
 
-Вы можете установить nginx сами или создать следующий `docker-compose.yml`
+Вы можете установить nginx сами или создать следующий `docker-compose.yml`:
 
 ```yaml
 version: '3.9'
@@ -151,13 +168,26 @@ services:
     networks:
       - default
 ```
+
+Создайте директории `nginx/conf.d` и `nginx/certs` для сервиса nginx
+
+#### Windows
+
+Создайте директории вручную или выполните следующие команды в cmd или PowerShell:
+
 ```bash
-#создайте директории для nginx сервиса
-mkdir nginx nginx/conf.d nginx/certs
+mkdir nginx
+mkdir nginx/conf.d
+mkdir nginx/certs
 ```
 
-Создайте `nginx.conf` файл и поместите в него контент указанный ниже, путь файла должен быть следующий `~/cattr-app/nginx/conf.d/nginx.conf`  
-Не забудьте поместить сертификаты в директорию certs и убедитесь, что путь к ним указан верно в конфигурационном файле.
+#### Linux
+
+```bash
+mkdir -p nginx/conf.d nginx/certs
+```
+
+Создайте `nginx.conf` файл в директории `nginx/conf.d` и поместите в него контент указанный ниже:
 
 ```nginx
 map $http_upgrade $connection_upgrade {
@@ -198,18 +228,32 @@ server {
 }
 ```
 
-### Сохраняем данный для базы данных
+Не забудьте поместить сертификаты в директорию `nginx/certs` и убедитесь, что путь к ним указан верно в конфигурационном файле.
+
+### Сохраняем данные для базы данных
+
+#### Windows
+
 ```bash
-#создайте директорию для данных БД
-#проверьте права доступа следующей командой
-docker run --rm percona:8.0 id mysql 
-#outputs: uid=1001(mysql) gid=1001(mysql) groups=1001(mysql)
 mkdir data
+```
+
+#### Linux
+
+```bash
+# создайте директорию для данных БД
+mkdir data
+
+# проверьте права доступа следующей командой
+docker run --rm percona:8.0 id mysql 
+# outputs: uid=1001(mysql) gid=1001(mysql) groups=1001(mysql)
+
+# установите права доступа к директории
 sudo chown -R 1001:1001 ./data
 ```
 
 ### Запускаем приложение 
-Теперь вы можете запустить приложение запустив команду `docker compose up -d`, первый запуск на медленном 4х ядерном 2000MHz сервере должен занять менее 5 минут.
+Теперь вы можете запустить приложение запустив команду `docker compose up -d` в папке, в которой находится файл docker-compose.yml, первый запуск на медленном 4х ядерном 2000MHz сервере должен занять не более 5 минут.
 
 ![результат запуска docker compose up -d](../../assets/en/getting-started/up.png)
 
