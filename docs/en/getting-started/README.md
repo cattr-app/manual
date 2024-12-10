@@ -30,7 +30,7 @@ Run the following commands in the terminal:
 ```bash
 # Create none root user with sudo privilages
 adduser cattr
-usermod-aG sudo cattr
+usermod -aG sudo cattr
 exit
 # login into newly created user
 # install docker 
@@ -58,9 +58,10 @@ curl -SL https://github.com/docker/compose/releases/download/v2.30.3/docker-comp
 chmod +x ~/.docker/cli-plugins/docker-compose
 docker compose version # verify installation
 
-# create directory for cattr server application
+# create directory for cattr server application and enter it
 cd /home/cattr
 mkdir cattr-app
+cd cattr-app
 ```
 
 ### HTTP only setup, see HTTPS below  
