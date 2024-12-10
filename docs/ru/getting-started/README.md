@@ -6,6 +6,8 @@
 * Storage: не менее 10Гб зарезервированного свободного места
 * Docker: >= 20.10
 * Docker compose: >= 2.3.4
+* Для Linux: Ubuntu: LTS 22.04
+* Для Windows: Windows 10 или Windows 11
 
 ## Установка  :id=installation
 

@@ -6,6 +6,8 @@ This article describes simplified installation using Docker.
 * Storage: at least 10Gb of reserved disk space
 * Docker: >= 20.10
 * Docker compose: >= 2.3.4
+* For Linux install: Ubuntu: LTS 22.04
+* For Windows: Windows 10 or Windows 11
 
 ## Installation  :id=installation
 
