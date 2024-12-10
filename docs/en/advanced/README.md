@@ -6,8 +6,8 @@ In Windows, installation is only possible with [Docker](/en/getting-started/).
 
 In order for your server to be able to work with our Core application, you'll need:
 
-- Memory: at least 2Gb of RAM
-- Storage: at least 5Gb of reserved disk space
+- Memory: at least 3Gb of RAM
+- Storage: at least 10Gb of reserved disk space
 - MySQL: >=8.0.19
 - PHP: >=8.2
 - Node: =18

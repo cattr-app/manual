@@ -1,5 +1,7 @@
 # Начало работы  :id=intro :priority=9
-Эта глава описывает установку приложения с использованием Docker для контейнеризации приложения.
+Эта глава описывает установку серверной части приложения с использованием Docker для контейнеризации приложения.
+
+?>Если Вы пользователь, то этого делать не нужно, достаточно [скачать клиент](ru/?id=%d0%95%d1%81%d0%bb%d0%b8-%d0%b2%d1%8b-%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d1%82%d0%b5%d0%bb%d1%8c) и ввести в него данные учетной записи, полученные у администратора.
 
 ## Минимальные требования  :id=requirements
 * RAM: не менее 3Гб
@@ -9,62 +11,85 @@
 * Для Linux: Ubuntu: LTS 22.04
 * Для Windows: Windows 10 или Windows 11
 
-## Установка  :id=installation
+
+
+## Установка на Linux Debian, Ubuntu :id=installation-linux-deb
 
 ?> Если у вас достаточно опыта, то вы можете произвести [установку](ru/advanced/?id=intro) без докера (только в linux)
 
 ### Установка docker
 
-#### Windows
+Выполните в терминале следующие команды в следующем порядке:
 
-Скачайте и установите Docker Desktop с [официального сайта](https://www.docker.com/).
 
-![docker](../../assets/en/getting-started/docker.png)
-
-Для работы Docker в Windows вам может потребоваться включить виртуализацию в BIOS и [установить WSL 2](https://learn.microsoft.com/ru-ru/windows/wsl/install). Подробно процесс установки описан [в руководстве пользователя Docker](https://docs.docker.com/desktop/setup/install/windows-install/).
-
-#### Linux
-
-Выполните в терминале следующие команды:
-
+Создайте не root пользователя с правами sudo:
 ```bash
-# Создайте не root пользователя с правами sudo
 adduser cattr
+
+```
+
+Залогиньтесь в новосозданного юзера и установите docker:
+```bash
 usermod -aG sudo cattr
-exit
-# Залогиньтесь в новосозданного юзера
-# установите docker 
+
 sudo apt update
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```
+
+#### Для Ubuntu
+
+```bash
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
 
+#### Для Debian
+
+```bash
+
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Продолжаем установку (для всех ОС)
+
+```bash
 sudo apt update
 apt-cache policy docker-ce # убедитель что docker будет установлен из Docker репозитория вместо стандартного репозитория Ubuntu
 sudo apt install docker-ce
 sudo systemctl status docker # проверьте статус
+```
 
-# добавьте пользователся в docker группу
-sudo usermod -aG docker ${USER}
-su - ${USER} # примените изменения
+Добавьте пользователя cattr в docker группу:
+
+```bash
+sudo usermod -aG docker cattr
+su - cattr # примените изменения
 groups # проверьте что группа добавлена
 docker info # посмотрите информацию об установленном docker
+```
 
-# установите docker compose
+Установите docker compose:
+```bash
 mkdir -p ~/.docker/cli-plugins/
 curl -SL https://github.com/docker/compose/releases/download/v2.30.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
 
 chmod +x ~/.docker/cli-plugins/docker-compose
 docker compose version # проверьте установку
+```
 
-# создайте директорию для серверного приложения Кэттр и войдите в неё
+Создайте директорию для серверного приложения Кэттр и войдите в неё:
+
+```bash
 cd /home/cattr
 mkdir cattr-app
 cd cattr-app
 ```
 
-### Только HTTP установка, смотрите HTTPS ниже  
+Далее нужно выбрать вариант установки с использованием https (для случая когда кэттр будет использоваться для работы) или http (если cattr используется только для тестирования, или при кластерной установке, когда этот функционал берет на себя обвязка кластера ingress/api gateway).
+
+### Только HTTP установка, смотрите HTTPS ниже 
 
 Создайте файл `docker-compose.yml` со следующим содержимым:
 
@@ -171,18 +196,6 @@ services:
 
 Создайте директории `nginx/conf.d` и `nginx/certs` для сервиса nginx
 
-#### Windows
-
-Создайте директории вручную или выполните следующие команды в cmd или PowerShell:
-
-```bash
-mkdir nginx
-mkdir nginx/conf.d
-mkdir nginx/certs
-```
-
-#### Linux
-
 ```bash
 mkdir -p nginx/conf.d nginx/certs
 ```
@@ -232,14 +245,6 @@ server {
 
 ### Сохраняем данные для базы данных
 
-#### Windows
-
-```bash
-mkdir data
-```
-
-#### Linux
-
 ```bash
 # создайте директорию для данных БД
 mkdir data
@@ -257,6 +262,116 @@ sudo chown -R 1001:1001 ./data
 
 ![результат запуска docker compose up -d](../../assets/en/getting-started/up.png)
 
+ Первый запуск может занять 5-10 минут, а проверять состояние запущенного приложения и управлять им можно в графическом интерфейсе docker desktop.
+
+По завершении запуска приложения cattr сервер начнет отзываться по адресу http://localhost
+
+Для первого входа используйте следующие учетные данные администратора:
+
+login: admin@cattr.app
+
+password: password 
+
+
+?>Если что то пошло не так - [Отладка и возможные ошибки](ru/getting-started/?id=debug-and-errors)
+
+## Установка на Windows  :id=installation-windows
+
+### Установка docker
+
+Скачайте и установите Docker Desktop с [официального сайта](https://www.docker.com/).
+
+![docker](../../assets/en/getting-started/docker.png)
+
+Для работы Docker в Windows вам может потребоваться включить виртуализацию в BIOS и [установить WSL 2](https://learn.microsoft.com/ru-ru/windows/wsl/install). Подробно процесс установки описан [в руководстве пользователя Docker](https://docs.docker.com/desktop/setup/install/windows-install/).
+
+### Подготовка к запуску cattr
+
+Создайте директории вручную или выполните следующие команды в cmd или PowerShell:
+
+```bash
+cd c:\
+mkdir cattr-server
+cd cattr-server
+mkdir data
+
+```
+
+Создайте файл `docker-compose.yml` в папке c:\cattr-server\ со следующим содержимым:
+
+```yaml
+version: '3.9'
+
+services:
+  app:
+    image: registry.git.amazingcat.net/cattr/core/app:0-grant
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./storage:/app/storage
+    networks:
+       - default
+#      - web
+    environment:
+      - DB_USERNAME=root
+      - DB_PASSWORD=bP8T109h6BuL
+      - APP_KEY=base64:lg1m/12MHBbBpiWTXjot98Q9MP/nSzPrvLEU2beD+2Y=
+      # Изначальный Admin пользователь будет создан только при первом запуске, вы можете изменить его данные если необходимо
+      - APP_ADMIN_EMAIL=admin@cattr.app
+      - APP_ADMIN_PASSWORD=password
+      - APP_ADMIN_NAME=Admin
+
+  db:
+    image: percona:8.0
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=cattr
+      - MYSQL_ROOT_PASSWORD=bP8T109h6BuL
+    cap_add:
+      - SYS_NICE
+    volumes:
+      - ./data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '--password=bP8T109h6BuL', '-u', 'root']
+      timeout: 20s
+      retries: 10
+
+```
+
+Учетные данные для первого входа администратора в cattr устанавливаются в строках APP_ADMIN_EMAIL, APP_ADMIN_PASSWORD. Измените их на свои, если это необходимо.
+
+### Запускаем приложение 
+
+Теперь, находясь в папке c:\cattr-server\ запустите приложение командой 
+
+```bash
+docker compose up -d
+
+```
+
+![результат запуска команды будет выглядеть так](../../assets/en/getting-started/cattr-docker-compose-up-windows.png)
+
+
+ Первый запуск может занять 5-10 минут, а проверять состояние запущенного приложения и управлять им можно в графическом интерфейсе docker desktop.
+
+По завершении запуска приложения cattr сервер начнет отзываться по адресу http://localhost
+
+Для первого входа используйте следующие учетные данные администратора:
+
+login: admin@cattr.app
+
+password: password 
+
+
+?>Если что то пошло не так - [Отладка и возможные ошибки](ru/getting-started/?id=debug-and-errors)
+
+
+### Отладка :id=debug-and-errors
+
 Для просмотра логов запустите команду `docker compose logs -f`  
 !> Если прошло несколько минут и похоже что процесс завис на базе данных, запустите `docker compose down` а потом снова запустите с помощью `docker compose up -d`
 ![docker compose logs -f](../../assets/en/getting-started/logs-db.png)
@@ -268,6 +383,9 @@ sudo chown -R 1001:1001 ./data
 Наконец в логах Вы увидите сообщение "Server running" и сможете получить доступ к Кэттр по http или https протоколу в зависимости от ранее выбранного режима установки.
 Например по http если ip вашего сервера 0.0.0.0, откройте в браузере http://0.0.0.0 или для https посетите ваш домен, например https://cattr.app
 ![логи работающей программы](../../assets/en/getting-started/running.png)
+
+
+
 
 ## Часто возникающие ошибки  :id=errors
 

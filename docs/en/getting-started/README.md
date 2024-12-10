@@ -1,5 +1,7 @@
 # Getting started :id=intro :priority=9
-This article describes simplified installation using Docker.
+This article describes a simplified installation of the server part of cattr using Docker.
+
+?>If you are a regular user, you don't need to do this, just [download client](en/?id=if-youre-an-employee) then enter the account information you received from the administrator.
 
 ## Minimal requirements  :id=requirements
 * RAM: at least 3Gb
@@ -9,21 +11,13 @@ This article describes simplified installation using Docker.
 * For Linux install: Ubuntu: LTS 22.04
 * For Windows: Windows 10 or Windows 11
 
-## Installation  :id=installation
+
+## Linux installation Debian, Ubuntu :id=installation-linux-deb
 
 ?> If you have enough experience, you can consider non docker [installation](en/advanced/?id=intro) (linux only)
 
 ### Install docker
 
-#### Windows
-
-Download and install Docker Desktop from the [official site](https://www.docker.com/).
-
-![docker](../../assets/en/getting-started/docker.png)
-
-For Docker to work in Windows you may need to enable virtualization in BIOS and [install WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install). The installation process is described in details [in the Docker user manual](https://docs.docker.com/desktop/setup/install/windows-install/).
-
-#### Linux
 
 Run the following commands in the terminal:
 
@@ -31,23 +25,40 @@ Run the following commands in the terminal:
 # Create none root user with sudo privilages
 adduser cattr
 usermod -aG sudo cattr
-exit
 # login into newly created user
 # install docker 
 sudo apt update
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```
+
+#### For Ubuntu
+
+```bash
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+#### For Debian
+
+```bash
+
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Continue installation (all OS)
+
+```bash
 
 sudo apt update
 apt-cache policy docker-ce # make shure docker will be installed from Docker repo instead of the default Ubutnu repo
 sudo apt install docker-ce
 sudo systemctl status docker # check status
 
-# add user to docker group
-sudo usermod -aG docker ${USER}
-su - ${USER} # apply changes
+# add user cattr to docker group
+sudo usermod -aG docker cattr
+su - cattr # apply changes
 groups # check if group added
 docker info # see info of installed docker
 
@@ -63,6 +74,8 @@ cd /home/cattr
 mkdir cattr-app
 cd cattr-app
 ```
+
+Next, you should select the option of installing using https (for the case when cattr will be used for work) or http (if cattr is used only for testing, or in a cluster installation, when this functionality is taken over by the cluster binding ingress/api gateway).
 
 ### HTTP only setup, see HTTPS below  
 Create a `docker-compose.yml` file with the following content:
@@ -169,17 +182,6 @@ services:
 
 Create `nginx/conf.d` and `nginx/certs` directories for a nginx service
 
-#### Windows
-
-Create folders manually or run the following command in the cmd or PowerShelll:
-
-```bash
-mkdir nginx
-mkdir nginx/conf.d
-mkdir nginx/certs
-```
-
-#### Linux
 
 ```bash
 mkdir -p nginx/conf.d nginx/certs
@@ -253,7 +255,104 @@ sudo chown -R 1001:1001 ./data
 ### Launching the app
 Now you can launch the app with `docker compose up -d` command in the folder where the docker-compose.yml file is located, first launch on a slow 4 core 2000MHz  server should take no more than 5 minutes.
 
+
+## Windows Installation  :id=installation-windows
+
+### Docker installation
+
+Download and install Docker Desktop from the [official site](https://www.docker.com/).
+
+![docker](../../assets/en/getting-started/docker.png)
+
+For Docker to work in Windows you may need to enable virtualization in BIOS and [install WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install). The installation process is described in details [in the Docker user manual](https://docs.docker.com/desktop/setup/install/windows-install/).
+
 ![result of running docker compose up -d](../../assets/en/getting-started/up.png)
+
+### Preparing to start Cattr server
+
+
+Create folders manually or run the following command in the cmd or PowerShelll:
+
+```bash
+cd c:\
+mkdir cattr-server
+cd cattr-server
+mkdir data
+
+```
+
+Create a `docker-compose.yml` file in the c:\cattr-server\ folder with the following contents:
+
+```yaml
+version: '3.9'
+
+services:
+  app:
+    image: registry.git.amazingcat.net/cattr/core/app:0-grant
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./storage:/app/storage
+    networks:
+       - default
+#      - web
+    environment:
+      - DB_USERNAME=root
+      - DB_PASSWORD=bP8T109h6BuL
+      - APP_KEY=base64:lg1m/12MHBbBpiWTXjot98Q9MP/nSzPrvLEU2beD+2Y=
+      # Изначальный Admin пользователь будет создан только при первом запуске, вы можете изменить его данные если необходимо
+      - APP_ADMIN_EMAIL=admin@cattr.app
+      - APP_ADMIN_PASSWORD=password
+      - APP_ADMIN_NAME=Admin
+
+  db:
+    image: percona:8.0
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=cattr
+      - MYSQL_ROOT_PASSWORD=bP8T109h6BuL
+    cap_add:
+      - SYS_NICE
+    volumes:
+      - ./data:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '--password=bP8T109h6BuL', '-u', 'root']
+      timeout: 20s
+      retries: 10
+
+```
+The credentials for the first administrator login to cattr are set in the lines APP_ADMIN_EMAIL, APP_ADMIN_PASSWORD. Change them to your own if necessary.
+
+### Start the cattr server application 
+
+Now, located in the c:\cattr-server folder, run the application with the command 
+
+```bash
+docker compose up -d
+
+```
+![the result of running the command will look like this](../../assets/en/getting-started/cattr-docker-compose-up-windows.png)
+
+
+ The first startup may take 5-10 minutes, and you can check the status of the running application and manage it in the docker desktop GUI.
+
+Once the application run, the cattr server will start responding to http://localhost.
+
+Use the following administrator credentials to log in for the first time:
+
+login: admin@cattr.app
+
+password: password 
+
+
+?>If something went wrong - [Debug and possible errors](ru/getting-started/?id=debug-and-errors)
+
+
+### Debug :id=debug-and-errors
 
 To see logs run `docker compose logs -f`  
 !> If you have waited for several minutes and it seems like the process froze on db side, run `docker compose down` and than launch it again with `docker compose up -d`
