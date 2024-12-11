@@ -13,6 +13,7 @@
   - [Установка в кластер Kubernetes](ru/advanced/kube)
 - [Документация для разработчиков](ru/developer/)
   - [Сборка cattr клиента](ru/developer/?id=cattr-client-build)
+  - [Интеграция Cattr с системами контроля доступа](ru/developer/aci-guide)
 - [Пользователи](ru/users/?id=intro)
   - [Создание пользователя](ru/users/?id=create)
   - [Приглашение пользователя](ru/users/?id=invite)

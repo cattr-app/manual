@@ -11,9 +11,9 @@
   - [Installation](en/advanced/?id=installation)
   - [Configuration Examples](en/advanced/?id=configuration-examples)
   - [Installation in a Kubernetes Cluster](en/advanced/kube)
-
 - [Documentation for developers](en/developer/)
   - [Build Cattr client application ](en/developer/?id=cattr-client-build)
+  - [Cattr Integration with Access Control Systems](en/developer/aci-guide)
 - [Users](en/users/)
   - [Create user](en/users/?id=create)
   - [Password reset](en/users/?id=reset)
