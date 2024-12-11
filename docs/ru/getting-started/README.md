@@ -34,12 +34,12 @@
 Создайте не root пользователя с правами sudo:
 ```bash
 adduser cattr
+usermod -aG sudo cattr
 
 ```
 
 Залогиньтесь в новосозданного юзера и установите docker:
 ```bash
-usermod -aG sudo cattr
 
 sudo apt update
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
