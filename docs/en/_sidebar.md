@@ -6,7 +6,7 @@
   - [Windows](en/getting-started/?id=installation-windows)
   - [Common errors list](en/getting-started/?id=errors)
   - [What's next?](en/getting-started/?id=next)
-- [Advanced installation](en/advanced/)
+- [Advanced cattr server installation](en/advanced/)
   - [Minimal requirements](en/advanced/?id=requirements)
   - [Installation](en/advanced/?id=installation)
   - [Configuration Examples](en/advanced/?id=configuration-examples)
