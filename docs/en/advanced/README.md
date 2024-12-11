@@ -61,7 +61,7 @@ sudo apt install php8.2-{bcmath,bz2,intl,gd,mbstring,mysql,zip,fpm,curl,xml}
 
 2. Download the Frontend and Backend monorepo. You can find it here:
 
-- Server application: [https://github.com/cattr-app/server-application](https://github.com/cattr-app/server-application)
+- Server application: [https://git.amazingcat.net/cattr/core/app](https://git.amazingcat.net/cattr/core/app)
 
 3. Go to the directory of the project, execute the following command and follow the installation manager instructions:
 
