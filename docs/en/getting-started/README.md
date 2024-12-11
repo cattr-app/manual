@@ -3,13 +3,24 @@ This article describes a simplified installation of the server part of cattr usi
 
 ?>If you are a regular user, you don't need to do this, just [download client](en/?id=if-youre-an-employee) then enter the account information you received from the administrator.
 
-## Minimal requirements  :id=requirements
+## Minimal server side requirements  :id=requirements
+
+### For basic installation
+
 * RAM: at least 3Gb
 * Storage: at least 10Gb of reserved disk space
 * Docker: >= 20.10
 * Docker compose: >= 2.3.4
-* For Linux install: Ubuntu: LTS 22.04
-* For Windows: Windows 10 or Windows 11
+* OS:
+ * Linux. __We recommend using Ubuntu version higher than 22.04 or Debian version 11 or higher__. 
+ * Windows (10 or 11)
+
+
+### For an advanced linux installation (without using Docker):
+* Nginx >= 1.22
+* PHP >= 8.0
+* LibGD >= 2
+* Mariadb > 10.7 or Percona Server for Mysql > 8.0.28 
 
 
 ## Linux installation Debian, Ubuntu :id=installation-linux-deb

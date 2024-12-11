@@ -4,13 +4,13 @@ Cattr is an open-source time-tracking and project-managment application, designe
 
 Cattr consists of two parts: one is hosted on your server and provides access to stored data via API, as well as web interface for project management and Cattr functionality, report generation. The second part is an application for Windows, Mac OS, Linux or a mobile application for Android, iOS. With its help, users select tasks and track the time worked.
 
-## If you're an employee
+## If you're an employee - Cattr client installation  :id=if-youre-an-employee
 To begin working with Cattr, you need to obtain credentials (hostname, email, and password) for your user account from an administrator of your company. After obtaining these credentials, download the desktop app here — [https://cattr.app/desktop](https://cattr.app/desktop).
 
 ?> Notice that Cattr for Windows is not popular enough yet to pass Microsoft SmartScreen protection. If you see the SmartScreen popup when opening Cattr, click on the "More info" link then on the "Run anyway" button.
 
-On the first run, Cattr will ask you for the credentials from your administrator. After a successful login, the Task list will appear. To start tracking, click on a button on the right from the task name. The current task name will appear at the bottom of the application window. If you have programming experience, you can compile a cattr application from source code yourself: https://git.amazingcat.net/cattr/desktop/desktop-application
-
+On the first run, Cattr will ask you for the credentials from your administrator. After a successful login, the Task list will appear. To start tracking, click on a button on the right from the task name. The current task name will appear at the bottom of the application window. If you have programming experience, you can compile a cattr application from source code [yourself](ru/developer/?id=cattr-client-build)
+): 
 ?> Cattr for macOS will also request access to screen recording and universal access for screenshots capture and activity tracking, respectively.
 
 To access the web application, follow the link provided by your company's administrator and enter your email and password. For the future configuration instructions, ask the administrator.
