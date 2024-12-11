@@ -262,10 +262,10 @@ Now you can launch the app with `docker compose up -d` command in the folder whe
 
 Download and install Docker Desktop from the [official site](https://www.docker.com/).
 
+![docker](../../assets/en/getting-started/docker.png)
 
 For Docker to work in Windows you may need to enable virtualization in BIOS and [install WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install). The installation process is described in details [in the Docker user manual](https://docs.docker.com/desktop/setup/install/windows-install/).
 
-![result of running docker compose up -d](../../assets/en/getting-started/up.png)
 
 ### Preparing to start Cattr server
 
