@@ -10,6 +10,7 @@
   - [Минимальные требования](ru/advanced/?id=requirements)
   - [Установка](ru/advanced/?id=installation)
   - [Примеры конфигурации](ru/advanced/?id=configuration-examples)
+  - [Установка в кластер Kubernetes](ru/advanced/kube)
 - [Документация для разработчиков](ru/developer/)
   - [Сборка cattr клиента](ru/developer/?id=cattr-client-build)
 - [Пользователи](ru/users/?id=intro)
