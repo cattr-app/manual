@@ -84,7 +84,7 @@ version: '3.9'
 
 services:
   app:
-	  image: registry.git.amazingcat.net/cattr/core/app:0-grant
+	  image: registry.git.amazingcat.net/cattr/core/app:latest
     restart: unless-stopped
     ports:
       - "80:80"
@@ -131,7 +131,7 @@ You can setup nginx by youself or create the following `docker-compose.yml`:
 version: '3.9'
 services:
   app:
-    image: registry.git.amazingcat.net/cattr/core/app:0-grant
+    image: registry.git.amazingcat.net/cattr/core/app:latest
     restart: unless-stopped
     depends_on:
       db:
@@ -287,7 +287,7 @@ version: '3.9'
 
 services:
   app:
-    image: registry.git.amazingcat.net/cattr/core/app:0-grant
+    image: registry.git.amazingcat.net/cattr/core/app:latest
     restart: unless-stopped
     ports:
       - "80:80"
