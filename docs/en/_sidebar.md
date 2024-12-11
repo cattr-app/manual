@@ -10,6 +10,8 @@
   - [Minimal requirements](en/advanced/?id=requirements)
   - [Installation](en/advanced/?id=installation)
   - [Configuration Examples](en/advanced/?id=configuration-examples)
+  - [Installation in a Kubernetes Cluster](en/advanced/kube)
+
 - [Documentation for developers](en/developer/)
   - [Build Cattr client application ](en/developer/?id=cattr-client-build)
 - [Users](en/users/)
