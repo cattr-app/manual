@@ -1,6 +1,6 @@
 - [Introduction](en/)
 - [Cattr client installation](en/?id=if-youre-an-employee)
-- [Basic cattr installation](en/getting-started/)
+- [Basic cattr server installation](en/getting-started/)
   - [Minimal requirements](en/getting-started/?id=requirements) 
   - [Linux Ubuntu, Debian](en/getting-started/?id=installation-linux-deb)
   - [Windows](en/getting-started/?id=installation-windows)

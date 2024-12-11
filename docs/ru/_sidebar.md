@@ -1,7 +1,7 @@
 - [Введение](ru/)
 - [Начало работы](ru/getting-started/)
 - [Установка cattr клиента](ru/?id=if-youre-an-employee)
-- [Базовая cattr установка](ru/getting-started/)
+- [Базовая установка cattr сервера](ru/getting-started/)
   - [Минимальные требования](ru/getting-started/?id=requirements)
   - [Linux Debian, Ubuntu](ru/getting-started/?id=installation-linux-deb)
   - [Windows](ru/getting-started/?id=installation-windows)
