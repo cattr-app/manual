@@ -41,4 +41,4 @@
   - [Redmine](ru/integrations/?id=redmine)
   - [Gitlab](ru/integrations/?id=gitlab)
 - [Благодарности](ru/acknowledgements/)
-- [Благодарности](ru/acknowledgements)
+- [Основной вебсайт](https://cattr.app)
