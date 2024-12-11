@@ -9,7 +9,7 @@ To begin working with Cattr, you need to obtain credentials (hostname, email, an
 
 ?> Notice that Cattr for Windows is not popular enough yet to pass Microsoft SmartScreen protection. If you see the SmartScreen popup when opening Cattr, click on the "More info" link then on the "Run anyway" button.
 
-On the first run, Cattr will ask you for the credentials from your administrator. After a successful login, the Task list will appear. To start tracking, click on a button on the right from the task name. The current task name will appear at the bottom of the application window.
+On the first run, Cattr will ask you for the credentials from your administrator. After a successful login, the Task list will appear. To start tracking, click on a button on the right from the task name. The current task name will appear at the bottom of the application window. If you have programming experience, you can compile a cattr application from source code yourself: https://git.amazingcat.net/cattr/desktop/desktop-application
 
 ?> Cattr for macOS will also request access to screen recording and universal access for screenshots capture and activity tracking, respectively.
 
