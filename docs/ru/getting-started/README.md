@@ -73,7 +73,7 @@ reboot
 apt-get install docker-compose-v2
 ```
 ```bash
-systemctl status docker # проверьте статус docker служби
+systemctl status docker # проверьте статус docker службы
 docker info # посмотрите информацию об установленном docker
 docker compose version # проверьте установку docker compose
 ```
@@ -120,9 +120,12 @@ chmod +x ~/.docker/cli-plugins/docker-compose
 docker compose version # проверьте установку
 ```
 
-Создайте директорию для серверного приложения Кэттр и войдите в неё:
+#### Для Ubuntu, Debian и Alt
+
+Создайте директорию для серверного приложения Кэттр и войдите в неё, выполняйте команды от пользоватеся `cattr`:
 
 ```bash
+su cattr
 cd /home/cattr
 mkdir cattr-app
 cd cattr-app
@@ -284,7 +287,7 @@ server {
 
 Не забудьте поместить сертификаты в директорию `nginx/certs` и убедитесь, что путь к ним указан верно в конфигурационном файле.
 
-### Сохраняем данные для базы данных
+### Сохраняем данные для базы данных в Ubuntu, Debian
 
 ```bash
 # создайте директорию для данных БД
@@ -296,6 +299,22 @@ docker run --rm percona:8.0 id mysql
 
 # установите права доступа к директории
 sudo chown -R 1001:1001 ./data
+```
+
+### Сохраняем данные для базы данных в Alt
+
+```bash
+# создайте директорию для данных БД
+mkdir data
+
+# проверьте права доступа следующей командой
+docker run --rm percona:8.0 id mysql 
+# outputs: uid=1001(mysql) gid=1001(mysql) groups=1001(mysql)
+su -
+cd /home/cattr/cattr-app
+# установите права доступа к директории
+chown -R 1001:1001 ./data
+su cattr
 ```
 
 ### Запускаем приложение 
