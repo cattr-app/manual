@@ -12,7 +12,7 @@
 * Docker: >= 20.10
 * Docker compose: >= 2.3.4
 * OS: 
-  * Linux. __Мы рекоммендуем использовать Ubuntu версии выше 22.04 или Debian версии 11 и выше__
+  * Linux. __Мы рекоммендуем использовать Ubuntu версии 22.04 и выше или Debian версии 11 и выше__
   * Windows (10 или 11)
 
 ### При расширенной установке в linux (без использования Docker):
@@ -22,12 +22,13 @@
 * Mariadb > 10.7 или Percona Server for Mysql > 8.0.28 
 
 
-## Установка на Linux Debian, Ubuntu :id=installation-linux-deb
+## Установка на Linux Debian, Ubuntu, Alt (проверено на Alt Workstation K 10.4) :id=installation-linux-deb
 
 ?> Если у вас достаточно опыта, то вы можете произвести [установку](ru/advanced/?id=intro) без докера (только в linux)
 
 ### Установка docker
 
+#### Для Ubuntu и Debian
 Выполните в терминале следующие команды в следующем порядке:
 
 
@@ -35,14 +36,46 @@
 ```bash
 adduser cattr
 usermod -aG sudo cattr
-
 ```
 
 Залогиньтесь в новосозданного юзера и установите docker:
 ```bash
-
 sudo apt update
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```
+
+#### Для Alt
+Создайте не root пользователя с расширенными правами, для этого нужно его добавить в группу wheel. Эта группа даёт пользователю доступ к запуску команды `su -`, чтобы выполнять команды с повышенными правами:  
+
+Выполняйте следующие команды от `root` пользователя, чтобы переключиться на него, выполните команду `su -`.
+```bash
+apt-get update
+/usr/sbin/adduser cattr
+# Установите пароль
+/usr/sbin/passwd cattr
+# Добавьте пользователя в wheel группу
+/usr/sbin/usermod -aG wheel cattr
+```
+
+Установите docker и docker compose:
+```bash
+# Установка docker
+apt-get install docker-engine
+# Добавьте пользователя в docker группу
+/usr/sbin/usermod -aG docker cattr
+# Запуск соответствующей службы
+systemctl enable --now docker
+# Перезагрузка
+reboot
+```
+```bash
+# Установка docker compose
+apt-get install docker-compose-v2
+```
+```bash
+systemctl status docker # проверьте статус docker служби
+docker info # посмотрите информацию об установленном docker
+docker compose version # проверьте установку docker compose
 ```
 
 #### Для Ubuntu
@@ -60,8 +93,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docke
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
-
-Продолжаем установку (для всех ОС)
+#### Для Ubuntu и Debian
 
 ```bash
 sudo apt update
