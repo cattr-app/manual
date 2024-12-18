@@ -2,7 +2,7 @@
 - [Cattr client installation](en/?id=if-youre-an-employee)
 - [Сattr server installation (Basic)](en/getting-started/)
   - [Minimal requirements](en/getting-started/?id=requirements) 
-  - [Linux Ubuntu, Debian](en/getting-started/?id=installation-linux-deb)
+  - [Linux Ubuntu, Debian, Alt](en/getting-started/?id=installation-linux-deb)
   - [Windows](en/getting-started/?id=installation-windows)
   - [Common errors list](en/getting-started/?id=errors)
   - [What's next?](en/getting-started/?id=next)
