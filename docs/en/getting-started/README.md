@@ -29,17 +29,52 @@ This article describes a simplified installation of the server part of cattr usi
 
 ### Install docker
 
-
+#### For Ubuntu and Debian
 Run the following commands in the terminal:
 
 ```bash
-# Create none root user with sudo privilages
+# Create non-root user with sudo privilages
 adduser cattr
 usermod -aG sudo cattr
 # login into newly created user
 # install docker 
 sudo apt update
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```
+
+#### For Alt
+Create a non-root User with extended privileges
+To set up a non-root user with extended privileges, add the user to the `wheel` group. This group grants access to the `su -` command, allowing the user to execute commands with elevated rights.
+
+Run the following commands as the `root` user. To switch to the root user, use `su -`.
+```bash
+apt-get update
+/usr/sbin/adduser cattr
+# Set a password for the new user
+/usr/sbin/passwd cattr
+# Add the user to the wheel group
+/usr/sbin/usermod -aG wheel cattr
+```
+
+Install Docker and Docker Compose:
+```bash
+# Install Docker
+apt-get install docker-engine
+# Add the user to the docker group
+/usr/sbin/usermod -aG docker cattr
+# Start and enable the Docker service
+systemctl enable --now docker
+# Reboot the system
+reboot
+```
+```bash
+# Install Docker Compose
+apt-get install docker-compose-v2
+```
+```bash
+systemctl status docker # Check the Docker service status
+docker info             # View information about the installed Docker
+docker compose version  # Verify Docker Compose installation
 ```
 
 #### For Ubuntu
@@ -58,7 +93,7 @@ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o 
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
-Continue installation (all OS)
+#### For Ubuntu и Debian
 
 ```bash
 
@@ -79,8 +114,13 @@ curl -SL https://github.com/docker/compose/releases/download/v2.30.3/docker-comp
 
 chmod +x ~/.docker/cli-plugins/docker-compose
 docker compose version # verify installation
+```
 
+#### For Ubuntu, Debian и Alt
+
+```bash
 # create directory for cattr server application and enter it
+su cattr
 cd /home/cattr
 mkdir cattr-app
 cd cattr-app
@@ -243,13 +283,7 @@ Don’t foget to put you certificates in `nginx/certs` folder and make sure the 
 
 ### Persist database data
 
-#### Windows
-
-```bash
-mkdir data
-```
-
-#### Linux
+#### Ubuntu, Debian
 
 ```bash
 # create directory to persist database data
@@ -261,6 +295,22 @@ docker run --rm percona:8.0 id mysql
 
 # set directory permissions
 sudo chown -R 1001:1001 ./data
+```
+
+### Alt
+
+```bash
+# create directory to persist database data
+mkdir data
+
+# check which permissions to give using the following command
+docker run --rm percona:8.0 id mysql 
+# outputs: uid=1001(mysql) gid=1001(mysql) groups=1001(mysql)
+su -
+cd /home/cattr/cattr-app
+# set directory permissions
+chown -R 1001:1001 ./data
+su cattr
 ```
 
 ### Launching the app
