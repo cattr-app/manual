@@ -7,13 +7,13 @@ This article describes a simplified installation of the server part of cattr usi
 
 ### For basic installation
 
+* OS:
+ * Linux. __We recommend using Ubuntu version 22.04 and higher or Debian version 11 or higher__. 
+ * Windows (10 or 11)
 * RAM: at least 3Gb
 * Storage: at least 10Gb of reserved disk space
 * Docker: >= 20.10
 * Docker compose: >= 2.3.4
-* OS:
- * Linux. __We recommend using Ubuntu version 22.04 and higher or Debian version 11 or higher__. 
- * Windows (10 or 11)
 
 
 ### For an advanced linux installation (without using Docker):

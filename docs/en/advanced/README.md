@@ -6,6 +6,7 @@ In Windows, installation is only possible with [Docker](/en/getting-started/).
 
 In order for your server to be able to work with our Core application, you'll need:
 
+- OS Linux: __We recommend using Ubuntu version 22.04 and higher or Debian version 11 or higher__.
 - Memory: at least 3Gb of RAM
 - Storage: at least 10Gb of reserved disk space
 - Mariadb > 10.7 or Percona Server for Mysql > 8.0.28
@@ -15,7 +16,6 @@ In order for your server to be able to work with our Core application, you'll ne
 - Yarn
 - Composer and cURL are necessary to work with the Backend part
 - A web-server, we recommend Nginx >= 1.22
-- OS Linux: __We recommend using Ubuntu version 22.04 and higher or Debian version 11 or higher__.
 
 ### PHP modules
 
