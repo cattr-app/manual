@@ -12,13 +12,13 @@ This article describes a simplified installation of the server part of cattr usi
 * Docker: >= 20.10
 * Docker compose: >= 2.3.4
 * OS:
- * Linux. __We recommend using Ubuntu version higher than 22.04 or Debian version 11 or higher__. 
+ * Linux. __We recommend using Ubuntu version 22.04 and higher or Debian version 11 or higher__. 
  * Windows (10 or 11)
 
 
 ### For an advanced linux installation (without using Docker):
 * Nginx >= 1.22
-* PHP >= 8.0
+* PHP >= 8.0 (we recommend 8.2)
 * LibGD >= 2
 * Mariadb > 10.7 or Percona Server for Mysql > 8.0.28 
 

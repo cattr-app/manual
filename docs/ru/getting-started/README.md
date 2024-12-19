@@ -17,7 +17,7 @@
 
 ### При расширенной установке в linux (без использования Docker):
 * Nginx >= 1.22
-* PHP >= 8.0
+* PHP >= 8.0 (мы рекомендуем 8.2)
 * LibGD >= 2
 * Mariadb > 10.7 или Percona Server for Mysql > 8.0.28 
 
