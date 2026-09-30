@@ -20,10 +20,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository and LFS assets
+      - name: Check out repository
         uses: actions/checkout@v6
-        with:
-          lfs: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -44,6 +42,10 @@ jobs:
           test -s _site/en/README.md
           test -s _site/ru/README.md
           test -s _site/api/index.html
+          if grep -RIlI --include='*.png' '^version https://git-lfs.github.com/spec/v1$' _site; then
+            echo 'Unresolved Git LFS pointer found in the site artifact' >&2
+            exit 1
+          fi
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v4
