@@ -7,6 +7,7 @@
   "files": [
     "docs"
   ],
+  "private": true,
   "scripts": {
     "start": "docsify start ./docs",
     "serve": "docsify serve ./docs",
