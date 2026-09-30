@@ -34,7 +34,7 @@
   "dependencies": {
     "grep": "^0.1.0",
     "html-minifier": "^4.0",
-    "html-snapshots": "^0.17"
+    "html-snapshots": "^6.12"
   },
   "config": {
     "domain": "docs.cattr.app",
