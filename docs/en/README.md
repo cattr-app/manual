@@ -2,7 +2,7 @@
 
 Cattr is an open-source time-tracking and project-managment application, designed to be flawlessly integrated with your infrastructure. Superpowered with features like built-in screenshots capture and activity detection, it's a great instrument to boost your team's performance straight to the top.
 
-Cattr consists of two parts: one is hosted on your server and provides access to stored data via API, as well as web interface for project management and Cattr functionality, report generation. The second part is an application for Windows, Mac OS, Linux or a mobile application for Android, iOS. With its help, users select tasks and track the time worked.
+Cattr consists of a server application with a web interface and API, and a desktop client for Windows, macOS, and Linux. Users select tasks in the desktop client and track their working time.
 
 ## If you're an employee - Cattr client installation  :id=if-youre-an-employee
 To begin working with Cattr, you need to obtain credentials (hostname, email, and password) for your user account from an administrator of your company. After obtaining these credentials, download the desktop app here — [https://cattr.app/desktop](https://cattr.app/desktop).
@@ -33,7 +33,7 @@ This report shows the time worked in individual projects for the selected time p
 This report shows the time worked by specific employees on selected projects and tasks.
 
 ### Planned Time Report
-This report is calculated once a day at 00:00:00 of the selected date in the time zone set for the company. It shows the scheduled and worked time of specific employees on selected projects and tasks, as well as the productivity of task execution, calculated as the ratio of the worked time to the scheduled time. Tasks in the report are sorted by projects and within them - by actual time worked on tasks in descending order. One mouse click (in the desktop version) or tap (in the mobile version) on a task will open the list of performers with the actual time worked on the task. Productivity is specified only for a task and is not displayed in the list of its executors.
+This report is calculated once a day at 00:00:00 of the selected date in the time zone set for the company. It shows the scheduled and worked time of specific employees on selected projects and tasks, as well as the productivity of task execution, calculated as the ratio of the worked time to the scheduled time. Tasks in the report are sorted by projects and within them - by actual time worked on tasks in descending order. Select a task to open the list of performers and the actual time worked on it. Productivity is specified only for a task and is not displayed in the list of its executors.
 Tasks in the report can have a red ‘Overdue’ tag (if the task completion date is longer than scheduled) and an orange ‘Overtime’ tag (if the task completion time is longer than scheduled). 
 
 ### Universal Report
@@ -45,9 +45,6 @@ Data can be sorted by:
 - tasks - the report displays the total time of all users and the time of each user individually on the selected tasks, users are ‘invested’ in the tasks and are revealed by clicking on it.
  
 Also this type of report includes charts, they are displayed on the frontend when the report is generated, as well as when downloading the report in Excel format.
-
-### Invoices
-Invoices will ease the calculation of employees' salaries and customers' bills.
 
 ## Installation
 Notice that Cattr is an on-premises application, which requires installation on your server. Check out the «[Getting started](/en/getting-started/)» and «[Advanced installation](/en/advanced/)» articles for more info.

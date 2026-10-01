@@ -13,19 +13,15 @@ This article describes a simplified installation of the server part of cattr usi
 * RAM: at least 3Gb
 * Storage: at least 10Gb of reserved disk space
 * Docker: >= 20.10
-* Docker compose: >= 2.3.4
+* Docker Compose v2
 
 
-### For an advanced linux installation (without using Docker):
-* Nginx >= 1.22
-* PHP >= 8.0 (we recommend 8.2)
-* LibGD >= 2
-* Mariadb > 10.7 or Percona Server for Mysql > 8.0.28 
+For source development requirements, see [Advanced installation](en/advanced/).
 
 
 ## Linux installation Debian, Ubuntu :id=installation-linux-deb
 
-?> If you have enough experience, you can consider non docker [installation](en/advanced/?id=intro) (linux only)
+?> For source development, see [Advanced installation](en/advanced/?id=intro).
 
 ### Install docker
 
@@ -129,48 +125,67 @@ cd cattr-app
 Next, you should select the option of installing using https (for the case when cattr will be used for work) or http (if cattr is used only for testing, or in a cluster installation, when this functionality is taken over by the cluster binding ingress/api gateway).
 
 ### HTTP only setup, see HTTPS below  
-Create a `docker-compose.yml` file with the following content:
-```yaml
-version: '3.9'
+Create a .env file beside docker-compose.yml. Generate a unique application key with openssl rand -base64 32 and put its output after the base64: prefix in APP_KEY. Generate a separate password for each of DB_PASSWORD, DB_ROOT_PASSWORD, and APP_ADMIN_PASSWORD; openssl rand -hex 32 creates values that can be pasted directly into this file. Do not commit or share .env. Set APP_URL to the address users will open; use an https URL for the HTTPS setup.
 
+~~~dotenv
+APP_URL=http://your-server.example.com
+APP_KEY=base64:REPLACE_WITH_RANDOM_KEY
+DB_PASSWORD=REPLACE_WITH_RANDOM_PASSWORD
+DB_ROOT_PASSWORD=REPLACE_WITH_ANOTHER_RANDOM_PASSWORD
+APP_ADMIN_EMAIL=admin@example.com
+APP_ADMIN_PASSWORD=REPLACE_WITH_RANDOM_PASSWORD
+APP_ADMIN_NAME=Admin
+~~~
+
+Create a `docker-compose.yml` file with the following content:
+~~~yaml
 services:
   app:
-	  image: registry.git.amazingcat.net/cattr/core/app:latest
+    image: ghcr.io/cattr-app/server:latest
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "80:8080"
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - ./storage:/app/storage
-    networks:
-       - default
-#      - web
+      - backend_storage:/opt/cattr/app/storage
     environment:
-      - DB_USERNAME=root
-      - DB_PASSWORD=bP8T109h6BuL
-      - APP_KEY=base64:lg1m/12MHBbBpiWTXjot98Q9MP/nSzPrvLEU2beD+2Y=
-      # Admin user only created on initial run with the following credentials, change them if needed
-      - APP_ADMIN_EMAIL=admin@cattr.app
-      - APP_ADMIN_PASSWORD=password
-      - APP_ADMIN_NAME=Admin
+      APP_URL: "${APP_URL:?Set APP_URL in .env}"
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_KEY: "${APP_KEY:?Set APP_KEY in .env}"
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_DATABASE: cattr
+      DB_USERNAME: cattr
+      DB_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+      APP_ADMIN_EMAIL: "${APP_ADMIN_EMAIL:?Set APP_ADMIN_EMAIL in .env}"
+      APP_ADMIN_PASSWORD: "${APP_ADMIN_PASSWORD:?Set APP_ADMIN_PASSWORD in .env}"
+      APP_ADMIN_NAME: "${APP_ADMIN_NAME:-Admin}"
 
   db:
-    image: percona:8.0
+    image: docker.io/percona:8.0
     restart: unless-stopped
     environment:
-      - MYSQL_DATABASE=cattr
-      - MYSQL_ROOT_PASSWORD=bP8T109h6BuL
+      MYSQL_DATABASE: cattr
+      MYSQL_USER: cattr
+      MYSQL_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD:?Set DB_ROOT_PASSWORD in .env}"
     cap_add:
       - SYS_NICE
     volumes:
-      - ./data:/var/lib/mysql
+      - database:/var/lib/mysql
     healthcheck:
-      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '--password=bP8T109h6BuL', '-u', 'root']
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 20s
       retries: 10
-```
+
+volumes:
+  backend_storage:
+  database:
+~~~
 
 ### HTTPS setup
 
@@ -178,58 +193,65 @@ If you wish to use custom domain. You need to install and setup nginx with prope
 
 You can setup nginx by youself or create the following `docker-compose.yml`:
 
-```yaml
-version: '3.9'
+~~~yaml
 services:
   app:
-    image: registry.git.amazingcat.net/cattr/core/app:latest
+    image: ghcr.io/cattr-app/server:latest
     restart: unless-stopped
+    expose:
+      - "8080"
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - ./storage:/app/storage
-    networks:
-      - default
+      - backend_storage:/opt/cattr/app/storage
     environment:
-      - DB_USERNAME=root
-      - DB_PASSWORD=bP8T109h6BuL
-      - APP_KEY=base64:lg1m/12MHBbBpiWTXjot98Q9MP/nSzPrvLEU2beD+2Y=
-      # Admin user only created on initial run with the following credentials, change them if needed
-      - APP_ADMIN_EMAIL=admin@cattr.app
-      - APP_ADMIN_PASSWORD=password
-      - APP_ADMIN_NAME=Admin
+      APP_URL: "${APP_URL:?Set APP_URL in .env}"
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_KEY: "${APP_KEY:?Set APP_KEY in .env}"
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_DATABASE: cattr
+      DB_USERNAME: cattr
+      DB_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+      APP_ADMIN_EMAIL: "${APP_ADMIN_EMAIL:?Set APP_ADMIN_EMAIL in .env}"
+      APP_ADMIN_PASSWORD: "${APP_ADMIN_PASSWORD:?Set APP_ADMIN_PASSWORD in .env}"
+      APP_ADMIN_NAME: "${APP_ADMIN_NAME:-Admin}"
 
   db:
-    image: percona:8.0
+    image: docker.io/percona:8.0
     restart: unless-stopped
     environment:
-      - MYSQL_DATABASE=cattr
-      - MYSQL_ROOT_PASSWORD=bP8T109h6BuL
+      MYSQL_DATABASE: cattr
+      MYSQL_USER: cattr
+      MYSQL_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD:?Set DB_ROOT_PASSWORD in .env}"
     cap_add:
       - SYS_NICE
     volumes:
-      - ./data:/var/lib/mysql
+      - database:/var/lib/mysql
     healthcheck:
-      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '--password=bP8T109h6BuL', '-u', 'root']
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 20s
       retries: 10
 
-
-#Nginx Service
   webserver:
     image: nginx:alpine
     container_name: webserver
     restart: unless-stopped
     ports:
       - "80:80"
-      - "443:80"
+      - "443:443"
     volumes:
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-      - ./nginx/certs:/etc/nginx/certs
-    networks:
-      - default
-```
+      - ./nginx/conf.d/:/etc/nginx/conf.d/:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+
+volumes:
+  backend_storage:
+  database:
+~~~
 
 Create `nginx/conf.d` and `nginx/certs` directories for a nginx service
 
@@ -251,7 +273,7 @@ server {
 
     location / {
       # change domain for redirect
-        return 301 https://cattr.app$request_uri;
+        return 301 https://your-domain.example.com$request_uri;
     }
 }
 server {
@@ -259,62 +281,31 @@ server {
     listen [::]:443 ssl;
     http2 on;
     # change domain
-    server_name cattr.app www.cattr.app;
+    server_name your-domain.example.com;
     # use correct path for certs
-    ssl_certificate /etc/nginx/certs/live/cattr.app/fullchain.pem; 
-    ssl_certificate_key /etc/nginx/certs/live/cattr.app/privkey.pem; 
-    ssl_dhparam /etc/nginx/certs/live/cattr.app/ssl-dhparams.pem;
+    ssl_certificate /etc/nginx/certs/fullchain.pem;
+    ssl_certificate_key /etc/nginx/certs/privkey.pem;
 
     location / {
         proxy_set_header X-Real-IP  $remote_addr;
-        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $host;
         proxy_set_header X-Real-Port $server_port;
-        proxy_set_header X-Real-Scheme $scheme;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
 
-        proxy_pass http://app:80;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://app:8080;
     }
 }
 ```
 
-Don’t foget to put you certificates in `nginx/certs` folder and make sure the path to the certificates is correct in the config file.
+Place your certificate and key at nginx/certs/fullchain.pem and nginx/certs/privkey.pem.
 
-### Persist database data
-
-#### Ubuntu, Debian
-
-```bash
-# create directory to persist database data
-mkdir data
-
-# check which permissions to give using the following command
-docker run --rm percona:8.0 id mysql 
-# outputs: uid=1001(mysql) gid=1001(mysql) groups=1001(mysql)
-
-# set directory permissions
-sudo chown -R 1001:1001 ./data
-```
-
-### Alt
-
-```bash
-# create directory to persist database data
-mkdir data
-
-# check which permissions to give using the following command
-docker run --rm percona:8.0 id mysql 
-# outputs: uid=1001(mysql) gid=1001(mysql) groups=1001(mysql)
-su -
-cd /home/cattr/cattr-app
-# set directory permissions
-chown -R 1001:1001 ./data
-su cattr
-```
+Application files and database contents are stored in named Docker volumes, so separate host directories and ownership changes are not required.
 
 ### Launching the app
-Now you can launch the app with `docker compose up -d` command in the folder where the docker-compose.yml file is located, first launch on a slow 4 core 2000MHz  server should take no more than 5 minutes.
+Now you can launch the app with `docker compose up -d` command in the folder where the docker-compose.yml file is located, the first launch can take several minutes while the database initializes.
 
 
 ## Windows Installation  :id=installation-windows
@@ -337,55 +328,62 @@ Create folders manually or run the following command in the cmd or PowerShelll:
 cd c:\
 mkdir cattr-server
 cd cattr-server
-mkdir data
 
 ```
 
+Create a .env file in this folder using the variables above, and set APP_URL to http://localhost for local access. Then create the Compose file:
+
 Create a `docker-compose.yml` file in the c:\cattr-server\ folder with the following contents:
 
-```yaml
-version: '3.9'
-
+~~~yaml
 services:
   app:
-    image: registry.git.amazingcat.net/cattr/core/app:latest
+    image: ghcr.io/cattr-app/server:latest
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "80:8080"
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - ./storage:/app/storage
-    networks:
-       - default
-#      - web
+      - backend_storage:/opt/cattr/app/storage
     environment:
-      - DB_USERNAME=root
-      - DB_PASSWORD=bP8T109h6BuL
-      - APP_KEY=base64:lg1m/12MHBbBpiWTXjot98Q9MP/nSzPrvLEU2beD+2Y=
-      # Изначальный Admin пользователь будет создан только при первом запуске, вы можете изменить его данные если необходимо
-      - APP_ADMIN_EMAIL=admin@cattr.app
-      - APP_ADMIN_PASSWORD=password
-      - APP_ADMIN_NAME=Admin
+      APP_URL: "${APP_URL:?Set APP_URL in .env}"
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_KEY: "${APP_KEY:?Set APP_KEY in .env}"
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_DATABASE: cattr
+      DB_USERNAME: cattr
+      DB_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+      APP_ADMIN_EMAIL: "${APP_ADMIN_EMAIL:?Set APP_ADMIN_EMAIL in .env}"
+      APP_ADMIN_PASSWORD: "${APP_ADMIN_PASSWORD:?Set APP_ADMIN_PASSWORD in .env}"
+      APP_ADMIN_NAME: "${APP_ADMIN_NAME:-Admin}"
 
   db:
-    image: percona:8.0
+    image: docker.io/percona:8.0
     restart: unless-stopped
     environment:
-      - MYSQL_DATABASE=cattr
-      - MYSQL_ROOT_PASSWORD=bP8T109h6BuL
+      MYSQL_DATABASE: cattr
+      MYSQL_USER: cattr
+      MYSQL_PASSWORD: "${DB_PASSWORD:?Set DB_PASSWORD in .env}"
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD:?Set DB_ROOT_PASSWORD in .env}"
     cap_add:
       - SYS_NICE
     volumes:
-      - ./data:/var/lib/mysql
+      - database:/var/lib/mysql
     healthcheck:
-      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '--password=bP8T109h6BuL', '-u', 'root']
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 20s
       retries: 10
 
-```
-The credentials for the first administrator login to cattr are set in the lines APP_ADMIN_EMAIL, APP_ADMIN_PASSWORD. Change them to your own if necessary.
+volumes:
+  backend_storage:
+  database:
+~~~
+The initial administrator account uses APP_ADMIN_EMAIL and APP_ADMIN_PASSWORD from .env.
 
 ### Start the cattr server application 
 
@@ -398,15 +396,11 @@ docker compose up -d
 ![the result of running the command will look like this](../../assets/en/getting-started/cattr-docker-compose-up-windows.png)
 
 
- The first startup may take 5-10 minutes, and you can check the status of the running application and manage it in the docker desktop GUI.
+ The first startup can take several minutes while the database initializes. Check the service status in Docker Desktop or with docker compose ps.
 
 Once the application run, the cattr server will start responding to http://localhost.
 
-Use the following administrator credentials to log in for the first time:
-
-login: admin@cattr.app
-
-password: password 
+Sign in with the administrator email and password set in .env.
 
 
 ?>If something went wrong - [Debug and possible errors](ru/getting-started/?id=debug-and-errors)

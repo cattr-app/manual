@@ -38,7 +38,7 @@ If you select the user, you can see the tasks (and the tasks' projects), the use
 
 ## Planned Time Report  :id=planned
 
-This report is calculated once a day at 00:00:00 of the selected date in the company's time zone. It shows the planned and worked time of specific employees on selected projects and tasks, as well as the productivity of task completion, calculated as the ratio of worked time to planned time. Tasks in the report are sorted by projects and within them - by actual time worked on tasks in descending order. One mouse click (in the desktop version) or tap (in the mobile version) on a task will open the list of performers with the actual time worked on the task. Productivity is specified only for a task and is not displayed in the list of its executors.
+This report is calculated once a day at 00:00:00 of the selected date in the company's time zone. It shows the planned and worked time of specific employees on selected projects and tasks, as well as the productivity of task completion, calculated as the ratio of worked time to planned time. Tasks in the report are sorted by projects and within them - by actual time worked on tasks in descending order. Select a task to open the list of performers with the actual time worked on it. Productivity is specified only for a task and is not displayed in the list of its executors.
 
 ?> Tasks in the report can have a red ‘Overdue’ tag (if the task completion date is longer than scheduled) and an orange ‘Overtime’ tag (if the task completion time is longer than planned).
 
@@ -93,7 +93,7 @@ When creating a Status (kanban column), you should specify its name, background 
 
 Each task is designed as a card, which in the process moves between columns according to its stage.
 
-When you click/tap on a task card, a window containing basic information about the task and buttons for viewing, editing or deleting the task appears. To move a task card to another column in the mobile version, press the purple circle at the bottom of the card and pull it to the column you need.
+Select a task card to open a window with its basic information and buttons to view, edit, or delete it. On a touch screen, press the purple handle at the bottom of the card and drag it to another column.
 
 ## Calendar :id=calender
 

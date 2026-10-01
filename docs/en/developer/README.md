@@ -1,104 +1,65 @@
-## Documentation for developers
+# Developer documentation
 
-## Build Cattr client application :id=cattr-client-build
+## Build the Cattr desktop client :id=cattr-client-build
 
-The Cattr desktop client application is based on the Electron framework. 
-The application was tested on the following operating systems on CPU x86_x64:
+The desktop client is an Electron application for Windows, macOS, and Linux. Its current native dependency stack requires the Node.js and npm versions listed below.
 
-- MacOS: Monterey 12.3.1  
-- Windows: 22H2 10.0.19045, 11.0.22621
-- Debian: bullseye+kde 11
-- Ubuntu: LTS 22.04
-- Alt linux: kworkstation
-- Astra linux: orel 2.12
+### Build requirements
 
-#### You will need the following dependencies for a successful build:
+- x64 Windows, macOS, or Linux
+- Node.js 14.21.x
+- npm 9.9.4
+- Python 3.10 and a native C/C++ toolchain
+- Git
 
-#### For macOS
-You need to install xcode from [official site](https://developer.apple.com/xcode/)
+On macOS, install Xcode from the [Apple Developer website](https://developer.apple.com/xcode/). On Debian/Ubuntu, install the build dependencies:
 
-Cattr Desktop App  
-==========
-Electron desktop application for Cattr  
+~~~bash
+sudo apt-get update
+sudo apt-get install -y git cmake curl python3 build-essential pkg-config \
+  libsecret-1-0 libsecret-1-dev ca-certificates openssh-client dpkg-dev dpkg-sig
+~~~
 
-Minimum system requirements to build the app
-- MacOS: Monterey 12.3.1  
-- Windows: 22H2 10.0.19045, 11.0.22621
-- Debian: bullseye+kde 11
-- Ubuntu: LTS 22.04
-- Alt linux: kworkstation 10
-- Astra linux: orel 2.12
-- CPU: amd64
+On Windows, install Python 3.10 and Visual Studio 2022 Build Tools with the Desktop development with C++ workload. A native Windows build does not require Docker.
 
-### For build to work, you need to have following dependencies:
-#### MacOS
-You need to install xcode from [official website](https://developer.apple.com/xcode/)
+Use a Node version manager such as [nvm](https://github.com/nvm-sh/nvm) to install Node.js 14.21.x, then install the npm version used by the project:
 
-#### Linux (apt based)
-```bash
-apt-get update
-apt-get install -y git cmake curl python3 build-essential pkg-config libsecret-1-0 libsecret-1-dev ca-certificates openssh-client dpkg-dev dpkg-sig
-```
-##### Installl nodejs 14.19.0 (MacOS & Linux)  
-Easiest way to do so is by using nvm, here is the [official guide on how to install it](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script).  
+~~~bash
+nvm install 14.21
+nvm use 14.21
+npm install --global npm@9.9.4
+~~~
 
-Now we can use it to install nodejs.  
-```bash
-nvm install 14.19.0
-nvm use 14.19.0
-```
-Install yarn
-```bash
-npm install -g yarn
-```
+### Get the source and run development mode
 
-You can verify the installation like so:
-```bash
-node -v # v14.19.0
-yarn -v # 3.2.1
-```
+~~~bash
+git clone https://github.com/cattr-app/desktop-application.git
+cd desktop-application
+npm ci
+npm run build-development
+npm run dev
+~~~
 
-#### Windows
-##### Download and install Docker Desktop from the [official site](https://www.docker.com/).
+On Windows, use npm run dev-win instead of npm run dev. Development mode stores its data separately from the regular client profile.
 
-![docker](../../assets/en/getting-started/docker.png)
+### Create production packages
 
-For Docker to work in Windows you may need to enable virtualization in BIOS and [install WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install). The installation process is described in details [in the Docker user manual](https://docs.docker.com/desktop/setup/install/windows-install/).
+Set the application version, build the renderer, and package for the current platform:
 
+~~~bash
+npm ci
+npm --no-git-tag-version version 1.0.0
+npm run build-production
+npm run package-linux
+~~~
 
-## Launch development version (Linux & MacOS only)
-1. Clone this repository [https://git.amazingcat.net/cattr/desktop/desktop-application/](https://git.amazingcat.net/cattr/desktop/desktop-application/) and open it's directory
-2. Install dependencies via `yarn`
-3. Specify version, for example `v1.0.0"`
-```bash
-npm config set git-tag-version false
-npm version v1.0.0
-```
-4. Run webpack via `yarn build-development` for development version
-5. When build completes, run `yarn dev` to launch client in development mode
+Choose the packaging command for your target:
 
-## Development mode
-Development installation uses different keychain service name and application folder path (with "-develop" suffix).
+| Target | Command | Output |
+| --- | --- | --- |
+| macOS, signed and notarized | npm run package-mac | DMG; requires Apple signing credentials |
+| macOS, unsigned | npm run package-mac-unsigned | DMG |
+| Linux | npm run package-linux | AppImage, DEB, and tar.gz |
+| Windows | npm run package-windows | NSIS installer and portable executable |
 
-## Build production version
-1. Clone this [https://git.amazingcat.net/cattr/desktop/desktop-application/](https://git.amazingcat.net/cattr/desktop/desktop-application/) repository and open its directory
-2. (Windows only) run in PowerShell `docker run -it -v ${PWD}:/project electronuserland/builder:14-wine` next commands should be executed inside running container.
-3. Install dependencies via `yarn`
-4. Specify version, for example `v1.0.0`
-```bash
-npm config set git-tag-version false
-npm version v1.0.0
-```
-5. Build application in production mode via `yarn build-production`
-6. Build executable for your favourite platform (output directory is `/target`).
-
-
-How to build executable?
-  - **macOS:** `yarn package-mac` will produce signed & notarized DMG
-  - **Linux:** `yarn package-linux` will produce Tarball, DPKG and AppImage
-  - **Windows:** `yarn package-windows` will produce installer and portable executables
-
-Compatibility sheet:
-  - **Host with macOS:** can produce builds only for macOS
-  - **Host with Linux:** can produce builds for Linux and Windows (using Wine)
-  - **Host with Windows:** can produce builds only for Windows
+Packages are written to target/. macOS packages must be built on macOS. Linux can also build Windows packages when Wine is installed; Windows builds Windows packages only.

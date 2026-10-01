@@ -1,88 +1,65 @@
 # Документация для разработчиков
 
-## Сборка клиентского приложения Cattr :id=cattr-client-build
+## Сборка настольного клиента Cattr :id=cattr-client-build
 
-Клиентское приложение Cattr для рабочего стола основано на фреймворке Electron. 
-Запуск приложения тестировался на следующих операционных системах на CPU x86_x64:
+Настольный клиент Cattr — приложение Electron для Windows, macOS и Linux. Текущий набор нативных зависимостей требует указанных ниже версий Node.js и npm.
 
-- MacOS: Monterey 12.3.1  
-- Windows: 22H2 10.0.19045, 11.0.22621
-- Debian: bullseye+kde 11
-- Ubuntu: LTS 22.04
-- Alt linux: kworkstation
-- Astra linux: orel 2.12
+### Требования для сборки
 
-### Для успешной сборки вам потребуются следующие зависимости:
+- x64 Windows, macOS или Linux
+- Node.js 14.21.x
+- npm 9.9.4
+- Python 3.10 и нативный toolchain для C/C++
+- Git
 
-#### Для MacOS
-Вам необходимо установить xcode с [официального сайта](https://developer.apple.com/xcode/)
+В macOS установите Xcode с [сайта Apple для разработчиков](https://developer.apple.com/xcode/). В Debian/Ubuntu установите системные зависимости для сборки:
 
-#### Для Linux (apt based)
-```bash
-apt-get update
-apt-get install -y git cmake curl python3 build-essential pkg-config libsecret-1-0 libsecret-1-dev ca-certificates openssh-client dpkg-dev dpkg-sig
-```
-##### Установка nodejs 14.19.0 (MacOS & Linux)  
-Проще всего это сделать с помощью nvm, вот [официальное руководство по установке](https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script).  
+~~~bash
+sudo apt-get update
+sudo apt-get install -y git cmake curl python3 build-essential pkg-config \
+  libsecret-1-0 libsecret-1-dev ca-certificates openssh-client dpkg-dev dpkg-sig
+~~~
 
-Теперь мы можем использовать его для установки nodejs.  
-```bash
-nvm install 14.19.0
-nvm use 14.19.0
-```
-Установка yarn
-```bash
-npm install -g yarn
-```
+В Windows установите Python 3.10 и Visual Studio 2022 Build Tools с компонентом Desktop development with C++. Для нативной сборки Windows Docker не нужен.
 
-Вы можете проверить установку следующим образом:
-```bash
-node -v # v14.19.0
-yarn -v # 3.2.1
-```
+Установите Node.js 14.21.x с помощью менеджера версий, например [nvm](https://github.com/nvm-sh/nvm), затем установите используемую проектом версию npm:
 
-#### Windows
-##### Скачайте и установите Docker Desktop с [официального сайта](https://www.docker.com/).
+~~~bash
+nvm install 14.21
+nvm use 14.21
+npm install --global npm@9.9.4
+~~~
 
+### Получение исходного кода и запуск в режиме разработки
 
-![docker](../../assets/en/getting-started/docker.png)
+~~~bash
+git clone https://github.com/cattr-app/desktop-application.git
+cd desktop-application
+npm ci
+npm run build-development
+npm run dev
+~~~
 
-Для работы Docker в Windows вам может потребоваться включить виртуализацию в BIOS и [установить WSL 2](https://learn.microsoft.com/en-us/windows/wsl/install). Процесс установки подробно описан [в руководстве пользователя Docker](https://docs.docker.com/desktop/setup/install/windows-install/).
+В Windows вместо npm run dev используйте npm run dev-win. Режим разработки хранит данные отдельно от обычного профиля клиента.
 
+### Сборка production-пакетов
 
-## Запуск версии для разработки (только Linux & MacOS)
-1. Клонируйте этот репозиторий [https://git.amazingcat.net/cattr/desktop/desktop-application/](https://git.amazingcat.net/cattr/desktop/desktop-application/) и откройте его директорию
-2. Установите зависимости через `yarn`
-3. Укажите версию, например `v1.0.0"`
-```bash
-npm config set git-tag-version false
-npm version v1.0.0
-```
-4. Запустите webpack через `yarn build-development` для версии разработки
-5. После завершения сборки запустите `yarn dev` для запуска клиента в режиме разработки
+Укажите версию приложения, соберите renderer и подготовьте пакет для текущей платформы:
 
-## Режим разработки
-Установка для разработки использует другое имя службы связки ключей и другой путь к папке приложения (с суффиксом "-develop").
+~~~bash
+npm ci
+npm --no-git-tag-version version 1.0.0
+npm run build-production
+npm run package-linux
+~~~
 
-## Сборка production версии
-1. Клонируйте этот [https://git.amazingcat.net/cattr/desktop/desktop-application/](https://git.amazingcat.net/cattr/desktop/desktop-application/) репозиторий и откройте его директорию
-2. (Только Windows) запустите в PowerShell `docker run -it -v ${PWD}:/project electronuserland/builder:14-wine` следующие команды должны быть выполнены внутри запущенного контейнера.
-3. Установите зависимости через `yarn`
-4. Укажите версию, например `v1.0.0`
-```bash
-npm config set git-tag-version false
-npm version v1.0.0
-```
-5. Соберите приложение в production режиме через `yarn build-production`
-6. Соберите исполняемый файл для вашей платформы (выходная директория `/target`).
+Выберите команду для целевой платформы:
 
+| Платформа | Команда | Результат |
+| --- | --- | --- |
+| macOS, с подписью и нотариальным заверением | npm run package-mac | DMG; нужны учетные данные Apple |
+| macOS, без подписи | npm run package-mac-unsigned | DMG |
+| Linux | npm run package-linux | AppImage, DEB и tar.gz |
+| Windows | npm run package-windows | NSIS-установщик и portable-приложение |
 
-Как собрать исполняемый файл?
-  - **macOS:** `yarn package-mac` создаст подписанный и нотариально заверенный DMG
-  - **Linux:** `yarn package-linux` создаст Tarball, DPKG и AppImage
-  - **Windows:** `yarn package-windows` создаст установщик и портативные исполняемые файлы
-
-Таблица совместимости:
-  - **Хост с macOS:** может создавать сборки только для macOS
-  - **Хост с Linux:** может создавать сборки для Linux и Windows (используя Wine)
-  - **Хост с Windows:** может создавать сборки только для Windows
+Пакеты сохраняются в target/. Пакеты macOS нужно собирать на macOS. Linux также может собирать пакеты Windows при установленном Wine; Windows собирает пакеты только для Windows.
